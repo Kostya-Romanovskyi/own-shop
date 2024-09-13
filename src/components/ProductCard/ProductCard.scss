@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+@import '../../styles/media';
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.card {
+	@media (max-width: 479px) {
+		max-width: 320px;
+	}
+
+	padding: 10px;
+
+	border: 1px solid $card-border-color;
+	border-radius: 10px;
+
+	transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+	&:hover,
+	&:focus {
+		box-shadow: 0px -6px 20px $card-hover-color;
+	}
+}
+
+.card_img {
+	@media (min-width: $mobile) {
+		height: 140px;
+		object-fit: cover;
+	}
+}
+
+.card_description {
+	height: 75px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+
+	transition: all 3000ms $cubic-bezier;
+
+	color: $secondary-font-color;
+}

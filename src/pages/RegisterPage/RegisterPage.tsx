@@ -10,14 +10,31 @@ const RegisterPage = () => {
 
 	const {
 		register,
+		watch,
 		handleSubmit,
 		reset,
 		formState: { errors },
 	} = useForm<IRegister>()
 
-	const onSubmit: SubmitHandler<IRegister> = (data: IRegister) => {
+	const password = watch('password')
+
+	const onSubmit: SubmitHandler<IRegister> = data => {
 		if (captcha) {
-			registerNewUser({ ...data, role: UserRole.USER })
+			const formData = new FormData()
+
+			formData.append('name', data.name)
+			formData.append('last_name', data.last_name)
+			formData.append('email', data.email)
+			formData.append('password', data.password)
+			formData.append('password_check', data.password_check)
+			formData.append('phone', data.phone)
+			formData.append('additional_information', data.additional_information || '')
+			formData.append('role', UserRole.USER)
+			formData.append('image', data.image[0])
+
+			if (data.password !== data.password_check) return
+
+			registerNewUser(formData)
 
 			reset()
 
@@ -46,25 +63,37 @@ const RegisterPage = () => {
 
 				<label htmlFor='email'>Email</label>
 				<input type='text' {...register('email', { required: true })} id='email' />
-				{errors.last_name && <span>Field 'Email' is required for registration</span>}
+				{errors.email && <span>Field 'Email' is required for registration</span>}
 
 				<label htmlFor='password'>Password</label>
 				<input type='text' {...register('password', { required: true })} id='password' />
-				{errors.last_name && <span>Field 'Password' is required for registration</span>}
+				{errors.password && <span>Field 'Password' is required for registration</span>}
+
+				<label htmlFor='password_check'>Repeat password</label>
+
+				<input
+					type='text'
+					{...register('password_check', {
+						required: `Field 'Repeat password' is required for registration`,
+						validate: value => value === password || 'Passwords do not match',
+					})}
+					id='password_check'
+				/>
+				{errors.password_check && <span>{errors.password_check?.message}</span>}
 
 				<label htmlFor='phone'>Phone</label>
 				<input type='text' {...register('phone', { required: true })} id='phone' />
-				{errors.last_name && <span>Field 'Phone' is required for registration</span>}
+				{errors.phone && <span>Field 'Phone' is required for registration</span>}
 
 				<label htmlFor='additional_information'>Additional information</label>
 				<input type='text' {...register('additional_information')} id='additional_information' />
 
 				<label htmlFor='image'>Avatar</label>
-				<input type='text' {...register('image')} id='image' />
+				<input type='file' {...register('image')} id='image' name='image' />
 
 				<ReCAPTCHA sitekey='6LeYfNgpAAAAANbWfmHiiiVNqWqQq3s3riSzNgaS' onChange={onChange} id='captcha' />
 
-				<button type='submit'>register</button>
+				<button type='submit'>Register</button>
 			</form>
 		</>
 	)

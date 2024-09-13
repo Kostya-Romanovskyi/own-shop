@@ -1,7 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { ILogin, IRegister } from '../../API/auth/auth.interface'
-import { loginUser } from '../../API/auth/auth'
+import { ILogin } from '../../API/auth/auth.interface'
 import { useLoginUser } from '../../hooks/useAuth'
 
 const LoginPage = () => {

@@ -8,14 +8,21 @@
 		<script src="https://www.google.com/recaptcha/enterprise.js?render=6LfkqdcpAAAAAKcfr_uYxuTIrg6HnWZPhRABU523"></script>
 		<script>
 			function onClick(e) {
-				e.preventDefault()
+				e.preventDefault();
 				grecaptcha.enterprise.ready(async () => {
 					const token = await grecaptcha.enterprise.execute('6LfkqdcpAAAAAPmDJ3qZ7xxJAiwEXnjfaqgIhftL', {
 						action: 'LOGIN',
-					})
-				})
+					});
+				});
 			}
 		</script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div id="root"></div>

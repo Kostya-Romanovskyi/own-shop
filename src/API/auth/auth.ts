@@ -5,6 +5,9 @@ import { getTokenConfig } from '../../helpers/checkToken'
 
 const BASE_URL = 'http://localhost:3000/api/auth'
 
+// BASE avatar URL
+export const avatarUrl = 'http://localhost:3000/'
+
 export const getUsers = async () => {
 	try {
 		const response = await axios.get<IGetUsers[]>(`${BASE_URL}/users`)
@@ -16,7 +19,11 @@ export const getUsers = async () => {
 
 export const registerNewUser = async (newUser: IRegister) => {
 	try {
-		const response = await axios.post(`${BASE_URL}/register`, newUser)
+		const response = await axios.post(`${BASE_URL}/register`, newUser, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		})
 		return response
 	} catch (error: any) {
 		console.log(error.response.data.message)

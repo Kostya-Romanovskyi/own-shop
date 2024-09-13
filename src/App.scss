@@ -1,0 +1,14 @@
+@import './styles/_variables.scss';
+@import './styles/reset';
+@import './styles/base';
+
+body {
+	font-family: $main-font;
+
+	background-color: $main-bg-color;
+	color: $main-font-color;
+}
+
+.scroll__block {
+	overflow: hidden;
+}

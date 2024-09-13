@@ -9,10 +9,11 @@ export interface IRegister {
 	last_name: string
 	email: string
 	password: string
+	password_check: string
 	phone: string
 	additional_information: string
 	role: UserRole
-	image: string
+	image: FileList
 	createdAt?: string
 	updatedAt?: string
 	token?: string
