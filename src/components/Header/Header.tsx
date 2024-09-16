@@ -4,6 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
 import HeaderButton from '../HeaderButton/HeaderButton';
+
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxCross2 } from 'react-icons/rx';
 import './header.scss';
 
 const Header = () => {
@@ -13,7 +16,7 @@ const Header = () => {
 
 	// toggle burger state
 	const handleBurgerOpen = () => {
-		setIsOpen(!isOpen);
+		screen.width <= 768 && setIsOpen(!isOpen);
 	};
 
 	// scroll block when burger is open
@@ -37,15 +40,17 @@ const Header = () => {
 					{/* <img className='header__logo' src='../../../public/logo.webp' alt='Logo own-shop' /> */}
 					<div>Logo</div>
 
-					{/* <button onClick={handleBurgerOpen} className='burger__btn' type='button'>
-						open
-					</button> */}
-
-					<HeaderButton click={handleBurgerOpen} icon='' />
+					<HeaderButton click={handleBurgerOpen} Icon={RxHamburgerMenu} classStyle='' />
 
 					<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
 						<nav className='header__nav'>
 							<ul className='header__list'>
+								<li className='header__item'>
+									<Link onClick={handleBurgerOpen} className='header__link' to={'/'}>
+										Home
+									</Link>
+								</li>
+
 								<li className='header__item'>
 									<Link onClick={handleBurgerOpen} className='header__link' to={'/menu'}>
 										Menu
@@ -65,6 +70,12 @@ const Header = () => {
 								</li>
 
 								<li className='header__item'>
+									<Link onClick={handleBurgerOpen} className='header__link' to={'/contact'}>
+										Contact us
+									</Link>
+								</li>
+
+								<li className='header__item'>
 									<Link onClick={handleBurgerOpen} className='header__link' to={'/profile'}>
 										Profile
 									</Link>
@@ -78,14 +89,17 @@ const Header = () => {
 								<LogoutBtn />
 							</div>
 						) : (
-							<div>
-								<Link to={'/login'}>Login</Link>
-								<Link to={'/register'}>Register</Link>
+							<div className='header__auth__wrapp'>
+								<Link onClick={handleBurgerOpen} className='header__auth__btn margin-10' to={'/login'}>
+									Login
+								</Link>
+								<Link onClick={handleBurgerOpen} className='header__auth__btn' to={'/register'}>
+									Register
+								</Link>
 							</div>
 						)}
-						<button onClick={handleBurgerOpen} type='button'>
-							Close
-						</button>
+
+						<HeaderButton click={handleBurgerOpen} Icon={RxCross2} classStyle='close__btn' />
 					</div>
 				</div>
 			</div>

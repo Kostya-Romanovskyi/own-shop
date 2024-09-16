@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import { FC, ComponentType } from 'react';
 import './headerButton.scss';
 
 interface IHeaderButtonProps {
 	click: () => void;
-	icon: string;
+	Icon: ComponentType;
+	classStyle: string;
 }
 
-const HeaderButton: FC<IHeaderButtonProps> = ({ click, icon }) => {
+const HeaderButton: FC<IHeaderButtonProps> = ({ click, Icon, classStyle }) => {
 	return (
-		<button onClick={click} className={`header__btn`} type='button'>
-			{icon}
+		<button onClick={click} className={`header__btn ${classStyle}`} type='button'>
+			<Icon />
 		</button>
 	);
 };

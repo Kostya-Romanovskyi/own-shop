@@ -1,9 +1,23 @@
+@import '../../styles/media';
+
 .header__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 30px;
+
 	width: 35px;
 	height: 35px;
 
 	border-radius: 5px;
 
-	background-color: rgba(144, 83, 241, 0.2);
-	box-shadow: inset 0px 0px 4px rgb(139, 137, 137);
+	color: #ffffff;
+
+	// background-color: rgba(144, 83, 241, 0.2);
+	// box-shadow: inset 0px 0px 4px rgb(139, 137, 137);
+
+	@media (min-width: $tablet) {
+		display: none;
+	}
 }

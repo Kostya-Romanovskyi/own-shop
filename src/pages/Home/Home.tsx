@@ -1,18 +1,23 @@
-import { useAllProducts } from '../../hooks/useProducts'
-
-
-
-import ProductList from '../../components/ProductList/ProductList'
-
 const Home = () => {
-	useAllProducts()
-
 	return (
-		<>
-	
-			<ProductList />
-		</>
-	)
-}
+		<main>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+			<h1>1</h1>
+		</main>
+	);
+};
 
-export default Home
+export default Home;
