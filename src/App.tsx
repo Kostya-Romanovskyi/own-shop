@@ -8,8 +8,8 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { useCurrentUser } from './hooks/useAuth';
 
-import PrivateRouter from './components/navigation/PrivateRouter';
-import RestrictedRouter from './components/navigation/RestrictedRouter';
+// import PrivateRouter from './components/navigation/PrivateRouter';
+// import RestrictedRouter from './components/navigation/RestrictedRouter';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Profile from './pages/Profile/Profile';

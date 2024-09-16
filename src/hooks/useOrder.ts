@@ -1,8 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { addNewOrder, getUserOrders } from '../API/order/order'
 
 export const useAddNewOrder = () => {
-	const queryClient = useQueryClient()
 
 	const { mutate } = useMutation({
 		mutationFn: addNewOrder,

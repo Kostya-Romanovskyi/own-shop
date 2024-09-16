@@ -1,5 +1,3 @@
-import { IProduct } from '../products/products.interface'
-
 export enum Status {
 	PENDING = 'Pending',
 	PROCESSING = 'Processing',
@@ -8,37 +6,37 @@ export enum Status {
 }
 
 export interface INewOrder {
-	user_id: number
-	status: Status
+	user_id: number;
+	status: Status;
 }
 
 export interface IRespAddNewOrder {
-	id: number
-	user_id: number
-	status: Status
-	total_price: number
+	id: number;
+	user_id: number;
+	status: Status;
+	total_price: number;
 }
 
 export interface IUserOrderProduct {
-	id: number
-	image: string
-	name: string
-	price: string
+	id: number;
+	image: string;
+	name: string;
+	price: string;
 }
 
 export interface IOrderItems {
-	createdAt: string
-	id: number
-	price: string
-	product: IUserOrderProduct
-	quantity: number
+	createdAt: string;
+	id: number;
+	price: string;
+	product: IUserOrderProduct;
+	quantity: number;
 }
 
 export interface IUserOrder {
-	id: number
-	order_items: IOrderItems[]
-	status: Status
-	totalPrice: string
+	id: number;
+	order_items: IOrderItems[];
+	status: Status;
+	totalPrice: string;
 }
 
-export type IUserOrders = IUserOrder[]
+export type IUserOrders = IUserOrder[];

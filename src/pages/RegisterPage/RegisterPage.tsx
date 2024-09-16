@@ -1,12 +1,12 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm, SubmitHandler } from 'react-hook-form';
+import ReCAPTCHA from 'react-google-recaptcha';
 
-import { registerNewUser } from '../../API/auth/auth'
-import { IRegister, UserRole } from '../../API/auth/auth.interface'
-import { useState } from 'react'
+import { registerNewUser } from '../../API/auth/auth';
+import { IRegister, UserRole } from '../../API/auth/auth.interface';
+import { useState } from 'react';
 
 const RegisterPage = () => {
-	const [captcha, setCaptcha] = useState(false)
+	const [captcha, setCaptcha] = useState(false);
 
 	const {
 		register,
@@ -14,40 +14,43 @@ const RegisterPage = () => {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<IRegister>()
+	} = useForm<IRegister>();
 
-	const password = watch('password')
+	const password = watch('password');
 
 	const onSubmit: SubmitHandler<IRegister> = data => {
 		if (captcha) {
-			const formData = new FormData()
+			const formData = new FormData() as unknown as IRegister;
 
-			formData.append('name', data.name)
-			formData.append('last_name', data.last_name)
-			formData.append('email', data.email)
-			formData.append('password', data.password)
-			formData.append('password_check', data.password_check)
-			formData.append('phone', data.phone)
-			formData.append('additional_information', data.additional_information || '')
-			formData.append('role', UserRole.USER)
-			formData.append('image', data.image[0])
+			formData['name'] = data.name;
+			formData['last_name'] = data.last_name;
+			formData['email'] = data.email;
+			formData['password'] = data.password;
+			formData['password_check'] = data.password_check;
+			formData['phone'] = data.phone;
+			formData['additional_information'] = data.additional_information;
+			formData['role'] = UserRole.USER;
 
-			if (data.password !== data.password_check) return
+			if (data.image instanceof FileList) {
+				formData['image'] = data.image[0];
+			}
 
-			registerNewUser(formData)
+			if (data.password !== data.password_check) return;
 
-			reset()
+			registerNewUser({ ...formData });
 
-			return
+			reset();
+
+			return;
 		}
 
-		alert('u are robot')
-	}
+		alert('u are robot');
+	};
 
 	function onChange(value: any) {
-		console.log('Captcha value:', value)
+		console.log('Captcha value:', value);
 
-		setCaptcha(true)
+		setCaptcha(true);
 	}
 
 	return (
@@ -96,7 +99,7 @@ const RegisterPage = () => {
 				<button type='submit'>Register</button>
 			</form>
 		</>
-	)
-}
+	);
+};
 
-export default RegisterPage
+export default RegisterPage;

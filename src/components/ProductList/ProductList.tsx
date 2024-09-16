@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import './ProductList.scss';
 
 const ProductList = () => {
-	const { data: productsData, isLoading, isError } = useAllProducts();
+	const { data: productsData, isLoading } = useAllProducts();
 
 	const { pathname } = useLocation();
 
