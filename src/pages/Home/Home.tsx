@@ -30,9 +30,9 @@ const Home = () => {
 					</ul>
 
 					<div className='header__btn__wrapp'>
-						<MainButton redirect='/orders' name='Order now' click={() => {}} classStyle='hero__btn margin__10' />
+						<MainButton redirect='/orders' name='Order now' click={handleClick} classStyle='hero__btn margin__10' />
 
-						<MainButton redirect='/reservation' name='Make reservation' click={() => {}} classStyle='hero__btn' />
+						<MainButton redirect='/reservation' name='Make reservation' click={handleClick} classStyle='hero__btn' />
 					</div>
 				</div>
 			</section>
