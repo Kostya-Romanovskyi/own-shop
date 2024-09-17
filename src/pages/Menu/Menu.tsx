@@ -1,15 +1,13 @@
-import { useAllCategories } from '../../hooks/useAllCategories';
-
+import CategoriesSection from '../../components/Sections/CategoriesSection/CategoriesSection';
 import ProductList from '../../components/ProductList/ProductList';
 
 const Menu = () => {
-	// useAllProducts();
-	useAllCategories();
-
 	return (
-		<>
+		<main>
+			<CategoriesSection />
+
 			<ProductList />
-		</>
+		</main>
 	);
 };
 
