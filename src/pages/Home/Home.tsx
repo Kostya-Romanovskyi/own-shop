@@ -12,19 +12,19 @@ const Home = () => {
 		<main>
 			<section className='hero__section'>
 				<div className='container'>
-					<h1 className='hero__title'>Savor the Art of Freshness at ownSushi</h1>
+					<h1 className='hero__title'>FreshMart: Your Daily Grocery Hub</h1>
 
 					<ul className='hero__img__list'>
-						<li>
+						<li className='hero__img__item'>
 							<img className='hero__image' src={Sushi_1} alt='Smiling sushi' />
 						</li>
-						<li>
+						<li className='hero__img__item'>
 							<img className='hero__image' src={Sushi_2} alt='laughing sushi' />
 						</li>
-						<li>
+						<li className='hero__img__item'>
 							<img className='hero__image' src={Sushi_3} alt='sushi' />
 						</li>
-						<li>
+						<li className='hero__img__item'>
 							<img className='hero__image' src={Sushi_4} alt='sushi' />
 						</li>
 					</ul>

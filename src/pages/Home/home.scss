@@ -14,19 +14,22 @@
 	text-align: center;
 }
 
-.hero__img__wrapp {
+.hero__img__list {
 	display: flex;
-	justify-content: space-between;
+	// justify-content: space-between;
 	align-items: center;
+
+	gap: 10px;
 
 	margin-bottom: 30px;
 }
 
-.hero__image {
-	width: 70px;
+.hero__img__item {
+	// width: 70px;
+	flex-basis: calc((100% - 10px)) / 4;
 }
 
-.hero__img__list {
+.header__btn__wrapp {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
