@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
 import HeaderButton from '../HeaderButton/HeaderButton';
+import MainButton from '../MainButton/MainButton';
 
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
@@ -15,7 +16,7 @@ const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	// toggle burger state
-	const handleBurgerOpen = () => {
+	const handleBurgerToggle = () => {
 		screen.width <= 768 && setIsOpen(!isOpen);
 	};
 
@@ -37,47 +38,47 @@ const Header = () => {
 			<header className='header'>
 				<div className='container'>
 					<div className='header__wrapper'>
-						<div onClick={handleBurgerOpen} className={`${isOpen ? 'backdrop__open' : 'backdrop__closed'}`}></div>
+						<div onClick={handleBurgerToggle} className={`${isOpen ? 'backdrop__open' : 'backdrop__closed'}`}></div>
 						{/* <img className='header__logo' src='../../../public/logo.webp' alt='Logo own-shop' /> */}
 						<div>Logo</div>
 
-						<HeaderButton click={handleBurgerOpen} Icon={RxHamburgerMenu} classStyle='' />
+						<HeaderButton click={handleBurgerToggle} Icon={RxHamburgerMenu} classStyle='' />
 
 						<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
 							<nav className='header__nav'>
 								<ul className='header__list'>
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/'}>
 											Home
 										</Link>
 									</li>
 
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/menu'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/menu'}>
 											Menu
 										</Link>
 									</li>
 
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/shop'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/shop'}>
 											Shop
 										</Link>
 									</li>
 
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/order'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/order'}>
 											Order
 										</Link>
 									</li>
 
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/contact'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/contact'}>
 											Contact us
 										</Link>
 									</li>
 
 									<li className='header__item'>
-										<Link onClick={handleBurgerOpen} className='header__link' to={'/profile'}>
+										<Link onClick={handleBurgerToggle} className='header__link' to={'/profile'}>
 											Profile
 										</Link>
 									</li>
@@ -91,16 +92,19 @@ const Header = () => {
 								</div>
 							) : (
 								<div className='header__auth__wrapp'>
-									<Link onClick={handleBurgerOpen} className='header__auth__btn margin-10' to={'/login'}>
+									{/* <Link onClick={handleBurgerToggle} className='header__auth__btn margin-10' to={'/login'}>
 										Login
-									</Link>
-									<Link onClick={handleBurgerOpen} className='header__auth__btn' to={'/register'}>
+									</Link> */}
+									{/* <Link onClick={handleBurgerToggle} className='header__auth__btn' to={'/register'}>
 										Register
-									</Link>
+									</Link> */}
+
+									<MainButton redirect='/login' name='Login' click={handleBurgerToggle} classStyle='margin-10' />
+									<MainButton redirect='/register' name='Register' click={handleBurgerToggle} classStyle='' />
 								</div>
 							)}
 
-							<HeaderButton click={handleBurgerOpen} Icon={RxCross2} classStyle='close__btn' />
+							<HeaderButton click={handleBurgerToggle} Icon={RxCross2} classStyle='close__btn' />
 						</div>
 					</div>
 				</div>

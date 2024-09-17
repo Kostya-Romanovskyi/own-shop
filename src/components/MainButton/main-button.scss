@@ -1,0 +1,28 @@
+@import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
+@import '../../styles/media';
+
+.main-button {
+	padding: 5px 20px;
+
+	text-align: center;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	box-shadow: inset 0px 0px 4px $shadow-btn-color;
+	transition: box-shadow $delay-animation $cubic-bezier;
+
+	@media (min-width: $tablet) {
+		padding: 5px 10px;
+	}
+
+	@media (min-width: $desktop) {
+		padding: 5px 20px;
+	}
+
+	&:hover,
+	&:focus {
+		box-shadow: inset 0px 0px 10px $card-hover-color;
+	}
+}
