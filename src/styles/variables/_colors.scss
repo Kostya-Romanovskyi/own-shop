@@ -1,18 +1,11 @@
-// FONTS
-$main-font: 'Inter', sans-serif;
-
 // COLORS
 $main-bg-color: #282729;
+$secondary-bg-color: rgba(225, 225, 225, 15%);
+
 $main-font-color: #ffffff;
 $secondary-font-color: rgba(225, 225, 225, 70%);
-
-$card-border-color: rgba(225, 225, 225, 15%);
-
 
 $card-hover-color: rgba(140, 69, 225, 40%);
 $link-hover-color: rgba(140, 69, 225, 90%);
 
-$cubic-bezier: cubic-bezier(0.215, 0.61, 0.355, 1);
-
-// FONTS SIZES
-$mobile-sec-font-size: 20px;
+$shadow-btn-color: rgb(139, 137, 137);

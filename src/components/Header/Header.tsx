@@ -33,81 +33,83 @@ const Header = () => {
 	}, [isOpen]);
 
 	return (
-		<header className='header'>
-			<div className='container'>
-				<div className='header__wrapper'>
-					<div onClick={handleBurgerOpen} className={`${isOpen ? 'backdrop__open' : 'backdrop__closed'}`}></div>
-					{/* <img className='header__logo' src='../../../public/logo.webp' alt='Logo own-shop' /> */}
-					<div>Logo</div>
+		<>
+			<header className='header'>
+				<div className='container'>
+					<div className='header__wrapper'>
+						<div onClick={handleBurgerOpen} className={`${isOpen ? 'backdrop__open' : 'backdrop__closed'}`}></div>
+						{/* <img className='header__logo' src='../../../public/logo.webp' alt='Logo own-shop' /> */}
+						<div>Logo</div>
 
-					<HeaderButton click={handleBurgerOpen} Icon={RxHamburgerMenu} classStyle='' />
+						<HeaderButton click={handleBurgerOpen} Icon={RxHamburgerMenu} classStyle='' />
 
-					<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
-						<nav className='header__nav'>
-							<ul className='header__list'>
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/'}>
-										Home
+						<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
+							<nav className='header__nav'>
+								<ul className='header__list'>
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/'}>
+											Home
+										</Link>
+									</li>
+
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/menu'}>
+											Menu
+										</Link>
+									</li>
+
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/shop'}>
+											Shop
+										</Link>
+									</li>
+
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/order'}>
+											Order
+										</Link>
+									</li>
+
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/contact'}>
+											Contact us
+										</Link>
+									</li>
+
+									<li className='header__item'>
+										<Link onClick={handleBurgerOpen} className='header__link' to={'/profile'}>
+											Profile
+										</Link>
+									</li>
+								</ul>
+							</nav>
+
+							{user && user !== null ? (
+								<div>
+									<Link to='/cart'>Cart</Link>
+									<LogoutBtn />
+								</div>
+							) : (
+								<div className='header__auth__wrapp'>
+									<Link onClick={handleBurgerOpen} className='header__auth__btn margin-10' to={'/login'}>
+										Login
 									</Link>
-								</li>
-
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/menu'}>
-										Menu
+									<Link onClick={handleBurgerOpen} className='header__auth__btn' to={'/register'}>
+										Register
 									</Link>
-								</li>
+								</div>
+							)}
 
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/shop'}>
-										Shop
-									</Link>
-								</li>
-
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/order'}>
-										Order
-									</Link>
-								</li>
-
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/contact'}>
-										Contact us
-									</Link>
-								</li>
-
-								<li className='header__item'>
-									<Link onClick={handleBurgerOpen} className='header__link' to={'/profile'}>
-										Profile
-									</Link>
-								</li>
-							</ul>
-						</nav>
-
-						{user && user !== null ? (
-							<div>
-								<Link to='/cart'>Cart</Link>
-								<LogoutBtn />
-							</div>
-						) : (
-							<div className='header__auth__wrapp'>
-								<Link onClick={handleBurgerOpen} className='header__auth__btn margin-10' to={'/login'}>
-									Login
-								</Link>
-								<Link onClick={handleBurgerOpen} className='header__auth__btn' to={'/register'}>
-									Register
-								</Link>
-							</div>
-						)}
-
-						<HeaderButton click={handleBurgerOpen} Icon={RxCross2} classStyle='close__btn' />
+							<HeaderButton click={handleBurgerOpen} Icon={RxCross2} classStyle='close__btn' />
+						</div>
 					</div>
 				</div>
-			</div>
+			</header>
 
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback='Loading...'>
 				<Outlet />
 			</Suspense>
-		</header>
+		</>
 	);
 };
 

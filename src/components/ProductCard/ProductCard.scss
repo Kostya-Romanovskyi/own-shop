@@ -1,4 +1,6 @@
-@import '../../styles/variables';
+@import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
+@import '../../styles/variables/fonts';
 @import '../../styles/media';
 
 /* Chrome, Safari, Edge, Opera */
@@ -20,10 +22,10 @@ input[type='number'] {
 
 	padding: 10px;
 
-	border: 1px solid $card-border-color;
+	border: 1px solid $secondary-bg-color;
 	border-radius: 10px;
 
-	transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	transition: box-shadow $delay-animation $cubic-bezier;
 
 	&:hover,
 	&:focus {
@@ -46,8 +48,6 @@ input[type='number'] {
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
-
-	transition: all 3000ms $cubic-bezier;
 
 	color: $secondary-font-color;
 }

@@ -1,10 +1,11 @@
-@import '../../styles/variables';
+@import '../../styles/variables/fonts';
+@import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
 @import '../../styles/media';
 
 .header {
-	// position: relative;
-	// overflow-x: hidden;
-	// z-index: 1000;
+	position: relative;
+	overflow-x: hidden;
 }
 
 .header__wrapper {
@@ -15,7 +16,7 @@
 	padding: 10px 0;
 	margin-bottom: 10px;
 
-	border-bottom: 1px solid rgba(225, 225, 225, 15%);
+	border-bottom: 1px solid $secondary-bg-color;
 
 	@media (min-width: $tablet) {
 		margin-bottom: 30px;
@@ -30,24 +31,16 @@
 }
 
 .header__mobile__wrapper {
-	position: absolute;
+	position: fixed; /* Fix it to the viewport */
 	top: 0;
 	right: 0;
-
 	width: 70%;
-	height: 100vh;
-
+	height: 100vh; /* Make it full height */
+	z-index: 100;
 	overflow-y: scroll;
-
-	transform: translate(100%, 0);
-	transition: transform 300ms $cubic-bezier;
-
+	transform: translateX(100%); /* Use translateX to move it horizontally */
+	transition: transform $delay-animation $cubic-bezier;
 	background-color: $main-bg-color;
-	// display: flex;
-	// justify-content: space-between;
-	// align-items: center;
-
-	// width: 50%;
 
 	@media (min-width: $tablet) {
 		position: inherit;
@@ -57,21 +50,20 @@
 		justify-content: space-between;
 		align-items: center;
 
-		height: auto;
-
 		transform: translate(0, 0);
 	}
 }
 
 .backdrop__open {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 100;
 
 	width: 100%;
 	height: 100%;
 
-	background-color: rgba(225, 225, 225, 15%);
+	background-color: $secondary-bg-color;
 }
 
 .backdrop__closed {
@@ -79,7 +71,7 @@
 }
 
 .opened__burger {
-	transform: translate(0, 0);
+	transform: translateX(0);
 }
 
 .header__nav {
@@ -111,7 +103,7 @@
 }
 
 .header__item {
-	border-bottom: 1px solid rgba(225, 225, 225, 15%);
+	border-bottom: 1px solid $secondary-bg-color;
 }
 
 .header__link {
@@ -119,7 +111,7 @@
 
 	padding: 20px 0 20px 20px;
 
-	transition: color 300ms $cubic-bezier;
+	transition: color $delay-animation $cubic-bezier;
 
 	@media (min-width: $tablet) {
 		padding: 0;
@@ -155,11 +147,11 @@
 .header__auth__btn {
 	padding: 5px 20px;
 
-	border: 1px solid $card-border-color;
+	border: 1px solid $secondary-bg-color;
 	border-radius: 5px;
 
-	box-shadow: inset 0px 0px 4px rgb(139, 137, 137);
-	transition: box-shadow 300ms $cubic-bezier;
+	box-shadow: inset 0px 0px 4px $shadow-btn-color;
+	transition: box-shadow $delay-animation $cubic-bezier;
 
 	@media (min-width: $tablet) {
 		padding: 5px 10px;

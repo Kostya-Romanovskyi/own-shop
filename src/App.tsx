@@ -25,7 +25,7 @@ function App() {
 				<div>Loading...</div>
 			) : (
 				<>
-					<Header /> {/* This ensures the Header is always rendered */}
+					{/* <Header />
 					<Routes>
 						<Route index path='/' element={<Home />} />
 						<Route path='/menu' element={<Menu />} />
@@ -35,6 +35,18 @@ function App() {
 						<Route path='/profile' element={<Profile />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />
+					</Routes> */}
+					<Routes>
+						<Route path='/' element={<Header />}>
+							<Route index path='/' element={<Home />} />
+							<Route path='/menu' element={<Menu />} />
+							<Route path='/cart' element={<Cart />} />
+							<Route path='/shop' element={<Shop />} />
+							<Route path='/order' element={<Order />} />
+							<Route path='/profile' element={<Profile />} />
+							<Route path='/login' element={<LoginPage />} />
+							<Route path='/register' element={<RegisterPage />} />
+						</Route>
 					</Routes>
 				</>
 			)}
