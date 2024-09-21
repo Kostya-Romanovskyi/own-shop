@@ -1,0 +1,41 @@
+@import '../../styles/media';
+
+.footer {
+	padding: 20px 0;
+
+	@media (min-width: $tablet) {
+		padding: 40px 0;
+	}
+
+	@media (min-width: $desktop) {
+		padding: 60px 0;
+	}
+}
+
+.footer__wrapper {
+	display: flex;
+	align-items: center;
+
+	flex-wrap: wrap;
+	gap: 40px;
+}
+
+.footer__wrapper > div {
+	flex: 1 1 calc((100% - 40px) / 2);
+}
+
+.footer__location {
+	order: 10;
+}
+
+.footer__nav__items {
+	padding: 5px 0 5px 5px;
+}
+
+.nav__list {
+}
+
+.footer__button {
+	display: block;
+	width: 100%;
+}

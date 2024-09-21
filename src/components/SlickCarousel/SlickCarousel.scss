@@ -1,0 +1,32 @@
+@import '../../styles/variables/colors';
+
+.slider__container {
+	max-width: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+
+	border-top: 1px solid $secondary-bg-color;
+	border-bottom: 1px solid $secondary-bg-color;
+
+	box-shadow: inset 0 0 10px $card-hover-color;
+}
+
+.slider__img__wrapp {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.slider__img {
+	width: 50%;
+}
+
+.slick-prev:before {
+	font-size: 30px;
+	color: #b125b1;
+}
+
+.slick-next:before {
+	font-size: 30px;
+	color: #b125b1;
+}

@@ -1,0 +1,73 @@
+@import '../../../styles/variables/colors';
+@import '../../../styles/media';
+
+.schedule__list {
+	@media (min-width: $tablet) {
+		display: flex;
+
+		gap: 20px;
+	}
+}
+.schedule__item {
+	text-align: center;
+
+	padding: 10px;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	@media (min-width: $tablet) {
+		flex: 1 1 calc((100% - 20px) / 3);
+
+		&:not(:last-child) {
+			margin-bottom: 0;
+		}
+	}
+}
+.second__border {
+	padding: 20px;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	@media (min-width: $tablet) {
+		height: 100%;
+	}
+}
+.schedule__title {
+	font-weight: 600;
+
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+
+	border-bottom: 1px solid $secondary-bg-color;
+
+	@media (min-width: $desktop) {
+		font-size: 3rem;
+	}
+}
+.schedule__days {
+	font-size: 1.5rem;
+
+	@media (min-width: $desktop) {
+		font-size: 2rem;
+	}
+}
+.schedule__description {
+	font-size: 1.3rem;
+	font-weight: 700;
+
+	color: $secondary-font-color;
+
+	@media (min-width: $tablet) {
+		font-size: 1rem;
+	}
+
+	@media (min-width: $desktop) {
+		font-size: 2rem;
+	}
+}
+.mb-10 {
+	display: inline-block;
+	margin-bottom: 20px;
+}

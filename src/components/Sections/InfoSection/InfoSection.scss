@@ -1,0 +1,33 @@
+@import '../../../styles/variables/colors';
+@import '../../../styles/media';
+
+.info__wrapper {
+	text-align: left;
+
+	font-size: 2rem;
+
+	@media (min-width: $tablet) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.info__right {
+	@media (min-width: $tablet) {
+		margin-left: 70px;
+	}
+}
+
+.info__btn {
+	display: block;
+	width: 100%;
+
+	@media (min-width: $tablet) {
+		font-size: 2rem;
+	}
+
+	@media (min-width: $desktop) {
+		font-size: 3rem;
+	}
+}

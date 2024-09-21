@@ -31,14 +31,14 @@
 }
 
 .header__mobile__wrapper {
-	position: fixed; /* Fix it to the viewport */
+	position: fixed;
 	top: 0;
 	right: 0;
 	width: 70%;
-	height: 100vh; /* Make it full height */
+	height: 100vh;
 	z-index: 100;
 	overflow-y: scroll;
-	transform: translateX(100%); /* Use translateX to move it horizontally */
+	transform: translateX(100%);
 	transition: transform $delay-animation $cubic-bezier;
 	background-color: $main-bg-color;
 
@@ -49,6 +49,8 @@
 
 		justify-content: space-between;
 		align-items: center;
+
+		height: auto;
 
 		transform: translate(0, 0);
 	}

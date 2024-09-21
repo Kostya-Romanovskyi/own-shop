@@ -1,3 +1,4 @@
+@import './styles//media';
 @import './styles/variables/fonts';
 @import './styles/variables/colors';
 @import './styles/reset';
@@ -18,4 +19,12 @@ body {
 
 .section {
 	padding: 20px 0;
+
+	@media (min-width: $tablet) {
+		padding: 40px 0;
+	}
+
+	@media (min-width: $desktop) {
+		padding: 60px 0;
+	}
 }

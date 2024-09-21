@@ -9,6 +9,7 @@ import MainButton from '../MainButton/MainButton';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
 import './header.scss';
+import NavItems from '../NavItems/NavItems';
 
 const Header = () => {
 	const { data: user } = useQuery({ queryKey: ['current'] });
@@ -45,45 +46,7 @@ const Header = () => {
 						<HeaderButton click={handleBurgerToggle} Icon={RxHamburgerMenu} classStyle='' />
 
 						<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
-							<nav className='header__nav'>
-								<ul className='header__list'>
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/'}>
-											Home
-										</Link>
-									</li>
-
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/menu'}>
-											Menu
-										</Link>
-									</li>
-
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/shop'}>
-											Shop
-										</Link>
-									</li>
-
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/order'}>
-											Order
-										</Link>
-									</li>
-
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/contact'}>
-											Contact us
-										</Link>
-									</li>
-
-									<li className='header__item'>
-										<Link onClick={handleBurgerToggle} className='header__link' to={'/profile'}>
-											Profile
-										</Link>
-									</li>
-								</ul>
-							</nav>
+							<NavItems click={handleBurgerToggle} classStyle='' classNav='' />
 
 							{user && user !== null ? (
 								<div>
