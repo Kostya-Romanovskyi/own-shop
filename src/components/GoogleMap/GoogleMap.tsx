@@ -12,7 +12,7 @@ const center = {
 };
 
 function GoogleMapComponent() {
-	const [map, setMap] = React.useState(null);
+	// const [map, setMap] = React.useState(null);
 
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
@@ -24,11 +24,11 @@ function GoogleMapComponent() {
 		const bounds = new window.google.maps.LatLngBounds(center);
 		map.fitBounds(bounds);
 
-		setMap(map);
+		// setMap(map);
 	}, []);
 
 	const onUnmount = React.useCallback(function callback() {
-		setMap(null);
+		// setMap(null);
 	}, []);
 
 	return isLoaded ? (
