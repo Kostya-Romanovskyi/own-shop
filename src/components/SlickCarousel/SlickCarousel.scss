@@ -1,4 +1,5 @@
 @import '../../styles/variables/colors';
+@import '../../styles/media';
 
 .slider__container {
 	max-width: 100%;
@@ -9,6 +10,10 @@
 	border-bottom: 1px solid $secondary-bg-color;
 
 	box-shadow: inset 0 0 10px $card-hover-color;
+
+	@media (min-width: $tablet) {
+		overflow: initial;
+	}
 }
 
 .slider__img__wrapp {
@@ -24,9 +29,31 @@
 .slick-prev:before {
 	font-size: 30px;
 	color: #b125b1;
+
+	@media (min-width: $tablet) {
+		position: absolute;
+		left: -50px !important;
+	}
+
+	@media (min-width: $desktop) {
+		left: -100px !important;
+
+		font-size: 3rem;
+	}
 }
 
 .slick-next:before {
 	font-size: 30px;
 	color: #b125b1;
+
+	@media (min-width: $tablet) {
+		position: absolute;
+		right: -50px !important;
+	}
+
+	@media (min-width: $desktop) {
+		right: -100px !important;
+
+		font-size: 3rem;
+	}
 }

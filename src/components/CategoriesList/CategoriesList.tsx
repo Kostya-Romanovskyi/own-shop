@@ -1,23 +1,20 @@
-import { useAllCategories } from '../../hooks/useAllCategories';
+import { FC } from 'react';
+import { IProductIncludedInCategory } from '../../API/categories/categories.interface';
 import CategoriesItem from '../CategoriesItem/CategoriesItem';
 
-import './categories-list.scss';
-
-interface ICategoriesListProps {
-	name: string;
-	image: string;
+interface ICategoryListProps {
+	categoryItems: IProductIncludedInCategory[];
 }
 
-const CategoriesList = () => {
-	const { data: categoriesData } = useAllCategories();
-	console.log(categoriesData);
+const CategoriesList: FC<ICategoryListProps> = ({ categoryItems }) => {
+	console.log(categoryItems);
 
 	return (
-		<ul className='category__list'>
-			{categoriesData &&
-				categoriesData.map(({ name, image }: ICategoriesListProps) => {
-					return <CategoriesItem name={name} image={image} />;
-				})}
+		<ul>
+			{categoryItems &&
+				categoryItems.map(({ id, name, description, image }) => (
+					<CategoriesItem key={id} name={name} description={description} image={image} />
+				))}
 		</ul>
 	);
 };

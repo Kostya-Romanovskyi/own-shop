@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Menu from './pages/Menu/Menu';
+import CategoryItemPage from './pages/CategoryItemPage/CategoryItemPage';
 
 import './App.scss';
 
@@ -16,6 +17,7 @@ import Profile from './pages/Profile/Profile';
 import Shop from './pages/Shop/Shop';
 
 import Header from './components/Header/Header';
+
 function App() {
 	const { isLoading } = useCurrentUser();
 
@@ -24,31 +26,23 @@ function App() {
 			{isLoading ? (
 				<div>Loading...</div>
 			) : (
-				<>
-					{/* <Header />
-					<Routes>
+				<Routes>
+					<Route path='/' element={<Header />}>
 						<Route index path='/' element={<Home />} />
+
 						<Route path='/menu' element={<Menu />} />
+
+						<Route path='/menu/categories' />
+						<Route path='/menu/categories/:categoryName' element={<CategoryItemPage />} />
+
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/shop' element={<Shop />} />
 						<Route path='/order' element={<Order />} />
 						<Route path='/profile' element={<Profile />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />
-					</Routes> */}
-					<Routes>
-						<Route path='/' element={<Header />}>
-							<Route index path='/' element={<Home />} />
-							<Route path='/menu' element={<Menu />} />
-							<Route path='/cart' element={<Cart />} />
-							<Route path='/shop' element={<Shop />} />
-							<Route path='/order' element={<Order />} />
-							<Route path='/profile' element={<Profile />} />
-							<Route path='/login' element={<LoginPage />} />
-							<Route path='/register' element={<RegisterPage />} />
-						</Route>
-					</Routes>
-				</>
+					</Route>
+				</Routes>
 			)}
 		</>
 	);

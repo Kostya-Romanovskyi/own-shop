@@ -1,10 +1,10 @@
-import CategoriesList from '../../CategoriesList/CategoriesList';
+import CategoriesListSlider from '../../CategoriesListSlider/CategoriesListSlider';
 
 const CategoriesSection = () => {
 	return (
 		<section className='section'>
 			<div className='container'>
-				<CategoriesList />
+				<CategoriesListSlider />
 			</div>
 		</section>
 	);

@@ -1,18 +1,19 @@
 import { FC } from 'react';
-
 import './categories-item.scss';
+
 interface ICategoriesItemProps {
 	name: string;
+	description: string;
 	image: string;
 }
 
-const CategoriesItem: FC<ICategoriesItemProps> = ({ name, image }) => {
+const CategoriesItem: FC<ICategoriesItemProps> = ({ name, description, image }) => {
 	return (
-		<li className='category__item'>
-			<img className='category__image' src={image} alt={name} />
-
-			<p className='category__name'>{name}</p>
-		</li>
+		<>
+			<div>{name}</div>
+			<div>{description}</div>
+			<img src={image} alt={name} />
+		</>
 	);
 };
 

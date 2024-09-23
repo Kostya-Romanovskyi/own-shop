@@ -8,7 +8,9 @@ const CarouselSection = () => {
 			<div className='container'>
 				<h2 className='carousel__title'>Menu gallery</h2>
 
-				<SlickCarousel />
+				<div className='carousel__wrapper'>
+					<SlickCarousel />
+				</div>
 			</div>
 		</section>
 	);

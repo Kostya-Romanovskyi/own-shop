@@ -1,4 +1,5 @@
 @import '../../styles/media';
+@import '../../styles/variables/colors';
 
 .footer {
 	padding: 20px 0;
@@ -14,10 +15,15 @@
 
 .footer__wrapper {
 	display: flex;
-	align-items: center;
 
 	flex-wrap: wrap;
 	gap: 40px;
+
+	padding: 10px;
+	margin-bottom: 30px;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 10px;
 }
 
 .footer__wrapper > div {
@@ -37,5 +43,68 @@
 
 .footer__button {
 	display: block;
+
+	font-size: 1.3rem;
+
 	width: 100%;
+	max-width: 200px;
+
+	margin: 0 auto;
+
+	@media (min-width: $tablet) {
+		font-size: 1.6rem;
+	}
+
+	@media (min-width: $desktop) {
+		font-size: 1.8rem;
+	}
+}
+
+.footer__location__title {
+	text-align: center;
+
+	font-weight: 700;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+
+	border-bottom: 1px solid $secondary-bg-color;
+
+	@media (min-width: $tablet) {
+		font-size: 3rem;
+	}
+}
+
+.footer__schedule {
+	@media (min-width: $tablet) {
+		text-align: center;
+
+		font-size: 1.3rem;
+	}
+}
+
+.footer__schedule__title {
+	font-weight: 700;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+
+	border-bottom: 1px solid $secondary-bg-color;
+}
+
+.footer__info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.footer__info > div {
+	flex: 1 1 calc((100% - 20px) / 2);
+}
+
+.footer__info__logo {
+	display: none;
+}
+
+.footer__info__rights {
+	text-align: right;
 }
