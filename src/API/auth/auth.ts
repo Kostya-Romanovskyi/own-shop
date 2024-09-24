@@ -3,10 +3,11 @@ import axios from 'axios';
 import { IGetUsers, IRegister, ILogin } from './auth.interface';
 import { getTokenConfig } from '../../helpers/checkToken';
 
-const BASE_URL = 'http://localhost:3000/api/auth';
+// const BASE_URL = 'http://localhost:3000/api/auth';
+const BASE_URL = 'https://own-shop-back.onrender.com/api/auth';
 
 // BASE avatar URL
-export const avatarUrl = 'http://localhost:3000/';
+export const avatarUrl = 'https://own-shop-back.onrender.com/';
 
 export const getUsers = async () => {
 	try {
