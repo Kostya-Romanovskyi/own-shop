@@ -1,0 +1,44 @@
+@import '../../styles/media';
+@import '../../styles/variables/colors';
+
+.categories__item {
+	padding: 20px;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: contain;
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	@media (min-width: $desktop) {
+		display: grid;
+		grid-template-columns: 1fr 4fr;
+
+		gap: 50px;
+
+		// & > h3,
+		// & > p {
+		// 	width: 90%;
+		// }
+	}
+}
+
+.categories__item-title {
+	font-size: 2rem;
+	font-weight: 700;
+
+	margin-bottom: 20px;
+}
+.categories__item-description {
+	max-height: 100px;
+
+	overflow: hidden;
+
+	// text-overflow: ellipsis;
+	// white-space: nowrap;
+}

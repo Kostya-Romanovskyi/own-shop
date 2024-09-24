@@ -23,11 +23,16 @@ const CategoryItemPage = () => {
 	}
 
 	return (
-		<>
-			<h2>{categoryName && `${categoryName[0].toUpperCase()}${categoryName?.slice(1, categoryName.length)}`}</h2>
-			
-			<CategoriesList categoryItems={categoryData.products} />;
-		</>
+		<main>
+			<div className='container'>
+				<h2 className='category__item-title'>
+					{categoryName && `${categoryName[0].toUpperCase()}${categoryName?.slice(1, categoryName.length)}`}
+				</h2>
+				<section className='section'>
+					<CategoriesList categoryItems={categoryData.products} />
+				</section>
+			</div>
+		</main>
 	);
 };
 

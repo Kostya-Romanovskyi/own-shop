@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllProducts } from '../API/products/products';
+import { getAllProducts, getProductsByName, getProductsItemById } from '../API/products/products';
 
 // export const useAllProducts = () => {
 // 	const queryClient = useQueryClient()
@@ -18,5 +18,19 @@ export const useAllProducts = () => {
 	return useQuery({
 		queryKey: ['products'],
 		queryFn: getAllProducts,
+	});
+};
+
+export const useProductsByName = (name: string) => {
+	return useQuery({
+		queryKey: ['products-list'],
+		queryFn: () => getProductsByName(name),
+	});
+};
+
+export const useProductsItemById = (id: string) => {
+	return useQuery({
+		queryKey: ['products-item'],
+		queryFn: () => getProductsItemById(id),
 	});
 };

@@ -17,6 +17,8 @@ import Profile from './pages/Profile/Profile';
 import Shop from './pages/Shop/Shop';
 
 import Header from './components/Header/Header';
+import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
+import Product from './pages/Product/Product';
 
 function App() {
 	const { isLoading } = useCurrentUser();
@@ -34,6 +36,8 @@ function App() {
 
 						<Route path='/menu/categories' />
 						<Route path='/menu/categories/:categoryName' element={<CategoryItemPage />} />
+						<Route path='/menu/categories/:categoryName/:productName' element={<ProductsListPage />} />
+						<Route path='/menu/categories/:categoryName/:productName/:productId' element={<Product />} />
 
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/shop' element={<Shop />} />

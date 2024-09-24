@@ -5,10 +5,11 @@ import { useAddToCart } from '../../hooks/useCart';
 import InputPrice from '../InputPrice/InputPrice';
 
 import { INewItemInCart } from '../../API/cart/cart.interface';
-import { IAllProducts } from '../../API/products/products.interface';
+import { IProductItem } from '../../API/products/products.interface';
 import { IGetUsers } from '../../API/auth/auth.interface';
 
 import './ProductCard.scss';
+import { Link, useParams } from 'react-router-dom';
 
 interface IProductCard {
 	id: number;
@@ -16,12 +17,15 @@ interface IProductCard {
 	description: string;
 	price: number;
 	image: string;
-	productList: IAllProducts;
+	productList: IProductItem[];
 }
 
 const ProductCard: FC<IProductCard> = ({ id, name, description, price, image, productList }) => {
 	const [quantity, setQuantity] = useState<number>(1);
 	const [updatedPrice, setUpdatedPrice] = useState<number>(+price);
+	console.log(productList);
+
+	const { categoryName, productName } = useParams();
 
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
@@ -52,22 +56,24 @@ const ProductCard: FC<IProductCard> = ({ id, name, description, price, image, pr
 	const finalImage = image ? useImages(image) : '';
 
 	return (
-		<li className='card'>
-			<img className='card_img ' src={finalImage} alt={`${name} picture`} />
-			<h2>{name}</h2>
-			<p className={`card_description`}>{description}</p>
-			<h3>{updatedPrice.toFixed(2)}</h3>
+		<Link to={`/menu/categories/${categoryName}/${productName}/${id}`}>
+			<li className='card'>
+				<img className='card_img ' src={finalImage} alt={`${name} picture`} />
+				<h2>{name}</h2>
+				<p className={`card_description`}>{description}</p>
+				<h3>{updatedPrice.toFixed(2)}</h3>
 
-			<InputPrice onQuantityChange={handleQuantityChange} price={price} />
+				<InputPrice onQuantityChange={handleQuantityChange} price={price} />
 
-			{user !== null ? (
-				<button onClick={() => handleAddToCart(id)} className='card__button' disabled={isPending} type='button'>
-					{isPending ? 'Loading...' : '	Add to cart'}
-				</button>
-			) : (
-				''
-			)}
-		</li>
+				{user !== null ? (
+					<button onClick={() => handleAddToCart(id)} className='card__button' disabled={isPending} type='button'>
+						{isPending ? 'Loading...' : '	Add to cart'}
+					</button>
+				) : (
+					''
+				)}
+			</li>
+		</Link>
 	);
 };
 
