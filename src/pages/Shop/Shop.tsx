@@ -1,11 +1,7 @@
-import ProductList from '../../components/ProductList/ProductList'
+// import ProductList from '../../components/ProductList/ProductList'
 
 const Shop = () => {
-	return (
-		<div>
-			<ProductList />
-		</div>
-	)
-}
+	return <div>{/* <ProductList /> */}</div>;
+};
 
-export default Shop
+export default Shop;

@@ -1,12 +1,12 @@
 import CategoriesSection from '../../components/Sections/CategoriesSection/CategoriesSection';
-import ProductList from '../../components/ProductList/ProductList';
+// import ProductList from '../../components/ProductList/ProductList';
 
 const Menu = () => {
 	return (
 		<main>
 			<CategoriesSection />
 
-			<ProductList />
+			{/* <ProductList /> */}
 		</main>
 	);
 };
