@@ -29,7 +29,7 @@ const ProductCard: FC<IProductCard> = ({ id, name, description, price, image, pr
 
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
-	const { mutate, isPending } = useAddToCart();
+	const { mutate } = useAddToCart();
 
 	// const handleQuantityChange = (newQuantity: number, newPrice: number): void => {
 	// 	setQuantity(newQuantity);

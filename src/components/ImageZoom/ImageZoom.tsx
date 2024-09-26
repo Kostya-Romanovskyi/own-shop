@@ -29,7 +29,7 @@ const ImageZoom: FC<IImageZoom> = ({ image }) => {
 			</div>
 			{/* Слой риса */}
 			<div className='sushi-layer rice'>
-				<img src={Image2} alt='Rice' />
+				<img src={image} alt='Rice' />
 			</div>
 		</div>
 	);
