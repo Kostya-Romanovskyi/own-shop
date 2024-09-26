@@ -1,0 +1,22 @@
+@import '../../styles/media';
+
+.container__cart {
+	margin: 0 auto;
+	padding: 0 10px;
+
+	@media (min-width: $mobile) {
+		max-width: $mobile;
+	}
+
+	@media (min-width: $tablet) {
+		max-width: $tablet;
+
+		padding: 0 15px;
+	}
+
+	@media (min-width: $desktop) {
+		max-width: 900px;
+
+		padding: 0 20px;
+	}
+}

@@ -1,18 +1,16 @@
 @import '../../styles/media';
 
 .product-list {
+	gap: 30px;
+
 	@media (max-width: 479px) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
-	& {
-		display: grid;
-		gap: 30px;
-	}
-
 	@media (min-width: $mobile) {
+		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 	}
 

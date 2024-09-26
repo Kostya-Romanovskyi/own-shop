@@ -1,67 +1,70 @@
-import { useState, FC, ChangeEvent, useEffect } from 'react'
+import { useState, FC, ChangeEvent, useEffect } from 'react';
+import { FaPlus } from 'react-icons/fa6';
+import { FaMinus } from 'react-icons/fa6';
+import './input-price.scss';
 
 interface InputPriceProps {
-	price: number
-	quantity?: number
-	onQuantityChange: (quantity: number, updatedPrice: number) => void
+	price: number;
+	quantity?: number;
+	onQuantityChange: (quantity: number, updatedPrice: number) => void;
 }
 
 const InputPrice: FC<InputPriceProps> = ({ price, quantity, onQuantityChange }) => {
-	const defaultQuantity = 1
-	const [refreshQuantity, setRefreshQuantity] = useState<number>(quantity && quantity > 1 ? quantity : defaultQuantity)
+	const defaultQuantity = 1;
+	const [refreshQuantity, setRefreshQuantity] = useState<number>(quantity && quantity > 1 ? quantity : defaultQuantity);
 	const [updatedPrice, setUpdatedPrice] = useState<number>(
 		quantity && quantity > 1 ? price * quantity : price * defaultQuantity
-	)
+	);
 
 	// input increment
 	const handleIncrement = (): void => {
-		if (refreshQuantity === 10) return
+		if (refreshQuantity === 10) return;
 
 		setRefreshQuantity((prevState: number) => {
-			const newQuantity = prevState + 1
-			setUpdatedPrice(newQuantity * price)
-			return newQuantity
-		})
-	}
+			const newQuantity = prevState + 1;
+			setUpdatedPrice(newQuantity * price);
+			return newQuantity;
+		});
+	};
 
 	// input decrement
 	const handleDecrement = (): void => {
-		if (refreshQuantity === 1) return
+		if (refreshQuantity === 1) return;
 		setRefreshQuantity((prevState: number) => {
-			const newQuantity = prevState - 1
-			setUpdatedPrice(newQuantity * price)
-			return newQuantity
-		})
-	}
+			const newQuantity = prevState - 1;
+			setUpdatedPrice(newQuantity * price);
+			return newQuantity;
+		});
+	};
 
 	// input change
 	const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-		let newQuantity = parseInt(event.target.value)
+		let newQuantity = parseInt(event.target.value);
 		if (isNaN(newQuantity) || newQuantity < 1) {
-			newQuantity = 1
+			newQuantity = 1;
 		}
 		if (newQuantity > 10) {
-			newQuantity = 10
+			newQuantity = 10;
 		}
-		setRefreshQuantity(newQuantity)
-		setUpdatedPrice(newQuantity * price)
-	}
+		setRefreshQuantity(newQuantity);
+		setUpdatedPrice(newQuantity * price);
+	};
 
 	useEffect(() => {
-		onQuantityChange(refreshQuantity, updatedPrice)
-	}, [refreshQuantity, updatedPrice])
+		onQuantityChange(refreshQuantity, updatedPrice);
+	}, [refreshQuantity, updatedPrice]);
 
 	return (
-		<div>
-			<button onClick={handleDecrement} type='button'>
-				-
+		<div className='input__wrapper'>
+			<button className='count left' onClick={handleDecrement} type='button'>
+				<FaMinus />
 			</button>
-			<input onChange={handleChange} type='number' value={refreshQuantity} />
-			<button onClick={handleIncrement} type='button'>
-				+
+			<input className='input__price' onChange={handleChange} type='number' value={refreshQuantity} />
+			<button className='count right' onClick={handleIncrement} type='button'>
+				<FaPlus />
 			</button>
 		</div>
-	)
-}
+	);
+};
 
-export default InputPrice
+export default InputPrice;

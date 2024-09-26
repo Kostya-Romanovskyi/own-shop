@@ -1,30 +1,37 @@
-import { FC, useState, useCallback } from 'react'
-import { IProduct } from '../../API/products/products.interface'
-import { useDeleteItem, useUpdateItem } from '../../hooks/useCart'
+import { FC, useState, useCallback } from 'react';
+import { IProduct } from '../../API/products/products.interface';
+import { useDeleteItem, useUpdateItem } from '../../hooks/useCart';
 
-import InputPrice from '../InputPrice/InputPrice'
+import InputPrice from '../InputPrice/InputPrice';
 
-import debounce from 'lodash.debounce'
-import { useImages } from '../../hooks/useImages'
-import { useQuery } from '@tanstack/react-query'
-import { IGetUsers } from '../../API/auth/auth.interface'
+import debounce from 'lodash.debounce';
+import { useImages } from '../../hooks/useImages';
+import { useQuery } from '@tanstack/react-query';
+import { IGetUsers } from '../../API/auth/auth.interface';
+
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { MdDeleteForever } from 'react-icons/md';
+
+import './cart-item.scss';
 
 interface ICartItemProps {
-	id: number
-	quantity: number
-	price: string
-	unit_price: number
-	cart_status: string
-	products_item?: IProduct
+	id: number;
+	quantity: number;
+	price: string;
+	unit_price: number;
+	cart_status: string;
+	products_item?: IProduct;
 }
 
-const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, cart_status, products_item }) => {
-	const [cartQuantity, setCartQuantity] = useState<number>(quantity)
-	const [cartPrice, setCartPrice] = useState<number>(+price)
+const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, products_item }) => {
+	const [cartQuantity, setCartQuantity] = useState<number>(quantity);
+	const [cartPrice, setCartPrice] = useState<number>(+price);
 
-	const { data } = useQuery<IGetUsers>({ queryKey: ['current'] })
+	const [showDelBtn, setShowDelBtn] = useState(false);
 
-	const { mutate, isPending } = useDeleteItem(id)
+	const { data } = useQuery<IGetUsers>({ queryKey: ['current'] });
+
+	const { mutate, isPending } = useDeleteItem(id);
 
 	// hook for update item in cart
 	const { mutate: mutateUpdate } = useUpdateItem(
@@ -34,47 +41,62 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, cart_st
 			quantity: cartQuantity,
 		},
 		data?.id ? data?.id : -1
-	)
+	);
 
 	// pass product image in cart
-	let image = ''
+	let image = '';
 
 	if (products_item?.image) {
-		image = useImages(products_item?.image)
+		image = useImages(products_item?.image);
 	}
 	// debounce for mutation update quantity of product in cart
 	const handleUpdate = useCallback(
 		debounce(() => {
-			mutateUpdate()
+			mutateUpdate();
 		}, 500),
 		[cartQuantity]
-	)
+	);
 
 	// change quantity and price in cart
 	const handleChange = (newQuantity: number, newPrice: number): void => {
-		handleUpdate()
+		handleUpdate();
 
-		setCartQuantity(newQuantity)
-		setCartPrice(newPrice)
-	}
+		setCartQuantity(newQuantity);
+		setCartPrice(newPrice);
+	};
+
+	const handleToggleBtn = () => {
+		setShowDelBtn(!showDelBtn);
+	};
 
 	return (
-		<li>
-			<img src={`${image}`} alt={`${products_item?.name} picture`} width={200} height={100} />
-			<h2>{products_item?.name}</h2>
-			<p> `Price for 1: {unit_price} CAD$`</p>
-			<p>
-				Price for {cartQuantity}: {cartPrice.toFixed(2)} CAD$
-			</p>
-			<p>{cart_status}</p>
+		<li className='card__item'>
+			<div className='card__title__wrapp'>
+				<img className='cart__img' src={`${image}`} alt={`${products_item?.name} picture`} width={200} height={100} />
 
-			<InputPrice onQuantityChange={handleChange} price={unit_price} quantity={quantity} />
+				<h2 className='cart__title'>{products_item?.name}</h2>
 
-			<button onClick={() => mutate()} disabled={isPending} type='button'>
-				{isPending ? 'Loading...' : 'Delete item'}
-			</button>
+				<button className='cart__delete__wrapp' onClick={handleToggleBtn} type='button'>
+					<HiDotsHorizontal className='cart__icon' />
+				</button>
+			</div>
+
+			<div className='card__price__wrapp'>
+				<div>
+					<p className='cart__price'> Price for 1: {unit_price} CAD$</p>
+					<p className='cart__price'>Current price: {cartPrice.toFixed(2)} CAD$</p>
+				</div>
+
+				<InputPrice onQuantityChange={handleChange} price={unit_price} quantity={quantity} />
+
+				<div className={showDelBtn ? 'show cart__delete__btn' : 'hide'}>
+					<button className='delete__btn' onClick={() => mutate()} disabled={isPending} type='button'>
+						<MdDeleteForever className='delete__icon' /> {isPending ? 'Loading...' : 'Delete item'}
+					</button>
+				</div>
+			</div>
 		</li>
-	)
-}
+	);
+};
 
-export default CartItem
+export default CartItem;
