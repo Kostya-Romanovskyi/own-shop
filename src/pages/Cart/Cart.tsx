@@ -25,7 +25,7 @@ const Cart = () => {
 		return <div>Loading...</div>;
 	}
 
-	if (!cartData) {
+	if (cartData?.result.length === 0) {
 		return <div>Your cart is empty</div>;
 	}
 
@@ -34,7 +34,7 @@ const Cart = () => {
 			<div className='container__cart'>
 				<Link to='/'>Back</Link>
 				<CartList />
-				<p>Total price: {cartData.totalPrice}</p>
+				<p>Total price: {cartData && cartData.totalPrice}</p>
 				<button type='button'>Make order</button>
 			</div>
 		</main>
