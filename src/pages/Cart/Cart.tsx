@@ -6,6 +6,7 @@ import { ICartInfo } from '../../API/cart/cart.interface';
 
 import './cart.scss';
 import { useEffect } from 'react';
+import MainButton from '../../components/MainButton/MainButton';
 
 const Cart = () => {
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
@@ -13,6 +14,7 @@ const Cart = () => {
 		queryKey: ['user-cart', user?.id],
 		enabled: !!user?.id,
 	});
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,8 +36,11 @@ const Cart = () => {
 			<div className='container__cart'>
 				<Link to='/'>Back</Link>
 				<CartList />
-				<p>Total price: {cartData && cartData.totalPrice}</p>
-				<button type='button'>Make order</button>
+				<div className='total__wrapper'>
+					<p className='total__price'>Total price: {cartData && cartData.totalPrice}</p>
+
+					<MainButton redirect='/order' classStyle='total__btn' click={() => {}} name='Make order' />
+				</div>
 			</div>
 		</main>
 	);

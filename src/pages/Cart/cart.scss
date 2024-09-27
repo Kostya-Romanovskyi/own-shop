@@ -1,4 +1,5 @@
 @import '../../styles/media';
+@import '../../styles/variables/colors';
 
 .container__cart {
 	margin: 0 auto;
@@ -18,5 +19,60 @@
 		max-width: 900px;
 
 		padding: 0 20px;
+	}
+}
+
+.total__wrapper {
+	position: sticky;
+	bottom: 0;
+
+	border-top: 1px solid $secondary-bg-color;
+	border-left: 1px solid $secondary-bg-color;
+	border-right: 1px solid $secondary-bg-color;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	padding: 10px;
+
+	width: 100%;
+
+	background-color: $main-bg-color;
+
+	@media (min-width: 370px) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.total__price {
+	font-size: 1.3rem;
+
+	@media (min-width: $tablet) {
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		margin-bottom: 0;
+	}
+}
+
+.total__btn {
+	display: block;
+	width: 100%;
+
+	@media (min-width: 370px) {
+		display: inline-block;
+		width: auto;
+	}
+
+	padding-left: 20px;
+	padding-right: 20px;
+
+	box-shadow: inset 0px 0px 10px $link-hover-color;
+
+	&:hover,
+	&:focus {
+		box-shadow: inset 0px 0px 10px $green-color;
 	}
 }

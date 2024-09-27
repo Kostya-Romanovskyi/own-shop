@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, useEffect } from 'react';
 import { IProduct } from '../../API/products/products.interface';
 import { useDeleteItem, useUpdateItem } from '../../hooks/useCart';
 
@@ -31,7 +31,7 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
 
 	const { data } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
-	const { mutate, isPending } = useDeleteItem(id);
+	const { mutate, isPending } = useDeleteItem(id, data?.id || -1);
 
 	// hook for update item in cart
 	const { mutate: mutateUpdate } = useUpdateItem(

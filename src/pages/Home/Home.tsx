@@ -11,6 +11,9 @@ import InfoSection from '../../components/Sections/InfoSection/InfoSection';
 import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
+
+
+
 	return (
 		<main>
 			<HeroSection />

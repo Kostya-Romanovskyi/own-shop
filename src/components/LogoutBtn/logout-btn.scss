@@ -1,0 +1,33 @@
+@import '../../styles/media';
+@import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
+
+.logout__btn {
+	padding: 5px 20px;
+
+	text-align: center;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	color: $main-font-color;
+	box-shadow: inset 0px 0px 4px $shadow-btn-color;
+	transition: box-shadow $delay-animation $cubic-bezier;
+
+	@media (min-width: $tablet) {
+		padding: 5px 10px;
+		font-size: 1.2rem;
+		margin-left: 20px;
+	}
+
+	@media (min-width: $desktop) {
+		padding: 5px 20px;
+
+		font-size: 1.5rem;
+	}
+
+	&:hover,
+	&:focus {
+		box-shadow: inset 0px 0px 10px $card-hover-color;
+	}
+}

@@ -51,6 +51,7 @@
 		align-items: center;
 
 		height: auto;
+		overflow-y: hidden;
 
 		transform: translate(0, 0);
 	}
@@ -124,7 +125,20 @@
 		color: $link-hover-color;
 	}
 }
+.header__cart__icon {
+	position: relative;
+	font-size: 1.5rem;
+}
+.header__cart__counter {
+	position: absolute;
+	top: -6px;
+	right: -25px;
 
+	width: 20px;
+	height: 20px;
+
+	font-size: 0.7rem;
+}
 // auth links
 .header__auth__wrapp {
 	display: flex;

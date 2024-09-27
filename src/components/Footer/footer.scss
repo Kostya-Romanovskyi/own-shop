@@ -108,3 +108,29 @@
 .footer__info__rights {
 	text-align: right;
 }
+
+.footer__info__wrapp {
+}
+
+.footer__info__title {
+}
+
+.footer__info__list {
+	display: flex;
+	align-items: center;
+}
+.footer__info__item {
+	font-size: 0.7rem;
+
+	&:not(:first-child) {
+		margin-left: 10px;
+	}
+
+	@media (min-width: $tablet) {
+		font-size: 1rem;
+	}
+}
+
+.footer__info__span {
+	display: block;
+}

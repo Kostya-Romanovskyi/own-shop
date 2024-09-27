@@ -19,9 +19,12 @@ import Shop from './pages/Shop/Shop';
 import Header from './components/Header/Header';
 import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
 import Product from './pages/Product/Product';
+import { useUserCart } from './hooks/useCart';
 
 function App() {
-	const { isLoading } = useCurrentUser();
+	const { data: user, isLoading } = useCurrentUser();
+
+	useUserCart(user?.id);
 
 	return (
 		<>

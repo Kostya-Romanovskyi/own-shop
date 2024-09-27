@@ -1,25 +1,31 @@
-import { useLogoutUser } from '../../hooks/useAuth'
-import { useQueryClient } from '@tanstack/react-query'
-import { IRegister } from '../../API/auth/auth.interface'
+import { useLogoutUser } from '../../hooks/useAuth';
+import { useQueryClient } from '@tanstack/react-query';
+import { IRegister } from '../../API/auth/auth.interface';
+
+import './logout-btn.scss';
 
 const LogoutBtn = () => {
-	const queryClient = useQueryClient()
+	const queryClient = useQueryClient();
 
-	const data = queryClient.getQueryData<IRegister>(['current'])
+	const data = queryClient.getQueryData<IRegister>(['current']);
 
-	const mutateLogout = useLogoutUser()
+	const mutateLogout = useLogoutUser();
 
 	const handleLogout = () => {
 		if (data && typeof data.id === 'number') {
 			mutateLogout(data.id, {
 				onSuccess: async () => {
-					await queryClient.invalidateQueries({ queryKey: ['current'] })
+					await queryClient.invalidateQueries({ queryKey: ['current'] });
 				},
-			})
+			});
 		}
-	}
+	};
 
-	return <button onClick={handleLogout}>Logout</button>
-}
+	return (
+		<button className='logout__btn' onClick={handleLogout}>
+			Logout
+		</button>
+	);
+};
 
-export default LogoutBtn
+export default LogoutBtn;

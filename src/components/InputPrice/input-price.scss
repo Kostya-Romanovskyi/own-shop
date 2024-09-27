@@ -8,10 +8,10 @@
 }
 
 .input__price {
+	text-align: center;
+
 	width: 40px;
 	height: 100%;
-
-	padding-left: 14px;
 
 	font-size: 1.1rem;
 
@@ -20,12 +20,10 @@
 	@media (min-width: $tablet) {
 		width: 100px;
 		height: 30px;
-
-		padding-left: 45px;
 	}
 }
 .count {
-	width: 30px;
+	width: 28px;
 
 	font-size: 1.1rem;
 	color: $main-font-color;

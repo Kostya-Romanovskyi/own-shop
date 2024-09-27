@@ -28,6 +28,7 @@ const CategoryItemPage = () => {
 				<h2 className='category__item-title'>
 					{categoryName && `${categoryName[0].toUpperCase()}${categoryName?.slice(1, categoryName.length)}`}
 				</h2>
+
 				<section className='section'>
 					<CategoriesList categoryItems={categoryData.products} />
 				</section>

@@ -37,7 +37,7 @@ export const addItemInCart = async (newItem: INewItemInCart) => {
 
 export const updateItemInCart = async (cartId: number, updatedItem: ICartUpdateItem) => {
 	try {
-		axios.patch(`${BASE_URL}/${cartId}/cart-item-update`, updatedItem);
+		return axios.patch(`${BASE_URL}/${cartId}/cart-item-update`, updatedItem);
 	} catch (error) {
 		console.error(error);
 	}
@@ -45,7 +45,7 @@ export const updateItemInCart = async (cartId: number, updatedItem: ICartUpdateI
 
 export const deleteItemFromCart = async (itemId: number) => {
 	try {
-		axios.delete<number>(`${BASE_URL}/${itemId}/delete-cart`);
+		return axios.delete<number>(`${BASE_URL}/${itemId}/delete-cart`);
 	} catch (error) {
 		console.error(error);
 	}
