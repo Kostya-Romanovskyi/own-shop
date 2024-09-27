@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, useEffect } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { IProduct } from '../../API/products/products.interface';
 import { useDeleteItem, useUpdateItem } from '../../hooks/useCart';
 
