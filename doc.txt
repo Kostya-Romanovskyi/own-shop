@@ -1,0 +1,25 @@
+CREATE TABLE ingredients (
+  id INT PRIMARY KEY,
+  name VARCHAR(30),
+  description VARCHAR(255),
+  allergen_info VARCHAR(255),
+  calories INT,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO ingredients ( name, description, allergen_info, calories) 
+VALUES ("Ginger", "Top quality ginger","Not alergen", 100)
+
+INSERT INTO product_ingredients (products_item_id, ingredient_id)
+VALUES (1, 1), 
+       (1, 2), 
+       (2, 2), 
+
+
+adding ingredients to product-item
+http://localhost:3000/api/items/10/ingredients
+
+{
+  "ingredientIds":[2,1] --array with ids of ingredients
+}

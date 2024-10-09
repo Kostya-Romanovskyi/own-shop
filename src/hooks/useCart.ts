@@ -17,6 +17,9 @@ export const useAddToCart = (userId: number) => {
 			alert('Successfully added in cart');
 			queryClient.invalidateQueries({ queryKey: ['user-cart', userId] });
 		},
+		onError: (error: any) => {
+			alert(`Error: ${error.message}`);
+		},
 	});
 
 	return { mutate, isPending };

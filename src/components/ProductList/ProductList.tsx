@@ -1,37 +1,25 @@
-import { useAllProducts } from '../../hooks/useProducts';
 import ProductCard from '../ProductCard/ProductCard';
 
 import './ProductList.scss';
+import { useLocation } from 'react-router-dom';
 import { FC } from 'react';
-import { ProductsItem } from '../../API/products/products.interface';
+import { IProductItem } from '../../API/products/products.interface';
 
 interface IProductListProps {
-	list: ProductsItem[];
+	list: IProductItem[];
 }
 
 const ProductList: FC<IProductListProps> = ({ list }) => {
-	const { data: productsData, isLoading } = useAllProducts();
+	const location = useLocation();
 
-	return isLoading ? (
-		<div>Loading...</div>
-	) : (
+	const slicedList = location.pathname === '/menu' ? list.slice(0, 5) : list;
+
+	return (
 		<div className='container'>
 			<ul className='product-list'>
-				{list &&
-					productsData &&
-					list.map(({ id, name, description, price, image }) => {
-						return (
-							<ProductCard
-								key={id}
-								id={id}
-								name={name}
-								description={description}
-								price={+price}
-								image={image}
-								productList={Array.isArray(productsData) ? productsData : [productsData]}
-							/>
-						);
-					})}
+				{slicedList.map(({ id, name, description, price, image }) => (
+					<ProductCard key={id} id={id} name={name} description={description} price={+price} image={image} />
+				))}
 			</ul>
 		</div>
 	);

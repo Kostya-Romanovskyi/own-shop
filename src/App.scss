@@ -29,3 +29,16 @@ body {
 		padding: 60px 0;
 	}
 }
+
+.footer {
+	padding: 20px 0;
+	border-top: 1px solid $secondary-bg-color;
+
+	@media (min-width: $tablet) {
+		padding: 40px 0;
+	}
+
+	@media (min-width: $desktop) {
+		padding: 60px 0;
+	}
+}

@@ -2,6 +2,7 @@
 
 .product-list {
 	gap: 30px;
+	margin-bottom: 20px;
 
 	@media (max-width: 479px) {
 		display: flex;

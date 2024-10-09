@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BackendResponse, ICartList, INewItemInCart, ICartUpdateItem } from './cart.interface';
 
-// const BASE_URL = `http://localhost:3000/api`
+// const BASE_URL = `http://localhost:3000/api`;
 const BASE_URL = `https://own-shop-back.onrender.com/api`;
 
 export const getProductsInCart = async (userId: number) => {
@@ -28,10 +28,12 @@ export const calcTotalPrice = async (userId: number) => {
 
 export const addItemInCart = async (newItem: INewItemInCart) => {
 	try {
-		const response = axios.post(`${BASE_URL}/cart`, newItem);
+		console.log(newItem);
+		const response = await axios.post(`${BASE_URL}/cart`, newItem);
+
 		return response;
-	} catch (error) {
-		console.error(error);
+	} catch (error: any) {
+		throw new Error(error.response?.data?.message || 'Failed to add item to cart');
 	}
 };
 
