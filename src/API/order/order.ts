@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { IUserOrders, INewOrder } from './order.interface';
 
-// const BASE_URL = `http://localhost:3000/api`;
-const BASE_URL = `https://own-shop-back.onrender.com/api`;
+const BASE_URL = `http://localhost:3000/api`;
+// const BASE_URL = `https://own-shop-back.onrender.com/api`;
 
 export const getUserOrders = async (userId: number) => {
 	try {

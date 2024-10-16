@@ -157,7 +157,7 @@ const Order = () => {
 							</label>
 
 							<input
-								{...register('allergic', { required: true })}
+								{...register('allergic', { required: allergic === 'yes' ? true : false })}
 								onInput={handleToggleAllergic}
 								type='radio'
 								name='allergic'
