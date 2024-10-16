@@ -31,7 +31,7 @@ const UserOrdersItem: FC<IUserOrderItem> = ({
 	additional_information,
 	totalPrice,
 }) => {
-	const [allOrderInfo, setAllOrderInfo] = useState(order_items);
+	// const [allOrderInfo, setAllOrderInfo] = useState(order_items);
 	const [showAdditional, setShowAdditional] = useState(false);
 
 	const handleToggle = () => {
@@ -49,7 +49,7 @@ const UserOrdersItem: FC<IUserOrderItem> = ({
 					<p>{status}</p>
 				</div>
 				<div className='order__image__wrapper'>
-					{allOrderInfo.map(item => {
+					{order_items.map(item => {
 						return (
 							<img
 								key={item.id}
@@ -64,7 +64,7 @@ const UserOrdersItem: FC<IUserOrderItem> = ({
 
 			<div className={`${showAdditional ? 'show__additional' : 'hide__additional'} order__additional__wrapper`}>
 				<ul className='order__additional__list'>
-					{allOrderInfo.map(item => {
+					{order_items.map(item => {
 						return (
 							<li key={item.id} className='order__additional__wrapper--item'>
 								<img className='order__image' src={`${item.product.image}`} alt={`${item.product.name}`} />

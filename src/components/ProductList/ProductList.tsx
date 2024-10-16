@@ -18,16 +18,8 @@ const ProductList: FC<IProductListProps> = ({ list }) => {
 	return (
 		<div className='container'>
 			<ul className='product-list'>
-				{slicedList.map(({ id, name, description, price, image, ingredients }) => (
-					<ProductCard
-						key={id}
-						id={id}
-						name={name}
-						description={description}
-						price={+price}
-						image={image}
-						ingredients={ingredients}
-					/>
+				{slicedList.map(({ id, name, price, image, ingredients }) => (
+					<ProductCard key={id} id={id} name={name} price={+price} image={image} ingredients={ingredients} />
 				))}
 			</ul>
 		</div>

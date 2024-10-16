@@ -14,13 +14,12 @@ import { Ingredient } from '../../API/products/products.interface';
 interface IProductCard {
 	id: number;
 	name: string;
-	description: string;
 	price: number;
 	image: string;
 	ingredients: Ingredient[];
 }
 
-const ProductCard: FC<IProductCard> = ({ id, name, description, price, image, ingredients }) => {
+const ProductCard: FC<IProductCard> = ({ id, name, price, image, ingredients }) => {
 	const { categoryName, productName } = useParams();
 
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
