@@ -157,7 +157,7 @@ const Order = () => {
 							</label>
 
 							<input
-								{...register('allergic', { required: allergic === 'yes' ? true : false })}
+								{...register('allergic', { required: true })}
 								onInput={handleToggleAllergic}
 								type='radio'
 								name='allergic'
@@ -180,7 +180,11 @@ const Order = () => {
 						className={allergic === 'yes' ? 'show__order__additional order__mb' : 'hide__order__additional order__mb'}
 					>
 						<p className='order__question'>Please write down what you shouldn't eat</p>
-						<input className='order__input' {...register('type_of_allergy', { required: true })} type='text' />
+						<input
+							className='order__input'
+							{...register('type_of_allergy', { required: allergic === 'yes' ? true : false })}
+							type='text'
+						/>
 					</div>
 
 					{/* Additional information */}
