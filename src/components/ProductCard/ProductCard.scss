@@ -35,14 +35,17 @@ input[type='number'] {
 
 .card_img {
 	margin-bottom: 10px;
+
+	border-radius: 5px;
 	@media (min-width: $mobile) {
 		height: 140px;
 		object-fit: cover;
+		width: 100%;
 	}
 }
 
-.card_description {
-	height: 75px;
+.card__ingredients {
+	height: 50px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 
@@ -52,6 +55,7 @@ input[type='number'] {
 
 	margin-bottom: 10px;
 
+	font-size: 0.8rem;
 	color: $secondary-font-color;
 }
 

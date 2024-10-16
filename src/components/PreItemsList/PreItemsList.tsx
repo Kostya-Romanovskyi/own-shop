@@ -1,5 +1,5 @@
 import './pre-items-list.scss';
-
+import { Link } from 'react-router-dom';
 import { useAllProducts } from '../../hooks/useProducts';
 import ProductList from '../ProductList/ProductList';
 
@@ -12,6 +12,7 @@ const PreItemsList = () => {
 				? 'loading'
 				: productsList?.map(({ name, products_items }) => (
 						<li className='pre__items__element' key={name}>
+							<Link to={'/'}></Link>
 							<h2 className='pre__items__title'>{name}</h2>
 
 							<ProductList list={products_items} />

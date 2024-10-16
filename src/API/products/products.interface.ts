@@ -19,4 +19,23 @@ export interface IProductItem {
 	type: string;
 	createdAt: Date;
 	updatedAt: Date;
+	ingredients: Ingredient[];
+}
+
+export interface Ingredient {
+	id: number;
+	name: string;
+	description: string;
+	allergen_info: string;
+	calories: number;
+	createdAt: string;
+	updatedAt: string;
+	products_item_ingredients: ProductsItemIngredients;
+}
+
+export interface ProductsItemIngredients {
+	products_item_id: number;
+	ingredient_id: number;
+	createdAt: string;
+	updatedAt: string;
 }

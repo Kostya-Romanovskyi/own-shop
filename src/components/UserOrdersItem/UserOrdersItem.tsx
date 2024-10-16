@@ -1,30 +1,104 @@
-import { FC } from 'react'
-import { IOrderItems, Status } from '../../API/order/order.interface'
+import { FC, useState } from 'react';
+import { IOrderItems, Status } from '../../API/order/order.interface';
+import { format } from 'date-fns';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import './user-orders-item.scss';
 
 interface IUserOrderItem {
-	order_items: IOrderItems[]
-	status: Status
-	totalPrice: string
+	order_id: number;
+	order_items: IOrderItems[];
+	status: Status;
+	totalPrice: string;
+	order_date: Date;
+	chopsticks: string;
+	chopsticks_quantity: number;
+	allergic: string;
+	type_of_allergy: string;
+	soy_sauce: string;
+	additional_information: string;
 }
 
-const UserOrdersItem: FC<IUserOrderItem> = ({ order_items, status, totalPrice }) => {
-	console.log(order_items)
+const UserOrdersItem: FC<IUserOrderItem> = ({
+	order_id,
+	order_items,
+	order_date,
+	status,
+	chopsticks,
+	chopsticks_quantity,
+	allergic,
+	type_of_allergy,
+	soy_sauce,
+	additional_information,
+	totalPrice,
+}) => {
+	const [allOrderInfo, setAllOrderInfo] = useState(order_items);
+	const [showAdditional, setShowAdditional] = useState(false);
+
+	const handleToggle = () => {
+		setShowAdditional(!showAdditional);
+	};
+
+	const orderDate = format(new Date(order_date), 'dd.MM.yyyy HH:mm');
 
 	return (
-		<li style={{ border: '1px solid black' }}>
-			{order_items.map(item => {
-				return (
-					<>
-						<img src={`${item.product.image}`} alt={`${item.product.name}`} width={150} height={100} />
-						<p>{item.quantity}</p>
-					</>
-				)
-			})}
+		<li onClick={handleToggle} className='order__item'>
+			<MdKeyboardArrowDown className={`order__icon ${showAdditional ? 'order__icon--transform' : ''}`} />
+			<div className='order__item__wrapper'>
+				<div className='order__number'>
+					№ {order_id} <span className='order__time'> from {orderDate}</span>
+					<p>{status}</p>
+				</div>
+				<div className='order__image__wrapper'>
+					{allOrderInfo.map(item => {
+						return (
+							<img
+								key={item.id}
+								className={showAdditional ? 'hide__additional' : 'show__additional order__image'}
+								src={`${item.product.image}`}
+								alt={`${item.product.name}`}
+							/>
+						);
+					})}
+				</div>
+			</div>
 
-			<p>{status}</p>
-			<p>{totalPrice}</p>
+			<div className={`${showAdditional ? 'show__additional' : 'hide__additional'} order__additional__wrapper`}>
+				<ul className='order__additional__list'>
+					{allOrderInfo.map(item => {
+						return (
+							<li key={item.id} className='order__additional__wrapper--item'>
+								<img className='order__image' src={`${item.product.image}`} alt={`${item.product.name}`} />
+								<p className='order__additional__name'>{item.product.name}</p>
+
+								<p className='order__additional__unit'>
+									{item.price} CAD$ x {item.quantity} unit
+								</p>
+							</li>
+						);
+					})}
+				</ul>
+				<div className='info__flex__wrapper'>
+					<p className='order__additional__info'>
+						<span className='info__span'>Chopsticks:</span> {chopsticks} X {chopsticks_quantity}
+					</p>
+					<p className='order__additional__info'>
+						<span className='info__span'>Soy souse:</span> {soy_sauce}
+					</p>
+					<p className='order__additional__info'>
+						<span className='info__span'>Allergic:</span> {allergic}
+					</p>
+					<p className='order__additional__info'>
+						<span className='info__span'>Description of allergy:</span> {type_of_allergy}
+					</p>
+					<p className='order__additional__info'>
+						<span className='info__span'>Additional information for order:</span> {additional_information}
+					</p>
+				</div>
+			</div>
+
+			<p className='order__totalPrice'>Total price: {totalPrice} CAD$</p>
 		</li>
-	)
-}
+	);
+};
 
-export default UserOrdersItem
+export default UserOrdersItem;

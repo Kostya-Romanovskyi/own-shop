@@ -9,8 +9,6 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { useCurrentUser } from './hooks/useAuth';
 
-// import PrivateRouter from './components/navigation/PrivateRouter';
-// import RestrictedRouter from './components/navigation/RestrictedRouter';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Profile from './pages/Profile/Profile';
@@ -20,6 +18,11 @@ import Header from './components/Header/Header';
 import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
 import Product from './pages/Product/Product';
 import { useUserCart } from './hooks/useCart';
+
+import RestrictedRouter from './components/navigation/RestrictedRouter';
+import PrivateRouter from './components/navigation/PrivateRouter';
+
+
 
 function App() {
 	const { data: user, isLoading } = useCurrentUser();
@@ -33,6 +36,7 @@ function App() {
 			) : (
 				<Routes>
 					<Route path='/' element={<Header />}>
+					
 						<Route index path='/' element={<Home />} />
 
 						<Route path='/menu' element={<Menu />} />
@@ -44,10 +48,13 @@ function App() {
 
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/shop' element={<Shop />} />
-						<Route path='/order' element={<Order />} />
 						<Route path='/profile' element={<Profile />} />
-						<Route path='/login' element={<LoginPage />} />
-						<Route path='/register' element={<RegisterPage />} />
+
+						<Route path='/login' element={<RestrictedRouter component={<LoginPage />} redirectTo='/menu' />} />
+
+						<Route path='/register' element={<RestrictedRouter component={<RegisterPage />} redirectTo='/menu' />} />
+
+						<Route path='/order' element={<PrivateRouter component={<Order />} redirectTo='/' />} />
 					</Route>
 				</Routes>
 			)}

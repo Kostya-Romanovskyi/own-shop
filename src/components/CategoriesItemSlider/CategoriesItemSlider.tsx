@@ -9,7 +9,7 @@ interface ICategoriesItemSliderProps {
 
 const CategoriesItemSlider: FC<ICategoriesItemSliderProps> = ({ name, image }) => {
 	return (
-		<Link to={`/menu/categories/${name.toLowerCase()}`}>
+		<Link to={`/menu/categories/${name.toLowerCase().replace(/\s+/g, '-')}`}>
 			<li className='category__item'>
 				<img className='category__image' src={image} alt={name} />
 

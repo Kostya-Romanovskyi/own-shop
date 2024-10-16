@@ -25,7 +25,7 @@ interface ICartItemProps {
 
 const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, products_item }) => {
 	const [cartQuantity, setCartQuantity] = useState<number>(quantity);
-	const [cartPrice, setCartPrice] = useState<number>(+price);
+	// const [cartPrice, setCartPrice] = useState<number>(+price);
 
 	const [showDelBtn, setShowDelBtn] = useState(false);
 
@@ -58,11 +58,10 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
 	);
 
 	// change quantity and price in cart
-	const handleChange = (newQuantity: number, newPrice: number): void => {
+	const handleChange = (newQuantity: number): void => {
 		handleUpdate();
 
 		setCartQuantity(newQuantity);
-		setCartPrice(newPrice);
 	};
 
 	const handleToggleBtn = () => {
@@ -84,10 +83,10 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
 			<div className='card__price__wrapp'>
 				<div>
 					<p className='cart__price'> Price for 1: {unit_price} CAD$</p>
-					<p className='cart__price'>Current price: {cartPrice.toFixed(2)} CAD$</p>
+					<p className='cart__price'>Current price: {price} CAD$</p>
 				</div>
 
-				<InputPrice onQuantityChange={handleChange} price={unit_price} quantity={quantity} />
+				<InputPrice onQuantityChange={handleChange} quantity={quantity} />
 
 				<div className={showDelBtn ? 'show cart__delete__btn' : 'hide'}>
 					<button className='delete__btn' onClick={() => mutate()} disabled={isPending} type='button'>

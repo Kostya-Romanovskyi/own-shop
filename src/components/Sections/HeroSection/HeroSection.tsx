@@ -29,7 +29,7 @@ const HeroSection = () => {
 				</ul>
 
 				<div className='header__btn__wrapp'>
-					<MainButton redirect='/orders' name='Order now' click={handleClick} classStyle='hero__btn margin__10' />
+					<MainButton redirect='/menu' name='Order for pick up' click={handleClick} classStyle='hero__btn margin__10' />
 
 					<MainButton redirect='/reservation' name='Make reservation' click={handleClick} classStyle='hero__btn' />
 				</div>

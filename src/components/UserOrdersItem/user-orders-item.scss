@@ -1,0 +1,161 @@
+@import '../../styles/variables/colors';
+@import '../../styles/media';
+@import '../../styles/variables/animations';
+
+.order__item {
+	position: relative;
+	padding: 15px;
+
+	border: 1px solid $secondary-bg-color;
+	border-radius: 5px;
+
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	transition: box-shadow $delay-animation $cubic-bezier;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		box-shadow: 0px -6px 20px $card-hover-color;
+	}
+}
+.order__icon {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+
+	font-size: 1.5em;
+}
+.order__icon--transform {
+	rotate: 180deg;
+}
+
+.order__additional__list {
+	margin-bottom: 20px;
+
+	@media (min-width: $desktop) {
+		width: 60%;
+	}
+}
+
+.order__item__wrapper {
+	@media (min-width: $tablet) {
+		display: flex;
+		justify-content: space-between;
+
+		margin-bottom: 30px;
+	}
+}
+.order__number {
+	margin-bottom: 10px;
+}
+
+.order__time {
+	font-size: 0.7rem;
+}
+
+.order__image__wrapper {
+	display: flex;
+	gap: 30px;
+
+	margin-bottom: 10px;
+
+	@media (min-width: $tablet) {
+		margin-bottom: 0;
+		margin-right: 50px;
+	}
+}
+
+.order__image {
+	width: 50px;
+	height: 50px;
+
+	@media (min-width: $tablet) {
+		width: 65px;
+		height: 65px;
+	}
+
+	@media (min-width: $desktop) {
+		width: 100px;
+		height: 100px;
+	}
+}
+.order__additional__wrapper {
+}
+
+.order__additional__wrapper--item {
+	&:not(:last-child) {
+		margin-bottom: 10px;
+	}
+	display: grid;
+	grid-template-columns: 0.5fr 1fr 1fr;
+	grid-template-rows: 1fr;
+
+	@media (min-width: $tablet) {
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+
+	@media (min-width: $desktop) {
+		grid-template-columns: 0.3fr 0.4fr 1fr;
+
+		&:not(:last-child) {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.order__additional__name {
+	font-size: 0.9rem;
+
+	@media (min-width: $tablet) {
+		font-size: 1.3rem;
+	}
+}
+
+.order__additional__unit {
+	font-size: 0.7rem;
+
+	@media (min-width: $tablet) {
+		font-size: 1.3rem;
+	}
+}
+
+.hide__additional {
+	display: none;
+}
+.show__additional {
+	display: block;
+
+	margin-bottom: 30px;
+
+	@media (min-width: $desktop) {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+.info__flex__wrapper {
+	@media (min-width: $desktop) {
+		width: 30%;
+	}
+}
+.order__additional__info {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid $secondary-bg-color;
+
+	@media (min-width: $tablet) {
+		font-size: 1.3rem;
+	}
+}
+.info__span {
+	color: $secondary-font-color;
+}
+
+.order__totalPrice {
+	font-size: 1.5rem;
+	font-weight: 700;
+}

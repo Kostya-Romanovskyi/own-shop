@@ -4,17 +4,13 @@ import { FaMinus } from 'react-icons/fa6';
 import './input-price.scss';
 
 interface InputPriceProps {
-	price: number;
 	quantity?: number;
-	onQuantityChange: (quantity: number, updatedPrice: number) => void;
+	onQuantityChange: (quantity: number) => void;
 }
 
-const InputPrice: FC<InputPriceProps> = ({ price, quantity, onQuantityChange }) => {
+const InputPrice: FC<InputPriceProps> = ({ quantity, onQuantityChange }) => {
 	const defaultQuantity = 1;
 	const [refreshQuantity, setRefreshQuantity] = useState<number>(quantity && quantity > 1 ? quantity : defaultQuantity);
-	const [updatedPrice, setUpdatedPrice] = useState<number>(
-		quantity && quantity > 1 ? price * quantity : price * defaultQuantity
-	);
 
 	// input increment
 	const handleIncrement = (): void => {
@@ -22,7 +18,7 @@ const InputPrice: FC<InputPriceProps> = ({ price, quantity, onQuantityChange }) 
 
 		setRefreshQuantity((prevState: number) => {
 			const newQuantity = prevState + 1;
-			setUpdatedPrice(newQuantity * price);
+
 			return newQuantity;
 		});
 	};
@@ -32,7 +28,7 @@ const InputPrice: FC<InputPriceProps> = ({ price, quantity, onQuantityChange }) 
 		if (refreshQuantity === 1) return;
 		setRefreshQuantity((prevState: number) => {
 			const newQuantity = prevState - 1;
-			setUpdatedPrice(newQuantity * price);
+
 			return newQuantity;
 		});
 	};
@@ -47,12 +43,11 @@ const InputPrice: FC<InputPriceProps> = ({ price, quantity, onQuantityChange }) 
 			newQuantity = 10;
 		}
 		setRefreshQuantity(newQuantity);
-		setUpdatedPrice(newQuantity * price);
 	};
 
 	useEffect(() => {
-		onQuantityChange(refreshQuantity, updatedPrice);
-	}, [refreshQuantity, updatedPrice]);
+		onQuantityChange(refreshQuantity);
+	}, [refreshQuantity]);
 
 	return (
 		<div className='input__wrapper'>

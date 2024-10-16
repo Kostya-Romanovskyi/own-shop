@@ -13,7 +13,7 @@ const Footer = () => {
 					<div className='footer__nav'>
 						<FooterNav />
 
-						<MainButton name='Order now' redirect='/order' classStyle='footer__button' click={() => {}} />
+						<MainButton name='Order now' redirect='/menu' classStyle='footer__button' click={() => {}} />
 					</div>
 
 					<div className='footer__location'>

@@ -37,6 +37,13 @@ export interface IUserOrder {
 	order_items: IOrderItems[];
 	status: Status;
 	totalPrice: string;
+	order_date: Date;
+	chopsticks: string;
+	chopsticks_quantity: number;
+	allergic: string;
+	type_of_allergy: string;
+	soy_sauce: string;
+	additional_information: string;
 }
 
 export type IUserOrders = IUserOrder[];

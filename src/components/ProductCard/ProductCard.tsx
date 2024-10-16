@@ -9,6 +9,7 @@ import { IGetUsers } from '../../API/auth/auth.interface';
 import './ProductCard.scss';
 import { Link, useParams } from 'react-router-dom';
 import MainButton from '../MainButton/MainButton';
+import { Ingredient } from '../../API/products/products.interface';
 
 interface IProductCard {
 	id: number;
@@ -16,9 +17,10 @@ interface IProductCard {
 	description: string;
 	price: number;
 	image: string;
+	ingredients: Ingredient[];
 }
 
-const ProductCard: FC<IProductCard> = ({ id, name, description, price, image }) => {
+const ProductCard: FC<IProductCard> = ({ id, name, description, price, image, ingredients }) => {
 	const { categoryName, productName } = useParams();
 
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
@@ -40,13 +42,15 @@ const ProductCard: FC<IProductCard> = ({ id, name, description, price, image }) 
 	// pass image
 	const finalImage = image ? useImages(image) : '';
 
+	const ingredientNames = ingredients.map(item => item.name).join(', ');
+
 	return (
 		<li className='card'>
 			<Link to={`/menu/categories/${categoryName}/${productName}/${id}`}>
 				<img className='card_img ' src={finalImage} alt={`${name} picture`} />
 				<h2>{name}</h2>
-				<p className={`card_description`}>{description}</p>
-
+				{/* <p className={`card_description`}>{description}</p> */}
+				<p className='card__ingredients'>{ingredientNames}</p>
 				<h3 className='card__price'>{price.toFixed(2)} CAD$</h3>
 			</Link>
 

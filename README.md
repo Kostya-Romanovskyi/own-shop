@@ -1,5 +1,4 @@
 https://www.sonatheindiankitchen.ca/
-добавить дополнительную иформацию в заказ
 
 # React + TypeScript + Vite
 

@@ -9,12 +9,41 @@ const UserOrdersList = () => {
 	const { data: orders } = useGetUserOrders(user?.id ?? -1);
 
 	return (
-		<ul>
-			{orders &&
-				orders.map(({ id, status, order_items, totalPrice }) => (
-					<UserOrdersItem key={id} order_items={order_items} status={status} totalPrice={totalPrice} />
-				))}
-		</ul>
+		<div className='container'>
+			<ul>
+				{orders &&
+					orders.map(
+						({
+							id,
+							order_date,
+							status,
+							order_items,
+							chopsticks,
+							chopsticks_quantity,
+							allergic,
+							type_of_allergy,
+							soy_sauce,
+							additional_information,
+							totalPrice,
+						}) => (
+							<UserOrdersItem
+								key={id}
+								order_id={id}
+								order_items={order_items}
+								order_date={order_date}
+								status={status}
+								totalPrice={totalPrice}
+								chopsticks={chopsticks}
+								chopsticks_quantity={chopsticks_quantity}
+								allergic={allergic}
+								type_of_allergy={type_of_allergy}
+								soy_sauce={soy_sauce}
+								additional_information={additional_information}
+							/>
+						)
+					)}
+			</ul>
+		</div>
 	);
 };
 

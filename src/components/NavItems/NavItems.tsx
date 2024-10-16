@@ -30,17 +30,17 @@ const NavItems: FC<INavItem> = ({ click, classStyle, classNav }) => {
 					</Link>
 				</li>
 
-				<li className='nav__item'>
+				{/* <li className='nav__item'>
 					<Link onClick={click} className={`nav__link ${classStyle}`} to={'/order'}>
 						Order
 					</Link>
-				</li>
+				</li> */}
 
-				<li className='nav__item'>
+				{/* <li className='nav__item'>
 					<Link onClick={click} className={`nav__link ${classStyle}`} to={'/contact'}>
 						Contact us
 					</Link>
-				</li>
+				</li> */}
 
 				<li className='nav__item'>
 					<Link onClick={click} className={`nav__link ${classStyle}`} to={'/profile'}>

@@ -64,13 +64,6 @@ const Header = () => {
 								</div>
 							) : (
 								<div className='header__auth__wrapp'>
-									{/* <Link onClick={handleBurgerToggle} className='header__auth__btn margin-10' to={'/login'}>
-										Login
-									</Link> */}
-									{/* <Link onClick={handleBurgerToggle} className='header__auth__btn' to={'/register'}>
-										Register
-									</Link> */}
-
 									<MainButton redirect='/login' name='Login' click={handleBurgerToggle} classStyle='margin-10' />
 									<MainButton redirect='/register' name='Register' click={handleBurgerToggle} classStyle='' />
 								</div>
