@@ -1,15 +1,29 @@
 @import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
+@import '../../styles/media';
 
 .pre__items__element:not(:last-child) {
 	margin-bottom: 20px;
 }
 
+.pre__items__title--wrap {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid $secondary-bg-color;
+}
+
 .pre__items__title {
+	display: inline-block;
+
 	font-size: 2rem;
 	font-weight: 700;
 
-	padding-bottom: 20px;
-	margin-bottom: 20px;
+	transition: color $delay-animation $cubic-bezier;
 
-	border-bottom: 1px solid $secondary-bg-color;
+	@media (min-width: $desktop) {
+		&:hover,
+		&:focus {
+			color: $link-hover-color;
+		}
+	}
 }

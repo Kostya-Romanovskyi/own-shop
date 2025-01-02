@@ -12,22 +12,22 @@ interface IImageZoom {
 const ImageZoom: FC<IImageZoom> = ({ image }) => {
 	const [isDisassembled, setIsDisassembled] = useState(false);
 
-	// Функция для переключения состояния разборки
+	// Toggle function
 	const toggleDisassembly = () => {
 		setIsDisassembled(!isDisassembled);
 	};
 
 	return (
 		<div className={`sushi-container ${isDisassembled ? 'disassembled' : ''}`} onClick={toggleDisassembly}>
-			{/* Слой нори */}
+			{/* Layer nori */}
 			<div className='sushi-layer nori'>
 				<img style={{ background: 'black' }} src={Image} alt='Nori' />
 			</div>
-			{/* Слой рыбы */}
+			{/* Layer fish */}
 			<div className='sushi-layer fish'>
 				<img src={Image2} alt='Fish' />
 			</div>
-			{/* Слой риса */}
+			{/* Layer rice */}
 			<div className='sushi-layer rice'>
 				<img src={image} alt='Rice' />
 			</div>

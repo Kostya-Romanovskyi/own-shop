@@ -30,8 +30,9 @@ export const addItemInCart = async (newItem: INewItemInCart) => {
 	try {
 		console.log(newItem);
 		const response = await axios.post(`${BASE_URL}/cart`, newItem);
+		console.log(response);
 
-		return response;
+		return response.data;
 	} catch (error: any) {
 		throw new Error(error.response?.data?.message || 'Failed to add item to cart');
 	}

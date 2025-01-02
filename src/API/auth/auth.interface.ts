@@ -24,6 +24,18 @@ export interface ILogin {
 	password: string;
 }
 
+export interface IUserProfileInfo {
+	id: number;
+	name: string;
+	last_name: string;
+	email: string;
+	phone: string;
+	additional_information: string;
+	role: UserRole;
+	image: string;
+	createdAt?: string;
+}
+
 export interface IGetUsers {
 	id: number;
 	name: string;

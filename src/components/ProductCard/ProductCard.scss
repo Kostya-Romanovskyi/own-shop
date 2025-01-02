@@ -16,10 +16,6 @@ input[type='number'] {
 }
 
 .card {
-	@media (max-width: 479px) {
-		max-width: 320px;
-	}
-
 	padding: 10px;
 
 	border: 1px solid $secondary-bg-color;
@@ -31,6 +27,15 @@ input[type='number'] {
 	&:focus {
 		box-shadow: 0px -6px 20px $card-hover-color;
 	}
+
+	@media (max-width: 479px) {
+		max-width: 320px;
+	}
+}
+
+.card__title {
+	font-size: 1.1rem;
+	margin-bottom: 10px;
 }
 
 .card_img {
@@ -45,7 +50,7 @@ input[type='number'] {
 }
 
 .card__ingredients {
-	height: 50px;
+	height: 55px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 

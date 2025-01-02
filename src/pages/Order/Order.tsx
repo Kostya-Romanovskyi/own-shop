@@ -56,12 +56,6 @@ const Order = () => {
 		setAllergic(e.target.value);
 	};
 
-	// const handleLimitNumbers = (e: ChangeEvent<HTMLInputElement>) => {
-	// 	if (+e.target.value <= 0 || +e.target.value >= 11) {
-	// 		return;
-	// 	}
-	// };
-
 	return (
 		<main className='order__main'>
 			<div className='container'>

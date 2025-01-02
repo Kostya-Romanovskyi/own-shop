@@ -93,3 +93,28 @@ input[type='file'] {
 .register__error__border {
 	box-shadow: 0px -2px 20px $red-color;
 }
+
+.valid-phone {
+	box-shadow: 0px -2px 20px $green-color !important;
+}
+
+.invalid-phone {
+	box-shadow: 0px -2px 20px #ef6065 !important;
+}
+
+.custom-phone-input {
+	border-radius: 8px;
+	padding: 10px;
+	font-size: 24px;
+
+	margin-bottom: 10px;
+}
+
+.PhoneInputInput {
+	height: 30px;
+	padding-left: 7px;
+
+	font-size: 1.1rem;
+
+	border-radius: 5px;
+}

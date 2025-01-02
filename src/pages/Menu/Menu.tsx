@@ -3,13 +3,11 @@ import ProductWithItem from '../../components/Sections/ProductWithItems/ProductW
 
 const Menu = () => {
 	return (
-		<main>
-	
-				<CategoriesSection />
+		<>
+			<CategoriesSection />
 
-				<ProductWithItem />
-		
-		</main>
+			<ProductWithItem />
+		</>
 	);
 };
 

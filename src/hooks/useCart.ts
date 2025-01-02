@@ -8,17 +8,21 @@ import {
 } from '../API/cart/cart';
 import { ICartUpdateItem } from '../API/cart/cart.interface';
 
+import { toast } from 'react-toastify';
+
 export const useAddToCart = (userId: number) => {
 	const queryClient = useQueryClient();
 
 	const { mutate, isPending } = useMutation({
 		mutationFn: addItemInCart,
-		onSuccess: () => {
-			alert('Successfully added in cart');
+		// on success
+		onSuccess: data => {
+			toast.success(`${data.addedProductName} added in cart`);
 			queryClient.invalidateQueries({ queryKey: ['user-cart', userId] });
 		},
+		// on error
 		onError: (error: any) => {
-			alert(`Error: ${error.message}`);
+			toast.error(error.message);
 		},
 	});
 

@@ -3,12 +3,13 @@
 
 .categories__item {
 	padding: 20px;
+	margin-bottom: 30px;
 
 	border: 1px solid $secondary-bg-color;
 	border-radius: 5px;
 
 	background-repeat: no-repeat;
-	background-position: right;
+	background-position: 10%;
 	background-size: contain;
 
 	&:not(:last-child) {
@@ -20,11 +21,6 @@
 		grid-template-columns: 1fr 4fr;
 
 		gap: 50px;
-
-		// & > h3,
-		// & > p {
-		// 	width: 90%;
-		// }
 	}
 }
 
@@ -38,7 +34,4 @@
 	max-height: 100px;
 
 	overflow: hidden;
-
-	// text-overflow: ellipsis;
-	// white-space: nowrap;
 }

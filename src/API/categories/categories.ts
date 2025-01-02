@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { ICategoryByName } from './categories.interface';
+import { ICategoryByName, IAddNewCategory, IAllCategories } from './categories.interface';
 
 // const BASE_URL = `http://localhost:3000/api`;
 const BASE_URL = `https://own-shop-back.onrender.com/api`;
 
 export const getAllCategories = async () => {
 	try {
-		const response = await axios.get(`${BASE_URL}/categories`);
+		const response = await axios.get<IAllCategories[]>(`${BASE_URL}/categories`);
 		console.log(response.data);
 		return response.data;
 	} catch (error) {
@@ -24,5 +24,31 @@ export const getCategoryById = async (categoryName: string): Promise<ICategoryBy
 		console.error(error.message || error);
 
 		return undefined;
+	}
+};
+
+export const addNewCategory = async (newCategory: IAddNewCategory) => {
+	console.log(newCategory);
+
+	try {
+		const response = await axios.post(`${BASE_URL}/categories`, newCategory, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		});
+
+		console.log(response);
+
+		return response.data;
+	} catch (error: any) {
+		throw new Error(error.message);
+	}
+};
+
+export const deleteCategory = async (categoryId: string) => {
+	try {
+		await axios.delete(`${BASE_URL}/categories/${categoryId}`);
+	} catch (error: any) {
+		throw new Error(error.message);
 	}
 };

@@ -5,18 +5,21 @@ import ProductList from '../../components/ProductList/ProductList';
 import './products-list-page.scss';
 
 const ProductsListPage = () => {
-	const { productName } = useParams<{ productName: string }>();
+	const { allItemsName } = useParams<{ allItemsName: string }>();
 
-	const { data: productsByName } = useProductsByName(productName || '');
+	const { data: productsByName } = useProductsByName(allItemsName || '');
 
 	return (
 		<>
-			<h2>{productName}</h2>
-
+			<div className='container'>
+				<h2 className='product__title'>{allItemsName}</h2>
+			</div>
 			{productsByName ? (
 				<ProductList list={productsByName.products_items} />
 			) : (
-				<div>No products found for "{productName}".</div>
+				<div className='container'>
+					<div>No products found for "{allItemsName}".</div>
+				</div>
 			)}
 		</>
 	);

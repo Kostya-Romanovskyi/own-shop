@@ -1,3 +1,8 @@
+enum IItemType {
+	FOOD = 'food',
+	STAFF = 'staff',
+}
+
 export interface IItem {
 	id: number;
 	name: string;
@@ -25,4 +30,13 @@ export interface ProductsItemIngredients {
 	ingredient_id: number;
 	createdAt: string;
 	updatedAt: string;
+}
+
+export interface IAddNewItem {
+	name: string;
+	description: string;
+	image: File;
+	price: string;
+	type: string;
+	products_id: string;
 }

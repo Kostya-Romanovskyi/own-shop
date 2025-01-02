@@ -1,13 +1,13 @@
 import MainButton from '../MainButton/MainButton';
 import FooterNav from '../FooterNav/FooterNav';
 import GoogleMapComponent from '../GoogleMap/GoogleMap';
-import VeryFooter from '../VeryFooter/VeryFooter';
+// import VeryFooter from '../VeryFooter/VeryFooter';
 
 import './footer.scss';
 
 const Footer = () => {
 	return (
-		<footer className='footer'>
+		<section className='section'>
 			<div className='container'>
 				<div className='footer__wrapper'>
 					<div className='footer__nav'>
@@ -38,9 +38,9 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<VeryFooter />
+				{/* <VeryFooter /> */}
 			</div>
-		</footer>
+		</section>
 	);
 };
 

@@ -1,10 +1,14 @@
 @import '../../styles/media';
+@import '../../styles/variables/colors';
+@import '../../styles/variables/animations';
 
 .footer__info {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 20px;
+
+	padding: 20px 0 20px 0;
 }
 
 .footer__info > div {
@@ -31,6 +35,7 @@
 }
 .footer__info__item {
 	font-size: 0.7rem;
+	transition: color $delay-animation $cubic-bezier;
 
 	&:not(:first-child) {
 		margin-left: 10px;
@@ -39,8 +44,17 @@
 	@media (min-width: $tablet) {
 		font-size: 1rem;
 	}
+
+	&:hover,
+	&:focus {
+		color: $link-hover-color;
+	}
 }
 
 .footer__info__span {
 	display: block;
+
+	@media (min-width: $tablet) {
+		display: inline;
+	}
 }

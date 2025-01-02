@@ -7,9 +7,11 @@ import { INewItemInCart } from '../../API/cart/cart.interface';
 import { IGetUsers } from '../../API/auth/auth.interface';
 
 import './ProductCard.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MainButton from '../MainButton/MainButton';
 import { Ingredient } from '../../API/products/products.interface';
+import Spinner from '../Spinner/Spinner';
+import spinnerSize from '../../constants/spinnerSize';
 
 interface IProductCard {
 	id: number;
@@ -20,11 +22,9 @@ interface IProductCard {
 }
 
 const ProductCard: FC<IProductCard> = ({ id, name, price, image, ingredients }) => {
-	const { categoryName, productName } = useParams();
-
 	const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
-	const { mutate } = useAddToCart(user?.id || -1);
+	const { mutate, isPending } = useAddToCart(user?.id || -1);
 
 	// add product in card
 	const handleAddToCart = (id: number): void => {
@@ -41,27 +41,31 @@ const ProductCard: FC<IProductCard> = ({ id, name, price, image, ingredients }) 
 	// pass image
 	const finalImage = image ? useImages(image) : '';
 
-	const ingredientNames = ingredients.map(item => item.name).join(', ');
+	const ingredientNames = ingredients ? ingredients.map(item => item.name).join(', ') : [];
 
 	return (
 		<li className='card'>
-			<Link to={`/menu/categories/${categoryName}/${productName}/${id}`}>
+			<Link to={`/menu/search/item-page/${id}`}>
 				<img className='card_img ' src={finalImage} alt={`${name} picture`} />
-				<h2>{name}</h2>
+				<h2 className='card__title'>{name}</h2>
 				{/* <p className={`card_description`}>{description}</p> */}
 				<p className='card__ingredients'>{ingredientNames}</p>
 				<h3 className='card__price'>{price.toFixed(2)} CAD$</h3>
 			</Link>
 
-			<MainButton
-				redirect={user ? '' : '/login'}
-				name={'Add to cart'}
-				classStyle='card__button'
-				click={() => {
-					console.log(`Attempting to add product with ID: ${id}`); // Лог для отладки
-					handleAddToCart(id);
-				}}
-			/>
+			{isPending ? (
+				<Spinner size={spinnerSize.sm} />
+			) : (
+				<MainButton
+					redirect={user ? '' : '/login'}
+					name={'Add to cart'}
+					classStyle='card__button'
+					click={() => {
+						console.log(`Attempting to add product with ID: ${id}`);
+						handleAddToCart(id);
+					}}
+				/>
+			)}
 		</li>
 	);
 };

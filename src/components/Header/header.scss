@@ -28,6 +28,7 @@
 }
 
 .header__logo {
+	font-weight: 700;
 }
 
 .header__mobile__wrapper {
@@ -50,10 +51,14 @@
 		justify-content: space-between;
 		align-items: center;
 
+		width: 80%;
 		height: auto;
 		overflow-y: hidden;
 
 		transform: translate(0, 0);
+	}
+	@media (min-width: $desktop) {
+		width: 70%;
 	}
 }
 
@@ -129,6 +134,17 @@
 	position: relative;
 	font-size: 1.5rem;
 }
+
+.header__user__profile__img {
+	width: 30px;
+	height: 30px;
+
+	border-radius: 50%;
+}
+
+.header__user__profile__text {
+	font-size: 1rem;
+}
 .header__cart__counter {
 	position: absolute;
 	top: -6px;
@@ -150,13 +166,15 @@
 	font-size: $mobile-sec-font-size;
 
 	@media (min-width: $tablet) {
-		font-size: 15px;
-
+		font-size: 1.2px;
+		width: 40%;
 		margin-bottom: 0;
+		padding: 2px 0 2px 0;
 	}
 
 	@media (min-width: $desktop) {
-		font-size: 18px;
+		font-size: 1.3rem;
+		width: 30%;
 	}
 }
 
@@ -191,4 +209,14 @@
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+.login__width {
+	@media (min-width: $tablet) {
+		width: 25%;
+	}
+
+	// @media (min-width: $desktop) {
+	// 	width: 21%;
+	// }
 }

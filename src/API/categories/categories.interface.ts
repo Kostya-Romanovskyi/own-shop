@@ -1,3 +1,12 @@
+
+export interface IAllCategories {
+	id: number;
+	name: string;
+	description: string;
+	image: string;
+	createdAt: string;
+	updatedAt: string;
+}
 export interface ICategoryByName {
 	id: number;
 	name: string;
@@ -16,4 +25,10 @@ export interface IProductIncludedInCategory {
 	image: string;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface IAddNewCategory {
+	name: string;
+	description: string;
+	image: File;
 }

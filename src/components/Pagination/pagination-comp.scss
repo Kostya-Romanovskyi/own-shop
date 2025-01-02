@@ -1,0 +1,18 @@
+@import '../../styles/variables/colors';
+
+.rc-pagination-item-active {
+	border-color: $link-hover-color !important;
+}
+
+.rc-pagination-item-active a {
+	color: $link-hover-color !important;
+}
+
+.rc-pagination-item:hover a {
+	color: $link-hover-color !important;
+}
+.pagination__wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

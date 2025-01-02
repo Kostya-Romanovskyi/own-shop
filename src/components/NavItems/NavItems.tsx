@@ -42,11 +42,11 @@ const NavItems: FC<INavItem> = ({ click, classStyle, classNav }) => {
 					</Link>
 				</li> */}
 
-				<li className='nav__item'>
-					<Link onClick={click} className={`nav__link ${classStyle}`} to={'/profile'}>
+				{/* <li className='nav__item'>
+					<Link onClick={click} className={`nav__link ${classStyle}`} to={'/profile/my-data'}>
 						Profile
 					</Link>
-				</li>
+				</li> */}
 			</ul>
 		</nav>
 	);

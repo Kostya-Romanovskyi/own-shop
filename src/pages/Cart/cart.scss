@@ -5,6 +5,8 @@
 	margin: 0 auto;
 	padding: 0 10px;
 
+	height: 90vh;
+
 	@media (min-width: $mobile) {
 		max-width: $mobile;
 	}
@@ -20,6 +22,17 @@
 
 		padding: 0 20px;
 	}
+}
+
+.cart__empty__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cart__empty__img {
+	width: 100px;
+	height: 100px;
 }
 
 .total__wrapper {
@@ -61,11 +74,6 @@
 	display: block;
 	width: 100%;
 
-	@media (min-width: 370px) {
-		display: inline-block;
-		width: auto;
-	}
-
 	padding-left: 20px;
 	padding-right: 20px;
 
@@ -74,5 +82,10 @@
 	&:hover,
 	&:focus {
 		box-shadow: inset 0px 0px 10px $green-color;
+	}
+
+	@media (min-width: 370px) {
+		display: inline-block;
+		width: auto;
 	}
 }

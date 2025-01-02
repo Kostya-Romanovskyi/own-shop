@@ -51,7 +51,7 @@
 }
 
 .ingredients__list {
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 
 	@media (min-width: $desktop) {
 		display: flex;
@@ -67,7 +67,7 @@
 	border-bottom: 1px solid $secondary-bg-color;
 
 	@media (min-width: $desktop) {
-		flex-basis: calc((100% - 4 * 30px) / 5);
+		flex-basis: calc((100% - 4 * 30px) / 2);
 
 		border-right: 1px solid $secondary-bg-color;
 
@@ -84,4 +84,7 @@
 }
 .ingredients__info {
 	color: $secondary-font-color;
+}
+.info--color {
+	color: $main-font-color;
 }

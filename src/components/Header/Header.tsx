@@ -8,15 +8,16 @@ import MainButton from '../MainButton/MainButton';
 
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaListAlt } from 'react-icons/fa';
 
 import './header.scss';
 import NavItems from '../NavItems/NavItems';
-import { IRegister } from '../../API/auth/auth.interface';
+import { IUserProfileInfo } from '../../API/auth/auth.interface';
 import { ICartInfo } from '../../API/cart/cart.interface';
+import InputSearch from '../InputSearch/InputSearch';
 
 const Header = () => {
-	const { data: user } = useQuery<IRegister>({ queryKey: ['current'] });
+	const { data: user } = useQuery<IUserProfileInfo>({ queryKey: ['current'] });
 	const { data: cartItems } = useQuery<ICartInfo>({ queryKey: ['user-cart', user?.id] });
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -45,25 +46,39 @@ const Header = () => {
 				<div className='container'>
 					<div className='header__wrapper'>
 						<div onClick={handleBurgerToggle} className={`${isOpen ? 'backdrop__open' : 'backdrop__closed'}`}></div>
-						{/* <img className='header__logo' src='../../../public/logo.webp' alt='Logo own-shop' /> */}
-						<div>Logo</div>
+						{/* <img className='header__logo' src={Logo} alt='Logo own-shop' /> */}
+						<Link to={'/'} className='header__logo'>
+							OwnRestaurant
+						</Link>
 
 						<HeaderButton click={handleBurgerToggle} Icon={RxHamburgerMenu} classStyle='' />
 
 						<div className={`header__mobile__wrapper ${isOpen ? 'opened__burger' : ''}`}>
 							<NavItems click={handleBurgerToggle} classStyle='' classNav='' />
 
+							<InputSearch isBurgerOpen={setIsOpen} />
+
 							{user && user !== null ? (
 								<div className='header__auth__wrapp'>
-									<Link to='/cart' className='header__cart__icon'>
+									<Link onClick={handleBurgerToggle} to='/cart' className='header__cart__icon'>
 										<FaShoppingCart />
 
 										<div className='header__cart__counter'>{cartItems && cartItems.result.length}</div>
 									</Link>
+
+									<Link onClick={handleBurgerToggle} to='/profile/my-orders' className='header__cart__icon'>
+										<FaListAlt />
+									</Link>
+
+									<Link onClick={handleBurgerToggle} to='/profile/my-data'>
+										<img className='header__user__profile__img' src={user?.image} alt={user?.name} />
+										<span className='header__user__profile__text'></span>
+									</Link>
+
 									<LogoutBtn />
 								</div>
 							) : (
-								<div className='header__auth__wrapp'>
+								<div className='header__auth__wrapp login__width'>
 									<MainButton redirect='/login' name='Login' click={handleBurgerToggle} classStyle='margin-10' />
 									<MainButton redirect='/register' name='Register' click={handleBurgerToggle} classStyle='' />
 								</div>

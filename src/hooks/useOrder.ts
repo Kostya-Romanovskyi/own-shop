@@ -1,6 +1,17 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { addNewOrder, getUserOrders } from '../API/order/order';
-import { IUserOrder } from '../API/order/order.interface';
+import { addNewOrder, getAllOrders, getUserOrders, updateOrderStatus } from '../API/order/order';
+import { IPaginationSetting, IUpdateStatus, IUserOrder } from '../API/order/order.interface';
+import { toast } from 'react-toastify';
+
+export const useGetAllOrders = (paginationSetting: IPaginationSetting) => {
+	return useQuery({
+		queryKey: ['AllOrders', paginationSetting],
+		queryFn: async ({ queryKey }) => {
+			const [, { page, limit }] = queryKey as [string, IPaginationSetting];
+			return getAllOrders({ page, limit });
+		},
+	});
+};
 
 export const useAddNewOrder = () => {
 	const queryClient = useQueryClient();
@@ -20,9 +31,27 @@ export const useAddNewOrder = () => {
 	return mutate;
 };
 
-export const useGetUserOrders = (userId: number) => {
+export const useGetUserOrders = (userId: number, page: number) => {
 	return useQuery({
-		queryKey: ['UserOrders', userId],
-		queryFn: () => getUserOrders(userId),
+		queryKey: ['UserOrders', userId, page],
+		queryFn: () => getUserOrders(userId, page),
 	});
+};
+
+export const useUpdateStatus = () => {
+	const queryClient = useQueryClient();
+
+	const { mutate, isPending } = useMutation({
+		mutationKey: ['update-status'],
+		mutationFn: (updatedData: IUpdateStatus) => updateOrderStatus(updatedData),
+		onSuccess: data => {
+			queryClient.invalidateQueries({ queryKey: ['AllOrders'] });
+			toast.success(data.message);
+		},
+		onError: error => {
+			alert(error);
+		},
+	});
+
+	return { mutate, isPending };
 };

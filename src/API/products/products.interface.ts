@@ -39,3 +39,10 @@ export interface ProductsItemIngredients {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface IAddNewProduct {
+	category_id: string;
+	name: string;
+	description: string;
+	image: File;
+}

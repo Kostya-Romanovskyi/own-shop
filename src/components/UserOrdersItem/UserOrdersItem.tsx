@@ -31,7 +31,6 @@ const UserOrdersItem: FC<IUserOrderItem> = ({
 	additional_information,
 	totalPrice,
 }) => {
-	// const [allOrderInfo, setAllOrderInfo] = useState(order_items);
 	const [showAdditional, setShowAdditional] = useState(false);
 
 	const handleToggle = () => {

@@ -11,7 +11,7 @@ interface IProductListProps {
 
 const ProductList: FC<IProductListProps> = ({ list }) => {
 	const location = useLocation();
-	console.log(list);
+	console.log('Product list:', list);
 
 	const slicedList = location.pathname === '/menu' ? list.slice(0, 5) : list;
 

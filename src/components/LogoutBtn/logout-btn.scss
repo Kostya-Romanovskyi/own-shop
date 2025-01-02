@@ -17,13 +17,12 @@
 	@media (min-width: $tablet) {
 		padding: 5px 10px;
 		font-size: 1.2rem;
-		margin-left: 20px;
 	}
 
 	@media (min-width: $desktop) {
 		padding: 5px 20px;
 
-		font-size: 1.5rem;
+		font-size: 1rem;
 	}
 
 	&:hover,

@@ -37,6 +37,7 @@ export const loginUser = async (userData: ILogin) => {
 		return response.data;
 	} catch (error: any) {
 		console.log(error.response.data.message);
+		throw new Error(error.response.data.message);
 	}
 };
 
