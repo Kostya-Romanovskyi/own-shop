@@ -7,9 +7,9 @@ import DeleteCategories from '../../DeleteCategories/DeleteCategories';
 import '../../../pages/Admin/admin.scss';
 
 const ManageCategorySection = () => {
-	const { register, handleSubmit, formState } = useForm<IAddNewCategory>();
+	const { register, handleSubmit } = useForm<IAddNewCategory>();
 
-	const { mutate, isPending } = useAddNewCategory();
+	const { mutate } = useAddNewCategory();
 
 	const onSubmit: SubmitHandler<IAddNewCategory> = data => {
 		const formData = new FormData() as never as IAddNewCategory;

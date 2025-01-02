@@ -1,8 +1,3 @@
-enum IItemType {
-	FOOD = 'food',
-	STAFF = 'staff',
-}
-
 export interface IItem {
 	id: number;
 	name: string;
@@ -11,8 +6,8 @@ export interface IItem {
 	products_id: number;
 	image: string;
 	type: string;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 	ingredients: Ingredient[];
 }
 

@@ -4,15 +4,16 @@ import './all-items-section.scss';
 
 const AllItemsSection = () => {
 	const { data: allItems, isLoading } = useAllItems();
+	console.log('tut ', allItems);
 
 	const maxElements = 5;
 
-	const sortedItems = isLoading ? [] : allItems.sort(() => Math.random() - 0.5).slice(0, maxElements);
+	const sortedItems = isLoading ? [] : allItems && allItems.sort(() => Math.random() - 0.5).slice(0, maxElements);
 
 	return (
 		<section className='random__items'>
 			<h2 className='random__title'>More dishes</h2>
-			<ProductList list={sortedItems} />
+			<ProductList list={sortedItems || []} />
 		</section>
 	);
 };

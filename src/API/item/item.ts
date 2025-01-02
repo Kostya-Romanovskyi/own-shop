@@ -10,7 +10,7 @@ export const itemUrl = 'https://own-shop-back.onrender.com/';
 
 export const getAllItems = async () => {
 	try {
-		const result = await axios.get<IItem[]>(`${BASE_URL}/items`);
+		const result = await axios.get<IProductItem[]>(`${BASE_URL}/items`);
 		console.log(result);
 
 		return result.data;

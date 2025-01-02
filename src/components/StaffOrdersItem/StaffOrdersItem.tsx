@@ -30,7 +30,6 @@ interface IOrderProps {
 
 const StaffOrdersItem: FC<IOrderProps> = ({
 	id,
-	user_id,
 	order_date,
 	order_id,
 	status,

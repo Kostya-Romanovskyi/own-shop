@@ -2,7 +2,8 @@ import { useGetAllOrders } from '../../hooks/useOrder';
 import StaffOrdersItem from '../StaffOrdersItem/StaffOrdersItem';
 
 const StaffOrdersList = () => {
-	const { data: allOrders, isPending } = useGetAllOrders();
+	const { data: allOrders } = useGetAllOrders({ page: 1, limit: 5 });
+
 	console.log(allOrders);
 
 	return (
