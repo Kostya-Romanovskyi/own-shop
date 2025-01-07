@@ -50,7 +50,6 @@ const StaffOrdersList: React.FC = () => {
 
 	const { mutate, isPending } = useUpdateStatus();
 
-	// Фильтрация заказов
 	const filteredOrders = allOrders
 		.filter((order) =>
 			[order.id, order.user.name, order.status, order.user.phone, order.user.email, format(new Date(order.order_date), "dd.MM.yyyy HH:mm")]
@@ -117,7 +116,7 @@ const StaffOrdersList: React.FC = () => {
 		{
 			name: "Status",
 			cell: (row) => (
-				<div
+				isPending ? <div>Loading...</div> : <div
 					style={{
 						cursor: "pointer",
 						color: getStatusColor(row.status),
