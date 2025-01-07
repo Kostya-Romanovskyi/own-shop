@@ -8,8 +8,10 @@
 body {
 	font-family: $main-font;
 
-	background-color: $main-bg-color;
-	color: $main-font-color;
+	// background-color: $main-bg-color;
+	background-color: rgb(249, 248, 248);
+	// color: $main-font-color;
+	color: black;
 
 	overflow-x: hidden;
 }
@@ -76,6 +78,7 @@ body {
 		box-shadow: inset 0px 0px 10px $card-hover-color;
 	}
 }
+
 .button__type--indent {
 	margin-top: 20px;
 }

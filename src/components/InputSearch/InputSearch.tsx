@@ -37,9 +37,9 @@ const InputSearch: FC<IInputSearchProps> = ({ isBurgerOpen }) => {
 				onKeyDown={handleKeyDown}
 				className='search__input'
 				type='text'
-				placeholder='Search...'
+				placeholder='Search dish...'
 			/>
-			<button onClick={handleSearchQuery} className='search__button' type='button'>
+		<button onClick={handleSearchQuery} className='search__button' type='button'>
 				<IoSearch className='search__icon' />
 			</button>
 		</div>

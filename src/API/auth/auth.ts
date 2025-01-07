@@ -60,5 +60,5 @@ export const logout = async (userId: number) => {
 		await axios.post(`${BASE_URL}/logout`, userId, config);
 
 		localStorage.clear();
-	} catch (error) {}
+	} catch (error) { }
 };

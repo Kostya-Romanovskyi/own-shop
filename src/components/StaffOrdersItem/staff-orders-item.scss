@@ -11,6 +11,7 @@
 	position: relative;
 	width: 80%;
 }
+
 .staff__order__icon {
 	position: absolute;
 	top: -13px;
@@ -18,6 +19,7 @@
 
 	font-size: 2rem;
 }
+
 .order__image__wrapper--margin {
 	margin: 0;
 }
@@ -37,6 +39,7 @@
 .user__lastName {
 	margin-left: 5px;
 }
+
 .user__phone {
 	margin-left: 20px;
 }
@@ -58,10 +61,4 @@ $status-colors: (
 
 .status {
 	margin-left: 20px;
-
-	@each $status, $color in $status-colors {
-		&--#{$status} {
-			color: $color;
-		}
-	}
 }

@@ -13,11 +13,12 @@ export interface IRegister {
 	phone: string;
 	additional_information: string;
 	role: UserRole;
-	image: File;
+	image: File | FileList;
 	createdAt?: string;
 	updatedAt?: string;
 	token?: string;
 }
+
 
 export interface ILogin {
 	email: string;

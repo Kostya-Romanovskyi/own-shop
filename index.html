@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Vite + React + TS</title>
-		<script src="https://www.google.com/recaptcha/enterprise.js?render=6LfkqdcpAAAAAKcfr_uYxuTIrg6HnWZPhRABU523"></script>
-		<script>
-			function onClick(e) {
-				e.preventDefault();
-				grecaptcha.enterprise.ready(async () => {
-					const token = await grecaptcha.enterprise.execute('6LfkqdcpAAAAAPmDJ3qZ7xxJAiwEXnjfaqgIhftL', {
-						action: 'LOGIN',
-					});
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vite + React + TS</title>
+	<script
+		src="https://www.google.com/recaptcha/enterprise.js?render=6LfkqdcpAAAAAKcfr_uYxuTIrg6HnWZPhRABU523"></script>
+	<script>
+		function onClick(e) {
+			e.preventDefault();
+			grecaptcha.enterprise.ready(async () => {
+				const token = await grecaptcha.enterprise.execute('6LfkqdcpAAAAAPmDJ3qZ7xxJAiwEXnjfaqgIhftL', {
+					action: 'LOGIN',
 				});
+			});
+		}
+	</script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+		rel="stylesheet" />
+
+	<!-- redirect script -->
+
+	<script type="text/javascript">
+		(function (l) {
+			if (l.search[1] === '/') {
+				var decoded = l.search
+					.slice(1)
+					.split('&')
+					.map(function (s) {
+						return s.replace(/~and~/g, '&');
+					})
+					.join('?');
+				window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
 			}
-		</script>
+		})(window.location);
+	</script>
+	<!-- ReCaptcha -->
+	<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-			rel="stylesheet"
-		/>
+</head>
 
-		<!-- redirect script -->
+<body>
+	<div id="root"></div>
+	<script type="module" src="/src/main.tsx"></script>
+</body>
 
-		<script type="text/javascript">
-			(function (l) {
-				if (l.search[1] === '/') {
-					var decoded = l.search
-						.slice(1)
-						.split('&')
-						.map(function (s) {
-							return s.replace(/~and~/g, '&');
-						})
-						.join('?');
-					window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
-				}
-			})(window.location);
-		</script>
-	</head>
-	<body>
-		<div id="root"></div>
-		<script type="module" src="/src/main.tsx"></script>
-	</body>
 </html>

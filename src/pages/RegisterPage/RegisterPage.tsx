@@ -1,6 +1,7 @@
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { ChangeEvent, useState } from 'react';
+import { registerNewUser } from '../../API/auth/auth';
 
 import { FaCheck } from 'react-icons/fa';
 import { FaPersonCirclePlus } from 'react-icons/fa6';
@@ -31,7 +32,7 @@ const RegisterPage = () => {
 	// Password check
 	const password = watch('password');
 
-	const onSubmit: SubmitHandler<IRegister> = data => {
+	const onSubmit: SubmitHandler<IRegister> = (data) => {
 		if (!captchaValid) {
 			alert('Please complete the CAPTCHA');
 			return;
@@ -44,18 +45,37 @@ const RegisterPage = () => {
 
 		const formData = new FormData();
 
+		// Append all fields except the image
 		Object.entries(data).forEach(([key, value]) => {
-			formData.append(key, value as string | Blob);
+			if (key !== "image") {
+				formData.append(key, value as string | Blob);
+			}
 		});
 		formData.append('role', UserRole.USER);
 
+		// Handle the image field
 		if (data.image instanceof FileList) {
 			formData.append('image', data.image[0]);
+		} else if (data.image instanceof File) {
+			formData.append('image', data.image);
 		}
 
-		console.log('Form Data:', Object.fromEntries(formData.entries()));
+		// Convert FormData back to an object with the correct IRegister type
+		const registerData: IRegister = {
+			name: formData.get("name") as string,
+			last_name: formData.get("last_name") as string,
+			email: formData.get("email") as string,
+			password: formData.get("password") as string,
+			password_check: formData.get("password_check") as string,
+			phone: formData.get("phone") as string,
+			additional_information: formData.get("additional_information") as string,
+			role: formData.get("role") as UserRole,
+			image: formData.get("image") as File,
+		};
 
-		// registerNewUser(formData);
+		console.log('Register Data:', registerData);
+
+		registerNewUser(registerData);
 		reset();
 	};
 
@@ -147,9 +167,8 @@ const RegisterPage = () => {
 									id='phone'
 									placeholder='Enter phone number'
 									international
-									className={`custom-phone-input ${
-										field.value && isPossiblePhoneNumber(field.value) ? 'valid-phone' : ''
-									}`}
+									className={`custom-phone-input ${field.value && isPossiblePhoneNumber(field.value) ? 'valid-phone' : ''
+										}`}
 								/>
 							)}
 						/>
@@ -215,7 +234,7 @@ const RegisterPage = () => {
 
 					{/** CAPTCHA */}
 					<div className='captcha__wrapper'>
-						<ReCAPTCHA sitekey='6LeYfNgpAAAAANbWfmHiiiVNqWqQq3s3riSzNgaS' onChange={handleCaptchaChange} id='captcha' />
+						<ReCAPTCHA lang='en' sitekey='6LeYfNgpAAAAANbWfmHiiiVNqWqQq3s3riSzNgaS' onChange={handleCaptchaChange} id='captcha' />
 					</div>
 
 					{/** Registration button */}

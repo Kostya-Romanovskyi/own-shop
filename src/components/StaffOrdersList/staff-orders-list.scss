@@ -1,0 +1,54 @@
+$status-colors: (
+    'Pending': #ff9800,
+    'Processing': #2196f3,
+    'Delivered': #4caf50,
+    'Cancelled': #f44336,
+);
+
+.status__styles {
+    @each $status, $color in $status-colors {
+        &--#{$status} {
+            color: $color;
+        }
+    }
+}
+
+.status-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button__status {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+}

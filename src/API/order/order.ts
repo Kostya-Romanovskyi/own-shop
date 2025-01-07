@@ -5,6 +5,8 @@ import { IOrdersInCart, INewOrder, IStaffAllOrders, IPaginationSetting, IUpdateS
 const BASE_URL = `https://own-shop-back.onrender.com/api`;
 
 export const getAllOrders = async (paginationSetting: IPaginationSetting) => {
+	console.log('test', paginationSetting.page);
+
 	try {
 		const response = await axios.get<IStaffAllOrders[]>(`${BASE_URL}/orders`, {
 			params: {

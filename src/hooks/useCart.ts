@@ -1,4 +1,5 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, useIsFetching } from '@tanstack/react-query';
+
 import {
 	addItemInCart,
 	calcTotalPrice,
@@ -76,5 +77,8 @@ export const useUpdateItem = (cartId: number, updatedItem: ICartUpdateItem, user
 		},
 	});
 
-	return { mutate, isPending };
+	const isFetching = useIsFetching({ queryKey: ['user-cart', userId] }) > 0;
+
+	return { mutate, isPending, isFetching };
 };
+

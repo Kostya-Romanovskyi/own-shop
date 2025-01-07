@@ -13,3 +13,10 @@ $shadow-btn-color: rgb(139, 137, 137);
 $red-color: #ef6065;
 $green-color: #56f264;
 $green-secondary-color: #6ac372;
+
+$status-colors: (
+    'Pending': #ff9800,
+    'Processing': #2196f3,
+    'Delivered': #4caf50,
+    'Cancelled': #f44336,
+);

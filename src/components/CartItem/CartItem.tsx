@@ -12,7 +12,10 @@ import { IGetUsers } from '../../API/auth/auth.interface';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { MdDeleteForever } from 'react-icons/md';
 
+import Spinner from '../Spinner/Spinner';
+
 import './cart-item.scss';
+import spinnerSize from '../../constants/spinnerSize';
 
 interface ICartItemProps {
 	id: number;
@@ -34,7 +37,7 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
 	const { mutate, isPending } = useDeleteItem(id, data?.id || -1);
 
 	// hook for update item in cart
-	const { mutate: mutateUpdate } = useUpdateItem(
+	const { mutate: mutateUpdate, isPending: pendingUpdate, isFetching } = useUpdateItem(
 		id,
 		{
 			products_item_id: products_item?.id ? products_item?.id : -1,
@@ -70,6 +73,9 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
 
 	return (
 		<li className='card__item'>
+			<div className={`card__spinner ${isFetching || pendingUpdate ? 'card__spinner--visible' : ''}`}>
+				{isFetching || pendingUpdate ? <Spinner size={spinnerSize.lg} /> : ''}
+			</div>
 			<div className='card__title__wrapp'>
 				<img className='cart__img' src={`${image}`} alt={`${products_item?.name} picture`} width={200} height={100} />
 
