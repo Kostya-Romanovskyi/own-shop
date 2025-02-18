@@ -238,6 +238,7 @@ const RegisterPage = () => {
                     type="text"
                     {...register('additional_information')}
                     id="additional_information"
+                    defaultValue=""
                   />
                 </div>
 
