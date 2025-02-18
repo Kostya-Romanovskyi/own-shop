@@ -3,62 +3,55 @@
 @import '../../styles/variables/animations';
 
 .order__item__flex {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .order__left__wrapper {
-	position: relative;
-	width: 80%;
+  position: relative;
+  width: 80%;
 }
 
 .staff__order__icon {
-	position: absolute;
-	top: -13px;
-	right: -40px;
+  position: absolute;
+  top: -13px;
+  right: -40px;
 
-	font-size: 2rem;
+  font-size: 2rem;
 }
 
 .order__image__wrapper--margin {
-	margin: 0;
+  margin: 0;
 }
 
 .order__status {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .user__info {
-	display: flex;
+  display: flex;
 }
 
 .user__info--margin {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .user__lastName {
-	margin-left: 5px;
+  margin-left: 5px;
 }
 
 .user__phone {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .order__user__add {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .order__item__wrapper--margin {
-	margin: 0;
+  margin: 0;
 }
 
-$status-colors: (
-	'Pending': #ff9800,
-	'Processing': #2196f3,
-	'Delivered': #4caf50,
-	'Cancelled': #f44336,
-);
-
 .status {
-	margin-left: 20px;
+  margin-left: 20px;
 }

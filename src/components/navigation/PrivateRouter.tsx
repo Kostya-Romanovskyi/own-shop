@@ -3,15 +3,17 @@ import { Navigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 interface IPrivateRoute {
-	component: ReactNode;
-	redirectTo: string;
+  component: ReactNode;
+  redirectTo: string;
 }
 
 const PrivateRouter: FC<IPrivateRoute> = ({ component: Component, redirectTo = '/' }) => {
-	const { data } = useQuery({ queryKey: ['current'] });
-	console.log(data);
+  const { data, isLoading } = useQuery({ queryKey: ['current'] });
 
-	return data ? Component : <Navigate to={redirectTo} />;
+  if (isLoading) return null;
+  if (!data) return <Navigate to={redirectTo} />;
+
+  return Component;
 };
 
 export default PrivateRouter;

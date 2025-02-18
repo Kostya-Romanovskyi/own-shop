@@ -1,60 +1,79 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { addNewOrder, getAllOrders, getUserOrders, updateOrderStatus } from '../API/order/order';
-import { IPaginationSetting, IUpdateStatus, IUserOrder } from '../API/order/order.interface';
+import {
+  addNewOrder,
+  getAllOrders,
+  getUserOrders,
+  updateOrderStatus,
+  updateOrderStatusStaff,
+} from '../API/order/order';
+import { IUpdateStatus, IUserOrder, IStatusWithTime } from '../API/order/order.interface';
 import { toast } from 'react-toastify';
-import playOrderSound from '../helpers/PlayOrderSound';
 
-export const useGetAllOrders = (paginationSetting: IPaginationSetting) => {
-	return useQuery({
-		queryKey: ['AllOrders', paginationSetting],
-		queryFn: async ({ queryKey }) => {
-			const [, { page, limit }] = queryKey as [string, IPaginationSetting];
-			return getAllOrders({ page, limit });
-		},
-	});
+export const useGetAllOrders = () => {
+  return useQuery({
+    queryKey: ['AllOrders'],
+    queryFn: () => getAllOrders(),
+  });
 };
 
 export const useAddNewOrder = () => {
-	const queryClient = useQueryClient();
-	const { data: user } = useQuery<IUserOrder>({ queryKey: ['current'] });
+  const queryClient = useQueryClient();
+  const { data: user } = useQuery<IUserOrder>({ queryKey: ['current'] });
 
-	const { mutate } = useMutation({
-		mutationFn: addNewOrder,
-		onSuccess: () => {
-			alert('Success');
-			queryClient.invalidateQueries({ queryKey: ['user-cart', user?.id] });
+  const { mutate } = useMutation({
+    mutationFn: addNewOrder,
+    onSuccess: () => {
+      toast.success('Your order has been placed successfully!');
+      queryClient.invalidateQueries({ queryKey: ['user-cart', user?.id] });
+      queryClient.invalidateQueries({ queryKey: ['UserOrders', user?.id] });
+    },
+    onError: error => {
+      alert(error);
+    },
+  });
 
-			playOrderSound()
-		},
-		onError: error => {
-			alert(error);
-		},
-	});
-
-	return mutate;
+  return mutate;
 };
 
 export const useGetUserOrders = (userId: number, page: number) => {
-	return useQuery({
-		queryKey: ['UserOrders', userId, page],
-		queryFn: () => getUserOrders(userId, page),
-	});
+  return useQuery({
+    queryKey: ['UserOrders', userId, page],
+    queryFn: () => getUserOrders(userId, page),
+  });
 };
 
 export const useUpdateStatus = () => {
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-	const { mutate, isPending } = useMutation({
-		mutationKey: ['update-status'],
-		mutationFn: (updatedData: IUpdateStatus) => updateOrderStatus(updatedData),
-		onSuccess: data => {
-			queryClient.invalidateQueries({ queryKey: ['AllOrders'] });
-			toast.success(data.message);
-		},
-		onError: error => {
-			alert(error);
-		},
-	});
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['update-status'],
+    mutationFn: (updatedData: IUpdateStatus) => updateOrderStatus(updatedData),
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ['AllOrders'] });
+      toast.success(data.message);
+    },
+    onError: error => {
+      alert(error);
+    },
+  });
 
-	return { mutate, isPending };
+  return { mutate, isPending };
+};
+
+export const useUpdateStatusStaff = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['update-status-staff'],
+    mutationFn: (statusWithTime: IStatusWithTime) => updateOrderStatusStaff(statusWithTime),
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ['AllOrders'] });
+      toast.success(data.message);
+    },
+    onError: error => {
+      alert(error);
+    },
+  });
+
+  return { mutate, isPending };
 };

@@ -1,7 +1,7 @@
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
-const dateAndTime = (date: string) => {
-    return format(new Date(date), "MM.dd.yyyy hh:mm a")
-}
+const dateAndTime = (date: string | Date = '2025-01-08T08:38:08.000Z') => {
+  return format(new Date(date), 'MM.dd.yyyy hh:mm a');
+};
 
-export default dateAndTime
+export default dateAndTime;

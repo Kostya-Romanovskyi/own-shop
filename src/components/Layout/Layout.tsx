@@ -1,22 +1,29 @@
 import { FC } from 'react';
 import './layout.scss';
 import Header from '../Header/Header';
-import VeryFooter from '../VeryFooter/VeryFooter';
+import VeryFooter from '../VeryFooter/Footer';
+import { useCurrentUser } from '../../hooks/useAuth';
+import Spinner from '../Spinner/Spinner';
+import spinnerSize from '../../constants/spinnerSize';
 
 interface ILayoutProps {
-	children: any;
+  children: any;
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
-	return (
-		<div className='wrapper'>
-			<Header />
+  const { data: user, isLoading } = useCurrentUser();
 
-			<main>{children}</main>
+  if (isLoading) return <Spinner size={spinnerSize.lg} />;
 
-			<VeryFooter />
-		</div>
-	);
+  return (
+    <div className="wrapper">
+      {user?.role === 'admin' ? null : <Header />}
+
+      <main className={user?.role === 'admin' ? 'staff-layout' : 'user-layout'}>{children}</main>
+
+      {user?.role !== 'admin' && <VeryFooter />}
+    </div>
+  );
 };
 
 export default Layout;

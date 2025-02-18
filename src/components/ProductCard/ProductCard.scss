@@ -6,72 +6,81 @@
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 input[type='number'] {
-	-moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .card {
-	padding: 10px;
+  display: flex;
+  flex-direction: column;
 
-	border: 1px solid $secondary-bg-color;
-	border-radius: 10px;
+  background-color: $card-bg-color;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  max-width: 300px;
 
-	transition: box-shadow $delay-animation $cubic-bezier;
+  &:hover,
+  &:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
 
-	&:hover,
-	&:focus {
-		box-shadow: 0px -6px 20px $card-hover-color;
-	}
-
-	@media (max-width: 479px) {
-		max-width: 320px;
-	}
+  @media (max-width: 479px) {
+    max-width: 320px;
+  }
 }
 
 .card__title {
-	font-size: 1.1rem;
-	margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
 }
 
 .card_img {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 
-	border-radius: 5px;
-	@media (min-width: $mobile) {
-		height: 140px;
-		object-fit: cover;
-		width: 100%;
-	}
+  border-radius: 5px;
+  @media (min-width: $mobile) {
+    height: 140px;
+    object-fit: cover;
+    width: 100%;
+  }
 }
 
 .card__ingredients {
-	height: 55px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 
-	font-size: 0.8rem;
-	color: $secondary-font-color;
+  font-size: 0.8rem;
+  color: $secondary-font-color;
 }
 
 .card__price {
-	font-size: 1rem;
-	margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .card__button {
-	display: block;
-	width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: auto;
+  width: 100%;
 
-	font-size: 1rem;
+  font-size: 1rem;
 }

@@ -3,30 +3,31 @@
 @import '../../styles/variables/animations';
 
 .logout__btn {
-	padding: 5px 20px;
-
-	text-align: center;
-
-	border: 1px solid $secondary-bg-color;
-	border-radius: 5px;
-
-	color: $main-font-color;
-	box-shadow: inset 0px 0px 4px $shadow-btn-color;
-	transition: box-shadow $delay-animation $cubic-bezier;
+	background-color: #E53935;
+	color: #FFFFFF;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
 
 	@media (min-width: $tablet) {
 		padding: 5px 10px;
-		font-size: 1.2rem;
+		font-size: 0.9rem;
 	}
 
 	@media (min-width: $desktop) {
 		padding: 5px 20px;
 
-		font-size: 1rem;
+		font-size: 1.1rem;
 	}
 
 	&:hover,
 	&:focus {
-		box-shadow: inset 0px 0px 10px $card-hover-color;
+		background-color: #D32F2F;
+		transform: scale(1.05);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	}
 }

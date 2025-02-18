@@ -5,50 +5,52 @@ import { ICategoryByName, IAddNewCategory, IAllCategories } from './categories.i
 const BASE_URL = `https://own-shop-back.onrender.com/api`;
 
 export const getAllCategories = async () => {
-	try {
-		const response = await axios.get<IAllCategories[]>(`${BASE_URL}/categories`);
-		console.log(response.data);
-		return response.data;
-	} catch (error) {
-		console.error(error);
-	}
+  try {
+    const response = await axios.get<IAllCategories[]>(`${BASE_URL}/categories`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getCategoryById = async (categoryName: string): Promise<ICategoryByName | undefined> => {
-	try {
-		const response = await axios.get<ICategoryByName>(`${BASE_URL}/categories/${categoryName}`);
-		console.log(response);
+export const getCategoryById = async (
+  categoryName: string
+): Promise<ICategoryByName | undefined> => {
+  try {
+    const response = await axios.get<ICategoryByName>(`${BASE_URL}/categories/${categoryName}`);
+    console.log(response);
 
-		return response.data;
-	} catch (error: any) {
-		console.error(error.message || error);
+    return response.data;
+  } catch (error: any) {
+    console.error(error.message || error);
 
-		return undefined;
-	}
+    return undefined;
+  }
 };
 
 export const addNewCategory = async (newCategory: IAddNewCategory) => {
-	console.log(newCategory);
+  console.log(newCategory);
 
-	try {
-		const response = await axios.post(`${BASE_URL}/categories`, newCategory, {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-			},
-		});
+  try {
+    const response = await axios.post(`${BASE_URL}/categories`, newCategory, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-		console.log(response);
+    console.log(response);
 
-		return response.data;
-	} catch (error: any) {
-		throw new Error(error.message);
-	}
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 };
 
 export const deleteCategory = async (categoryId: string) => {
-	try {
-		await axios.delete(`${BASE_URL}/categories/${categoryId}`);
-	} catch (error: any) {
-		throw new Error(error.message);
-	}
+  try {
+    await axios.delete(`${BASE_URL}/categories/${categoryId}`);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 };

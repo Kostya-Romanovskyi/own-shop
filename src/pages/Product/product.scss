@@ -3,88 +3,119 @@
 @import '../../styles/variables/animations';
 
 .product-item__wrapper {
-	@media (min-width: $tablet) {
-		display: flex;
-		justify-content: space-between;
-		gap: 30px;
-	}
+  @media (min-width: $tablet) {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
 
-	@media (min-width: $desktop) {
-		margin-bottom: 30px;
-	}
+  @media (min-width: $desktop) {
+    margin-bottom: 30px;
+  }
 }
 
 .product-item__small__section {
-	margin-bottom: 30px;
-	@media (min-width: $tablet) {
-		width: 50%;
-	}
+  margin-bottom: 30px;
+
+  text-align: center;
+  @media (min-width: $tablet) {
+    width: 50%;
+  }
 }
 
 .product-item__title {
-	font-size: 2rem;
-	font-weight: 700;
-	margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .product-item__image {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .product-item__description {
-	text-align: justify;
+  text-align: justify;
 
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .product-item__price {
-	font-size: 1.3rem;
+  font-size: 1.3rem;
 
-	text-align: right;
+  text-align: right;
 
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .ingredients__category {
-	font-size: 1.5rem;
-	font-weight: 700;
-	margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.product-item__notification_allergen {
+  background-color: #f69990;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.product-item__btn {
+  width: 100%;
+
+  @media (min-width: $tablet) {
+    display: block;
+    padding: 10px 20px;
+    width: 179px;
+    margin-left: auto;
+
+    font-size: 1.3rem;
+  }
 }
 
 .ingredients__list {
-	margin-bottom: 60px;
+  margin-bottom: 60px;
 
-	@media (min-width: $desktop) {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 30px;
-	}
+  @media (min-width: $desktop) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 }
 
 .ingredients__item {
-	padding: 15px 5px 15px 5px;
-	transition: box-shadow $delay-animation $cubic-bezier;
+  margin-bottom: 30px;
 
-	border-bottom: 1px solid $secondary-bg-color;
+  background-color: $card-bg-color;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
-	@media (min-width: $desktop) {
-		flex-basis: calc((100% - 4 * 30px) / 2);
+  @media (min-width: $desktop) {
+    margin-bottom: 0;
+    flex-basis: calc((100% - 4 * 30px) / 2);
 
-		border-right: 1px solid $secondary-bg-color;
+    border-right: 1px solid $secondary-bg-color;
 
-		&:hover,
-		&:focus {
-			box-shadow: 0px -6px 20px $card-hover-color;
-		}
-	}
+    &:hover,
+    &:focus {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+  }
 }
 
 .ingredients__name {
-	font-size: 1.3rem;
-	font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 .ingredients__info {
-	color: $secondary-font-color;
+  color: $secondary-font-color;
+  margin-bottom: 10px;
 }
 .info--color {
-	color: $main-font-color;
+  color: $main-font-color;
 }

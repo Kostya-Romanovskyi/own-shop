@@ -8,24 +8,24 @@ import './home.scss';
 import ReviewsSection from '../../components/Sections/ReviewsSection/ReviewsSection';
 import InfoSection from '../../components/Sections/InfoSection/InfoSection';
 
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/SectionMap/SectionMap';
 
 const Home = () => {
-	return (
-		<>
-			<HeroSection />
+  return (
+    <>
+      <HeroSection />
 
-			<ScheduleSection />
+      <ScheduleSection />
 
-			<CarouselSection />
+      <CarouselSection />
 
-			<ReviewsSection />
+      <ReviewsSection />
 
-			<InfoSection />
+      <InfoSection />
 
-			<Footer />
-		</>
-	);
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

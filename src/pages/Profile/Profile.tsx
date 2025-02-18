@@ -3,39 +3,64 @@ import ProfileList from '../../components/ProfileList/ProfileList';
 import { Outlet } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import formatString from '../../helpers/formatSelectString';
 
 import './profile.scss';
 
 const options = [
-	{ value: 'my-data', label: 'Personal data' },
-	{ value: 'my-orders', label: 'My orders' },
+  { value: 'my-data', label: 'Personal data' },
+  { value: 'my-orders', label: 'My orders' },
+  { value: 'my-rewards', label: 'My rewards' },
+  { value: 'my-reservations', label: 'My reservations' },
 ];
 
 const Profile = () => {
-	const [selectedOption, setSelectedOption] = useState(options[0]);
+  const localPath =
+    window.location.pathname.split('/').pop() === 'profile'
+      ? '/my-data'
+      : window.location.pathname.split('/').pop();
 
-	const navigate = useNavigate();
-	const location = useLocation();
+  const formatted = formatString(localPath || '');
 
-	useEffect(() => {
-		location.pathname === '/profile' ? navigate('/profile/my-data') : '';
-	}, [location.pathname]);
+  const [selectedOption, setSelectedOption] = useState({
+    value: localPath || '/my-data',
+    label: formatted,
+  });
 
-	return (
-		<div className='container'>
-			<div className='select__wrapper'>
-				<div className='show__mobile'>
-					<SelectComponent options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-				</div>
+  const navigate = useNavigate();
+  const location = useLocation();
 
-				<div className='flex__container'>
-					<ProfileList />
+  useEffect(() => {
+    location.pathname === 'profile' ? navigate('/my-data') : '';
+  }, [location.pathname]);
 
-					<Outlet />
-				</div>
-			</div>
-		</div>
-	);
+  useEffect(() => {
+    navigate(`/profile/${selectedOption.value}`);
+  }, [selectedOption]);
+
+  useEffect(() => {
+    setSelectedOption({ value: localPath || 'my-data', label: formatted });
+  }, [localPath]);
+
+  return (
+    <div className="container">
+      <div className="select__wrapper">
+        <div className="show__mobile">
+          <SelectComponent
+            options={options}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
+        </div>
+
+        <div className="flex__container">
+          <ProfileList />
+
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;

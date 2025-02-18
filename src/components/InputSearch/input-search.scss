@@ -1,59 +1,58 @@
 @import '../../styles//media';
 
 .search__wrapper {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 
-	@media (min-width: $tablet) {
-		margin-bottom: 0;
-	}
+  @media (min-width: $tablet) {
+    display: block;
+    margin-bottom: 0;
+    // width: 250px;
+    margin-left: 20px;
+  }
 }
 
 .search__input {
-	width: 90%;
-	height: 30px;
+  width: 90%;
+  height: 30px;
 
-	padding: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
 
-	border-radius: 5px;
+  border-radius: 5px;
 
-	@media (min-width: $tablet) {
-		width: 60%;
-	}
-
-	@media (min-width: $desktop) {
-		width: 100%;
-	}
+  @media (min-width: $tablet) {
+    width: 100%;
+  }
 }
 
 .search__button {
-	position: absolute;
-	top: -1px;
-	right: 30px;
+  position: absolute;
+  top: -1px;
+  right: 30px;
 
-	@media (min-width: $tablet) {
-		top: 4px;
-		right: 45px;
-	}
+  @media (min-width: $tablet) {
+    top: 4px;
+    right: 10px;
+  }
 
-	@media (min-width: $desktop) {
-		top: 0px;
-		right: 5px;
-	}
+  @media (min-width: $desktop) {
+    top: 0px;
+    right: 5px;
+  }
 }
 
 .search__icon {
-	font-size: 2rem;
+  font-size: 2rem;
 
-	@media (min-width: $tablet) {
-		font-size: 1.3rem;
-	}
+  @media (min-width: $tablet) {
+    font-size: 1.3rem;
+  }
 
-	@media (min-width: $desktop) {
-		font-size: 1.8rem;
-	}
+  @media (min-width: $desktop) {
+    font-size: 1.8rem;
+  }
 }

@@ -1,44 +1,89 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getCurrentUser } from '../API/auth/auth';
-
-import { loginUser, logout } from '../API/auth/auth';
+import { getCurrentUser, registerNewUser } from '../API/auth/auth';
+import { IRegister } from '../API/auth/auth.interface';
+import { loginUser, logout, updateUserData } from '../API/auth/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const useCurrentUser = () => {
-	return useQuery({
-		queryKey: ['current'],
-		queryFn: getCurrentUser,
-		select: data => data,
-	});
+  return useQuery({
+    queryKey: ['current'],
+    queryFn: getCurrentUser,
+    select: data => data,
+  });
 };
 
 export const useLoginUser = () => {
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-	const { mutate, isPending } = useMutation({
-		mutationFn: loginUser,
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginUser,
 
-		onSuccess: data => {
-			queryClient.setQueryData(['login'], data);
+    onSuccess: data => {
+      queryClient.setQueryData(['login'], data);
 
-			if (data?.token) {
-				const token = data?.token;
-				localStorage.setItem('token-shop', token);
-			}
-		},
+      if (data?.token) {
+        const token = data?.token;
+        localStorage.setItem('token-shop', token);
+      }
 
-		onError: error => {
-			toast.error(error.message);
-		},
-	});
+      if (data?.role === 'admin') {
+        navigate('/staff', { replace: true });
+      }
+    },
 
-	return { mutate, isPending };
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  return { mutate, isPending };
+};
+
+export const useRegisterUser = () => {
+  const navigate = useNavigate();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (registerData: IRegister) => registerNewUser(registerData),
+
+    onSuccess: () => {
+      navigate('/success-registration');
+      toast.success('Registration successful! Welcome aboard!');
+    },
+
+    onError: error => {
+      const errorMessage = error.message || 'Registration failed';
+      toast.error(errorMessage);
+    },
+  });
+
+  return { mutate, isPending };
+};
+
+export const useUpdateUserData = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async ({ userId, newUserData }: { userId: number; newUserData: any }) => {
+      await updateUserData(userId, newUserData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['current'] });
+      toast.success(`Your data successfully updated`);
+    },
+    onError: error => {
+      toast.error(`${error.message}`);
+    },
+  });
+
+  return { mutate, isPending };
 };
 
 export const useLogoutUser = () => {
-	const { mutate, isPending } = useMutation({
-		mutationFn: logout,
-	});
+  const { mutate, isPending } = useMutation({
+    mutationFn: logout,
+  });
 
-	return { mutate, isPending };
+  return { mutate, isPending };
 };
