@@ -70,7 +70,7 @@ const RegisterPage = () => {
       password: formData.get('password') as string,
       password_check: formData.get('password_check') as string,
       phone: formData.get('phone') as string,
-      additional_information: formData.get('additional_information') as string,
+      additional_information: (formData.get('additional_information') as string) || ' ',
       role: formData.get('role') as UserRole,
       image: formData.get('image') as File,
     };
