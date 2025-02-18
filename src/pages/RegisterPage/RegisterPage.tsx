@@ -266,7 +266,7 @@ const RegisterPage = () => {
             <div className="captcha__wrapper">
               <ReCAPTCHA
                 lang="en"
-                sitekey="6LeYfNgpAAAAANbWfmHiiiVNqWqQq3s3riSzNgaS"
+                sitekey="6LdfetoqAAAAABZ2EuVWbN1vqhznKD0HL8BqxCI5"
                 onChange={handleCaptchaChange}
                 id="captcha"
               />
