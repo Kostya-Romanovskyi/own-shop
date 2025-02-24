@@ -40,7 +40,7 @@ import { UserRole } from './API/auth/auth.interface';
 import RedirectAdmin from './components/navigation/RedirectAdmin';
 
 function App() {
-  const { user, isLoading } = useCurrentUser();
+  const { data: user, isLoading } = useCurrentUser();
 
   useUserCart(user?.id);
 

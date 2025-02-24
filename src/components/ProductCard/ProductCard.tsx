@@ -22,7 +22,7 @@ interface IProductCard {
 }
 
 const ProductCard: FC<IProductCard> = ({ id, name, price, image, ingredients }) => {
-  const { user } = useCurrentUser();
+  const { data: user } = useCurrentUser();
 
   const { mutate, isPending } = useAddToCart(user?.id || -1);
 

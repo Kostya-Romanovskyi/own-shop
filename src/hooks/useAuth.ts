@@ -6,22 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const useCurrentUser = () => {
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
     queryKey: ['current'],
     queryFn: getCurrentUser,
     select: data => data,
   });
-
-  if (isLoading) {
-    return { user: null, isLoading: true, isError: false };
-  }
-
-  if (isError) {
-    console.error('Error loading user:', error);
-    return { user: null, isLoading: false, isError: true };
-  }
-
-  return { user: data, isLoading: false, isError: false };
 };
 
 export const useLoginUser = () => {
