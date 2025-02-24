@@ -1,9 +1,5 @@
-import MainButton from '../../MainButton/MainButton';
-import InfoItem from '../../InfoItem/InfoItem';
-
-import image1 from '../../../assets/Info__section/sushi_1.png';
-import image2 from '../../../assets/Info__section/sushi_2.png';
-import image3 from '../../../assets/Info__section/sushi_3.png';
+import sushi1 from '../../../assets/Info__section/info_sushi.jpg';
+import sushi2 from '../../../assets/Info__section/info_sushi2.jpeg';
 
 import './InfoSection.scss';
 
@@ -11,31 +7,42 @@ const InfoSection = () => {
   return (
     <section className="section">
       <div className="container">
-        <div className="info__wrapper">
-          <div className="info__left">
-            <InfoItem
-              title='"Our priority is quality, now and always."'
-              image={image1}
-              alt="Shrimp"
-            />
+        <h2 className="info__title"> Our Restaurant’s Philosophy</h2>
 
-            <InfoItem
-              title='"The customer always comes first."'
-              image={image2}
-              alt="Happy salmon"
-            />
-          </div>
+        <ul>
+          <li className="info__item">
+            <div>
+              <h3 className="info__subtitle">
+                The art of taste. A harmony of tradition and modern techniques.
+              </h3>
+              <p className="info__text">
+                Inspired by centuries-old Japanese culture, we create dishes that embody the spirit
+                of omotenashi – the art of hospitality. Our menu features only fresh and natural
+                ingredients, prepared with the philosophy of wabi-sabi, where simplicity enhances
+                the true essence of flavors. We honor traditional recipes while embracing
+                innovation, offering modern interpretations of classic Japanese dishes.
+              </p>
+            </div>
 
-          <div className="info__right">
-            <InfoItem
-              title="Join us today and start enjoying the experience!"
-              image={image3}
-              alt="Surprised salmon"
-            />
-
-            <MainButton click={() => {}} classStyle="info__btn" redirect="/login" name="Join us" />
-          </div>
-        </div>
+            <img className="info__img" src={sushi1} alt="" />
+          </li>
+          <li className="info__item">
+            <div>
+              <h3 className="info__subtitle">
+                In Japan, beauty is not just about appearance, but also taste.
+              </h3>
+              <p className="info__text">
+                Japanese cuisine is a delicate balance of flavor, texture, and presentation. Every
+                ingredient is carefully selected and thoughtfully arranged to create a visual and
+                culinary experience. Our dishes are not just meals – they are expressions of
+                Japanese aesthetics, where every detail matters. From the freshness of the fish to
+                the precision of knife cuts, we strive to deliver an authentic and unforgettable
+                taste of Japan.
+              </p>
+            </div>
+            <img className="info__img" src={sushi2} alt="" />
+          </li>
+        </ul>
       </div>
     </section>
   );

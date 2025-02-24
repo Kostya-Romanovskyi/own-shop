@@ -9,6 +9,21 @@
 .pre__items__title--wrap {
   margin-bottom: 20px;
   border-bottom: 1px solid $secondary-bg-color;
+  display: flex;
+}
+
+.line__wrapper {
+  display: flex;
+
+  transform: scale(1);
+  transition: transform 500ms;
+
+  @media (min-width: $desktop) {
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+    }
+  }
 }
 
 .pre__items__title {
@@ -19,10 +34,20 @@
 
   transition: color $delay-animation $cubic-bezier;
 
-  @media (min-width: $desktop) {
-    &:hover,
-    &:focus {
-      color: $link-hover-color;
-    }
-  }
+  // @media (min-width: $desktop) {
+  //   &:hover,
+  //   &:focus {
+  //     color: $link-hover-color;
+  //   }
+  // }
+}
+.pre__items__arrow {
+  align-self: flex-end;
+
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
+.pre__items__marker {
+  align-self: flex-end;
+  margin-left: 20px;
 }

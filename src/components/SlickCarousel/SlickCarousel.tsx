@@ -4,12 +4,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './SlickCarousel.scss';
 
-import img1 from '../../assets/gallery/Omurice.jpg';
-import img2 from '../../assets/gallery/Oyakodon.jpg';
-import img3 from '../../assets/gallery/curry.jpeg';
-import img4 from '../../assets/gallery/gyudon.webp';
-import img5 from '../../assets/gallery/harusame.avif';
-import img6 from '../../assets/gallery/katsu.jpeg';
+import img1 from '../../assets/gallery/udon.avif';
+import img2 from '../../assets/gallery/Tanuki-udon.avif';
+import img3 from '../../assets/gallery/sushi1.jpg';
+import img4 from '../../assets/gallery/sushi2.jpg';
+import img5 from '../../assets/gallery/udon.avif';
 
 const nextArrStyles = {
   display: 'block',
@@ -25,7 +24,6 @@ const prevArrStyles = {
   position: 'absolute',
   bottom: 0,
   left: '5px',
-  zIndex: 1000,
 };
 
 function SampleNextArrow(props: any) {
@@ -39,12 +37,11 @@ function SamplePrevArrow(props: any) {
 }
 
 const gallery = [
-  { img: img1, name: '1' },
-  { img: img2, name: '2' },
-  { img: img3, name: '3' },
-  { img: img4, name: '4' },
-  { img: img5, name: '5' },
-  { img: img6, name: '6' },
+  { img: img1, name: '7' },
+  { img: img2, name: '8' },
+  { img: img3, name: '9' },
+  { img: img4, name: '10' },
+  { img: img5, name: '11' },
 ];
 
 const SlickCarousel = () => {
@@ -58,7 +55,7 @@ const SlickCarousel = () => {
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    centerMode: true,
+    centerMode: false,
     centerPadding: '0px',
     adaptiveHeight: true,
 
