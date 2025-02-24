@@ -25,7 +25,7 @@ interface StaffOrdersListProps {
 
 const rowStyles = {
   height: '100px',
-  fontSize: '1.2rem',
+  fontSize: '1.5rem',
 };
 
 const dateStyle = {
@@ -114,33 +114,37 @@ const StaffOrdersList: FC<StaffOrdersListProps> = ({ allOrders = [] }) => {
   const columns: TableColumn<IDataRow>[] = [
     {
       name: 'Order_ID',
-      selector: row => row.id.toString(),
+      cell: row => (
+        <div
+          className={`selector__id full__cell blink-bg ${row.status === 'Pending' ? 'tabs__blink' : ''}`}
+        >
+          {row.id}
+        </div>
+      ),
       sortable: true,
-      style: rowStyles,
     },
-    {
-      name: 'Customer',
-      selector: row => row.customer,
-      sortable: true,
-      style: rowStyles,
-    },
+
     {
       name: 'Status',
-      cell: row =>
-        isPending ? (
+      cell: row => {
+        return isPending ? (
           <div>Loading...</div>
         ) : (
           <div
-            className={`status__styles--${row.status.replace(' ', '-')}`}
-            style={{
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
+            className={`status__styles--${row.status.replace(' ', '-')}  `}
             onClick={() => handleStatusClick(row)}
           >
             {row.status}
           </div>
-        ),
+        );
+      },
+      style: rowStyles,
+    },
+
+    {
+      name: 'Customer',
+      selector: row => row.customer,
+      sortable: true,
       style: rowStyles,
     },
     {

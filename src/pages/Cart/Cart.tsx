@@ -16,6 +16,7 @@ import spinnerSize from '../../constants/spinnerSize';
 
 const Cart = () => {
   const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
+
   const { data: cartData, isLoading } = useQuery<ICartInfo>({
     queryKey: ['user-cart', user?.id],
     enabled: !!user?.id,

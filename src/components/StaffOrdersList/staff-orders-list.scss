@@ -62,3 +62,16 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
+.full__cell {
+  width: 100%;
+  height: 100%;
+}
+
+.selector__id {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2.7rem;
+}

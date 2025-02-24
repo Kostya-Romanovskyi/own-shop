@@ -29,6 +29,8 @@ const StaffReservationItem: FC<IStaffReservationItemProps> = ({ reservation }) =
 
   const formattedDate = dateAndTime(reservation?.createdAt);
 
+  console.log(dateAndTime(reservation?.start_time));
+
   return (
     <li className="reservation__item">
       <div className="reservation__item__wrapper reservation__item__wrapper--margin">

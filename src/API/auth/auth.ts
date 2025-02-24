@@ -51,6 +51,7 @@ export const getCurrentUser = async () => {
 
     return response.data;
   } catch (error: any) {
+    console.warn('User is not authorized.');
     return null;
   }
 };

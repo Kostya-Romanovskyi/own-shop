@@ -1,10 +1,8 @@
 import { FC } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useImages } from '../../hooks/useImages';
 import { useAddToCart } from '../../hooks/useCart';
 
 import { INewItemInCart } from '../../API/cart/cart.interface';
-import { IGetUsers } from '../../API/auth/auth.interface';
 
 import './ProductCard.scss';
 import { Link } from 'react-router-dom';
@@ -13,6 +11,7 @@ import { Ingredient } from '../../API/products/products.interface';
 import Spinner from '../Spinner/Spinner';
 import spinnerSize from '../../constants/spinnerSize';
 import { MdAddShoppingCart } from 'react-icons/md';
+import { useCurrentUser } from '../../hooks/useAuth';
 
 interface IProductCard {
   id: number;
@@ -23,12 +22,14 @@ interface IProductCard {
 }
 
 const ProductCard: FC<IProductCard> = ({ id, name, price, image, ingredients }) => {
-  const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
+  const { user } = useCurrentUser();
 
   const { mutate, isPending } = useAddToCart(user?.id || -1);
 
   // add product in card
   const handleAddToCart = (id: number): void => {
+    if (!user) return;
+
     const newItemInCart: INewItemInCart = {
       users_id: user?.id || -1,
       products_item_id: id,

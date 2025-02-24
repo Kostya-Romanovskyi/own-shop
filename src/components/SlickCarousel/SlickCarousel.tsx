@@ -4,10 +4,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './SlickCarousel.scss';
 
-import img1 from '../../assets/Hero__img/sushi_1.png';
-import img2 from '../../assets/Hero__img/sushi_2.png';
-import img3 from '../../assets/Hero__img/sushi_3.png';
-import img4 from '../../assets/Hero__img/sushi_4.png';
+import img1 from '../../assets/gallery/Omurice.jpg';
+import img2 from '../../assets/gallery/Oyakodon.jpg';
+import img3 from '../../assets/gallery/curry.jpeg';
+import img4 from '../../assets/gallery/gyudon.webp';
+import img5 from '../../assets/gallery/harusame.avif';
+import img6 from '../../assets/gallery/katsu.jpeg';
 
 const nextArrStyles = {
   display: 'block',
@@ -15,7 +17,6 @@ const nextArrStyles = {
   position: 'absolute',
   bottom: 0,
   right: '15px',
-  zIndex: 1000,
 };
 
 const prevArrStyles = {
@@ -42,6 +43,8 @@ const gallery = [
   { img: img2, name: '2' },
   { img: img3, name: '3' },
   { img: img4, name: '4' },
+  { img: img5, name: '5' },
+  { img: img6, name: '6' },
 ];
 
 const SlickCarousel = () => {
@@ -55,6 +58,9 @@ const SlickCarousel = () => {
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    centerMode: true,
+    centerPadding: '0px',
+    adaptiveHeight: true,
 
     responsive: [
       {
@@ -87,7 +93,7 @@ const SlickCarousel = () => {
       <Slider {...settings}>
         {gallery.map(({ img, name }) => (
           <div key={name} className="slider__img__wrapp">
-            <img src={img} alt={name} />
+            <img className="slider__img" src={img} alt={name} />
           </div>
         ))}
       </Slider>

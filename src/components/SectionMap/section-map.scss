@@ -2,9 +2,7 @@
 @import '../../styles/variables/colors';
 
 .footer__wrapper {
-  display: flex;
-
-  flex-wrap: wrap;
+  display: block;
   gap: 40px;
 
   padding: 10px;
@@ -12,6 +10,12 @@
 
   border: 1px solid $secondary-bg-color;
   border-radius: 10px;
+
+  @media (min-width: $tablet) {
+    display: flex;
+
+    flex-wrap: wrap;
+  }
 }
 
 .footer__wrapper > div {
