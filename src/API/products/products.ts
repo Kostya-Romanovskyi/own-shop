@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { IProduct } from './products.interface';
 import { IAddNewCategory } from '../categories/categories.interface';
-
-// const BASE_URL = 'http://localhost:3000/api';
-const BASE_URL = 'https://own-shop-back.onrender.com/api';
+import { BASE_URL } from '../../constants/url';
 
 // BASE item url
 export const itemUrl = 'https://own-shop-back.onrender.com/';

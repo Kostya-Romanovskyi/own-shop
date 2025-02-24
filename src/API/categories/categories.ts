@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { ICategoryByName, IAddNewCategory, IAllCategories } from './categories.interface';
-
-// const BASE_URL = `http://localhost:3000/api`;
-const BASE_URL = `https://own-shop-back.onrender.com/api`;
+import { BASE_URL } from '../../constants/url';
 
 export const getAllCategories = async () => {
   try {

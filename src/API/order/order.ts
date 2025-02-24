@@ -6,9 +6,7 @@ import {
   IUpdateStatus,
   IStatusWithTime,
 } from './order.interface';
-
-const BASE_URL = `http://localhost:3000/api`;
-// const BASE_URL = `https://own-shop-back.onrender.com/api`;
+import { BASE_URL } from '../../constants/url';
 
 export const getAllOrders = async () => {
   try {
