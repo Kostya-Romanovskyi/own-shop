@@ -1,10 +1,10 @@
-import './header-staff.scss';
+import { useEffect } from 'react';
+import { useGetAllOrders } from '../../hooks/useOrder';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
-import { useGetAllOrders } from '../../hooks/useOrder';
 import playOrderSound from '../../helpers/PlayOrderSound';
-import { useEffect } from 'react';
+import './header-staff.scss';
 
 const HeaderStaff = () => {
   const { data: orders } = useGetAllOrders();
@@ -19,7 +19,9 @@ const HeaderStaff = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [orders]);
+
+    return () => {};
+  }, [checkStatus]);
 
   return (
     <>
