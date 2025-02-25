@@ -38,6 +38,8 @@ import UserRewards from './components/UserRewards/UserRewards';
 import { UserRole } from './API/auth/auth.interface';
 
 import RedirectAdmin from './components/navigation/RedirectAdmin';
+import TodayOrdersPage from './pages/TodayOrdersPage/TodayOrdersPage';
+import OrdersByDatePage from './pages/OrdersByDatePage/OrdersByDatePage';
 
 function App() {
   const { data: user, isLoading } = useCurrentUser();
@@ -130,6 +132,8 @@ function App() {
             </Route>
 
             <Route path="/staff" element={<Staff />} />
+            <Route path="/today-orders" element={<TodayOrdersPage />} />
+            <Route path="/orders-by-date" element={<OrdersByDatePage />} />
           </>
         ) : null}
 

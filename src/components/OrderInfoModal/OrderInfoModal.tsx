@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import dateAndTime from '../../helpers/dateAndTime';
 import { IStaffAllOrders } from '../../API/order/order.interface';
 import SelectComponent from '../SelectComponent/SelectComponent';
@@ -10,9 +10,10 @@ import spinnerSize from '../../constants/spinnerSize';
 
 interface IOrderInfoModal {
   currentOrder: IStaffAllOrders | null;
+  showModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const OrderInfoModal: FC<IOrderInfoModal> = ({ currentOrder }) => {
+const OrderInfoModal: FC<IOrderInfoModal> = ({ currentOrder, showModal }) => {
   const { mutate, isPending } = useUpdateStatusStaff();
   const [selectedOption, setSelectedOption] = useState({
     label: currentOrder?.status || '',
@@ -41,7 +42,13 @@ const OrderInfoModal: FC<IOrderInfoModal> = ({ currentOrder }) => {
         time: timeOption.value,
       };
 
-      mutate(updatedStatus);
+      mutate(updatedStatus, {
+        onSuccess: ({ order }) => {
+          if (order?.status === 'Picked Up') {
+            showModal(false);
+          }
+        },
+      });
     }
   };
 
@@ -67,32 +74,35 @@ const OrderInfoModal: FC<IOrderInfoModal> = ({ currentOrder }) => {
             <p className="order__details__date">
               {dateAndTime(currentOrder?.order_date || 'Failed in catching date')}
             </p>
-
-            <div className="modal__select__status">
-              <SelectComponent
-                options={orderStatusSelect}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-              />
-            </div>
-
-            {currentOrder.status === 'Pending' ? (
-              <div className="modal__select__status">
-                <SelectComponent
-                  options={timeSelect}
-                  selectedOption={timeOption}
-                  setSelectedOption={setTimeOption}
-                />
-              </div>
-            ) : null}
-
-            <button
-              className="main-button modal__status__update"
-              onClick={handleStatusChange}
-              type="button"
-            >
-              {isPending ? <Spinner size={spinnerSize.sm} /> : 'Update'}
-            </button>
+            {/* If order status equal "Picked Up" we hide all actions with status */}
+            {currentOrder.status === 'Picked Up' ? null : (
+              <>
+                <div className="modal__select__status">
+                  <SelectComponent
+                    options={orderStatusSelect}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                  />
+                </div>
+                {/* If order status equal "Pending" we show time select. If not, return null */}
+                {currentOrder.status === 'Pending' ? (
+                  <div className="modal__select__status">
+                    <SelectComponent
+                      options={timeSelect}
+                      selectedOption={timeOption}
+                      setSelectedOption={setTimeOption}
+                    />
+                  </div>
+                ) : null}
+                <button
+                  className="main-button modal__status__update"
+                  onClick={handleStatusChange}
+                  type="button"
+                >
+                  {isPending ? <Spinner size={spinnerSize.sm} /> : 'Update'}
+                </button>
+              </>
+            )}
           </div>
 
           {currentOrder && (

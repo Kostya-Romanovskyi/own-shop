@@ -110,3 +110,17 @@ export interface IStatusWithTime {
   orderId: string | number;
   time: string;
 }
+
+export interface IOrdersForToday {
+  todayOrders: IStaffAllOrders[];
+  totalMoneyFromAllOrders: string;
+}
+
+export interface IOrdersByDate {
+  message?: string;
+  orders: IStaffAllOrders[];
+  totalMoneyForThisDay: string;
+}
+export interface IGetOrdersByDateString {
+  date: string;
+}

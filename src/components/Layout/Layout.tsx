@@ -5,6 +5,7 @@ import VeryFooter from '../VeryFooter/Footer';
 import { useCurrentUser } from '../../hooks/useAuth';
 import Spinner from '../Spinner/Spinner';
 import spinnerSize from '../../constants/spinnerSize';
+import HeaderStaff from '../HeaderStaff/HeaderStaff';
 
 interface ILayoutProps {
   children: any;
@@ -17,7 +18,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 
   return (
     <div className="wrapper">
-      {user?.role === 'admin' ? null : <Header />}
+      {user?.role === 'admin' ? <HeaderStaff /> : <Header />}
 
       <main className={user?.role === 'admin' ? 'staff-layout' : 'user-layout'}>{children}</main>
 

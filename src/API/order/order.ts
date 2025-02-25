@@ -5,13 +5,37 @@ import {
   IStaffAllOrders,
   IUpdateStatus,
   IStatusWithTime,
+  IOrdersForToday,
+  IGetOrdersByDateString,
+  IOrdersByDate,
 } from './order.interface';
 import { BASE_URL } from '../../constants/url';
 
 export const getAllOrders = async () => {
   try {
     const response = await axios.get<IStaffAllOrders[]>(`${BASE_URL}/orders`);
-    console.log('fn', response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllOrdersForToday = async () => {
+  try {
+    const response = await axios.get<IOrdersForToday>(`${BASE_URL}/orders-all-today`);
+    console.log('for today:', response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllOrdersByDate = async (date: IGetOrdersByDateString) => {
+  try {
+    const response = await axios.post<IOrdersByDate>(`${BASE_URL}/orders-by-date`, date);
+    console.log(`for this day: ${date}`, response.data);
 
     return response.data;
   } catch (error) {

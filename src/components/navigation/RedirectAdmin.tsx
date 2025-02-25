@@ -13,6 +13,8 @@ const RedirectAdmin = ({ children }: { children: React.ReactNode }) => {
     '/admin-page/manage-category',
     '/admin-page/manage-product',
     '/admin-page',
+    '/today-orders',
+    '/orders-by-date',
   ];
 
   useEffect(() => {

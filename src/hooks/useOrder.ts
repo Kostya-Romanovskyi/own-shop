@@ -2,11 +2,18 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   addNewOrder,
   getAllOrders,
+  getAllOrdersByDate,
+  getAllOrdersForToday,
   getUserOrders,
   updateOrderStatus,
   updateOrderStatusStaff,
 } from '../API/order/order';
-import { IUpdateStatus, IUserOrder, IStatusWithTime } from '../API/order/order.interface';
+import {
+  IUpdateStatus,
+  IUserOrder,
+  IStatusWithTime,
+  IGetOrdersByDateString,
+} from '../API/order/order.interface';
 import { toast } from 'react-toastify';
 
 export const useGetAllOrders = () => {
@@ -14,6 +21,21 @@ export const useGetAllOrders = () => {
     queryKey: ['AllOrders'],
     queryFn: () => getAllOrders(),
   });
+};
+
+export const useGetAllOrdersForToday = () => {
+  return useQuery({
+    queryKey: ['today-orders'],
+    queryFn: () => getAllOrdersForToday(),
+  });
+};
+
+export const useGetAllOrdersByDate = () => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (date: IGetOrdersByDateString) => getAllOrdersByDate(date),
+  });
+
+  return { mutate, isPending };
 };
 
 export const useAddNewOrder = () => {
