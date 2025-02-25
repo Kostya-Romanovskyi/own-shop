@@ -11,6 +11,30 @@ import playOrderSound from '../../helpers/PlayOrderSound';
 
 import './staff.scss';
 
+// hook for checking status
+const usePendingStatus = (items: any, statusType: string) => {
+  const [hasPending, setHasPending] = useState(false);
+
+  useEffect(() => {
+    setHasPending(items ? items.some((item: any) => item.status === statusType) : false);
+  }, [items, statusType]);
+
+  return hasPending;
+};
+
+// hook for sound
+const useSoundNotification = (shouldPlay: boolean, message: string) => {
+  useEffect(() => {
+    if (!shouldPlay) return;
+
+    playOrderSound();
+
+    const intervalId = setInterval(playOrderSound, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [shouldPlay, message]);
+};
+
 const Staff = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +43,12 @@ const Staff = () => {
   const tab = searchParams.get('tab') || 'orders';
   const { data: orders, isPending } = useGetAllOrders();
   const { data: reservations } = useAllReservations();
+
+  const hasPendingOrders = usePendingStatus(orders, 'Pending');
+  const hasPendingReservations = usePendingStatus(reservations, 'Pending');
+
+  useSoundNotification(hasPendingOrders, 'orders Pending!');
+  useSoundNotification(hasPendingReservations, 'reservations Pending!');
 
   const newOrdersCount = orders
     ? orders.reduce((acc, order) => acc + (order.status === 'Pending' ? 1 : 0), 0)
