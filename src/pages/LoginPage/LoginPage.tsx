@@ -32,52 +32,65 @@ const LoginPage = () => {
   };
 
   return (
-    <main>
+    <>
       <div className="container">
         {isPending ? (
           <Spinner size={spinnerSize.lg} />
         ) : (
           <div className="login__wrapper">
-            <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
-              <div className="input__login__wrapper">
-                <label className="login__label" htmlFor="email">
-                  Email
-                </label>
+            <div>
+              <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+                <div className="input__login__wrapper">
+                  <label className="login__label" htmlFor="email">
+                    Email
+                  </label>
 
-                <input
-                  id="email"
-                  className={`login__input ${errors.email ? 'login__error__border' : ''}`}
-                  {...register('email', { required: true })}
-                />
-                {errors.email && <span className="login__error">Email field is required</span>}
+                  <input
+                    id="email"
+                    className={`login__input ${errors.email ? 'login__error__border' : ''}`}
+                    {...register('email', { required: true })}
+                  />
+                  {errors.email && <span className="login__error">Email field is required</span>}
+                </div>
+
+                <div className="input__login__wrapper">
+                  <label className="login__label" htmlFor="password">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className={`login__input ${errors.password ? 'login__error__border' : ''}`}
+                    {...register('password', { required: true })}
+                  />
+                  {errors.password && (
+                    <span className="login__error">Password field is required</span>
+                  )}
+                </div>
+
+                <button className="login__button" type="submit">
+                  Log In
+                </button>
+              </form>
+              <Link className="link__to__registration" to="/register">
+                Sign up
+              </Link>
+
+              <div className="acc__data">
+                <div className="acc__indent">
+                  <p>User account:</p>
+                  <p>Email: testacc@gmail.com</p>
+                  <p>Password: 12345678</p>
+                </div>
+                <p>Admin account:</p>
+                <p>Email: admin@gmail.com</p>
+                <p>Password: 123456</p>
               </div>
-
-              <div className="input__login__wrapper">
-                <label className="login__label" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className={`login__input ${errors.password ? 'login__error__border' : ''}`}
-                  {...register('password', { required: true })}
-                />
-                {errors.password && (
-                  <span className="login__error">Password field is required</span>
-                )}
-              </div>
-
-              <button className="login__button" type="submit">
-                Log In
-              </button>
-            </form>
-            <Link className="link__to__registration" to="/register">
-              Sign up
-            </Link>
+            </div>
           </div>
         )}
       </div>
-    </main>
+    </>
   );
 };
 

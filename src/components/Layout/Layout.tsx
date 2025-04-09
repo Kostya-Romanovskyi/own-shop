@@ -14,7 +14,16 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const { data: user, isLoading } = useCurrentUser();
 
-  if (isLoading) return <Spinner size={spinnerSize.lg} />;
+  if (isLoading)
+    return (
+      <div className="loading__container">
+        <div>
+          <Spinner size={spinnerSize.lg} />
+          <p>Sorry, the hosting is free</p>
+          <p>It can take a few seconds</p>
+        </div>
+      </div>
+    );
 
   return (
     <div className="wrapper">

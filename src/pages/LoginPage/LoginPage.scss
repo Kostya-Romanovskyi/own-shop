@@ -109,3 +109,22 @@
     transform: translateY(-5px) scale(1.05);
   }
 }
+
+.acc__data {
+  position: fixed;
+  bottom: 200px;
+  left: 100px;
+
+  font-size: 1rem;
+  text-align: left;
+
+  padding: 20px;
+  border-radius: 5px;
+
+  background-color: $btn-main-color;
+  color: #ffffff;
+}
+
+.acc__indent {
+  margin-bottom: 30px;
+}
