@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Toastify />
           <ReactQueryDevtools />
           <App />
-          <ScrollToTop smooth component={<FaChevronUp className="text-lg mt-1" />} />;
+          <ScrollToTop smooth component={<FaChevronUp className="text-lg mt-1" />} />
         </Layout>
       </BrowserRouter>
     </QueryClientProvider>
