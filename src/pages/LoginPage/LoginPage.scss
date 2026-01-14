@@ -113,6 +113,7 @@
 .acc__data {
   @media (max-width: 1200px) {
     position: initial;
+    margin-bottom: 20px;
   }
 
   position: fixed;
@@ -120,8 +121,9 @@
   left: 100px;
 
   font-size: 1rem;
-  text-align: left;
+  text-align: start;
 
+  margin-bottom: 0;
   padding: 20px;
   border-radius: 5px;
 
