@@ -8,12 +8,18 @@ interface ISelectArrayProps {
 }
 
 interface ISelectProps {
+  className?: string;
   options: ISelectArrayProps[];
   selectedOption: ISelectArrayProps;
   setSelectedOption: (selected: ISelectArrayProps) => void;
 }
 
-const SelectComponent: FC<ISelectProps> = ({ options, selectedOption, setSelectedOption }) => {
+const SelectComponent: FC<ISelectProps> = ({
+  className,
+  options,
+  selectedOption,
+  setSelectedOption,
+}) => {
   const handleChange = (selected: ISelectArrayProps | null) => {
     console.log(selected);
 
@@ -25,6 +31,7 @@ const SelectComponent: FC<ISelectProps> = ({ options, selectedOption, setSelecte
   return (
     <div>
       <Select
+        className={className}
         onChange={handleChange}
         value={selectedOption}
         options={options}
