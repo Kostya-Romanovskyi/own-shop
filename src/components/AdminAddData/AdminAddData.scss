@@ -1,0 +1,70 @@
+@import '../../styles/variables/colors';
+@import '../../styles/media';
+
+.add__data__container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.add__data__title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.add__data__select {
+  margin-bottom: 20px;
+}
+
+.add__data__item {
+  margin-bottom: 20px;
+}
+.add__data__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.add__data__input {
+  width: 100%;
+  font-size: 1.7rem;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.add__data__btn {
+  background-color: $btn-main-color;
+  color: $btn-main-text-color;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+
+  @media (min-width: $tablet) {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  @media (min-width: $desktop) {
+    padding: 12px 24px;
+
+    font-size: 1rem;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $btn-main-hover-color;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px $btn-box-shadow-color;
+  }
+}

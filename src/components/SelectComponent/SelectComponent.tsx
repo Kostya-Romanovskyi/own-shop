@@ -21,8 +21,6 @@ const SelectComponent: FC<ISelectProps> = ({
   setSelectedOption,
 }) => {
   const handleChange = (selected: ISelectArrayProps | null) => {
-    console.log(selected);
-
     if (selected) {
       setSelectedOption(selected);
     }
@@ -36,7 +34,7 @@ const SelectComponent: FC<ISelectProps> = ({
         value={selectedOption}
         options={options}
         styles={customSelectStyles}
-        placeholder={options[0].label || 'Select an option'}
+        placeholder={options[0]?.label || 'Select an option'}
       />
     </div>
   );
