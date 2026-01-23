@@ -1,4 +1,3 @@
-import AddNewProduct from '../../AddNewProduct/AddNewProduct';
 // import DeleteProduct from '../../DeleteProduct/DeleteProduct';
 import DeleteUnit from '../../DeleteUnit/DeleteUnit';
 import { IAddNewProduct } from '../../../API/products/products.interface';
@@ -9,7 +8,7 @@ import { useAllCategories } from '../../../hooks/useAllCategories';
 import { itemFields } from '../../../constants/AdminAddItemsArr';
 
 const ManageProductSection = () => {
-  const { data: allCategories, isPending: pendingCategories } = useAllCategories();
+  const { data: allCategories } = useAllCategories();
   const { data: allProducts, isPending } = useAllProducts();
   const { mutate: addProduct, isPending: pendingAddProduct } = useAddNewProduct();
   const { mutate, isPending: pendingDelete } = useDeleteProduct();
@@ -32,6 +31,7 @@ const ManageProductSection = () => {
         }}
         selectOptions={categoriesData}
         title={'Add Product'}
+        isPending={pendingAddProduct}
       />
 
       {/* <DeleteProduct /> */}

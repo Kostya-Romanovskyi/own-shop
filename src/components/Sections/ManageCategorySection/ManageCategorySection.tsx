@@ -1,5 +1,3 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import InputString from '../../InputString/InputString';
 import { IAddNewCategory } from '../../../API/categories/categories.interface';
 import { useAddNewCategory } from '../../../hooks/useAllCategories';
 // import DeleteCategories from '../../DeleteCategories/DeleteCategories';
@@ -12,7 +10,7 @@ import '../../../pages/Admin/admin.scss';
 
 const ManageCategorySection = () => {
   // const { register, handleSubmit } = useForm<IAddNewCategory>();
-  const { mutate: addMutate } = useAddNewCategory();
+  const { mutate: addMutate, isPending: pendingAddCategory } = useAddNewCategory();
 
   const { data: allCategories, isPending } = useAllCategories();
   const { mutate: deleteMutate, isPending: pendingDelete } = useDeleteCategory();
@@ -42,6 +40,7 @@ const ManageCategorySection = () => {
           addMutate(formData as unknown as IAddNewCategory);
         }}
         title={'Add Category'}
+        isPending={pendingAddCategory}
       />
 
       {allCategories && (

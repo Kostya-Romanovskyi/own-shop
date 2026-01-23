@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import SelectComponent from '../SelectComponent/SelectComponent';
+import Spinner from '../Spinner/Spinner';
+import spinnerSize from '../../constants/spinnerSize';
+
 import './AdminAddData.scss';
 
 interface AdminAddDataProps {
@@ -14,6 +17,7 @@ interface AdminAddDataProps {
   mutate: (data: FormData) => void;
   selectOptions?: { value: string; label: string }[];
   title: string;
+  isPending?: boolean;
 }
 
 interface FormValues {
@@ -22,7 +26,7 @@ interface FormValues {
   image?: File;
 }
 
-const AdminAddData = ({ render, mutate, selectOptions, title }: AdminAddDataProps) => {
+const AdminAddData = ({ render, mutate, selectOptions, title, isPending }: AdminAddDataProps) => {
   const [selectedOption, setSelectedOption] = useState<
     Record<string, { value: string; label: string }>
   >({});
@@ -79,9 +83,9 @@ const AdminAddData = ({ render, mutate, selectOptions, title }: AdminAddDataProp
                     options={item.options || selectOptions || []}
                     selectedOption={selectedOption[item.name] || { value: '', label: '' }}
                     setSelectedOption={option => {
-                      // обновляем UI
+                      // update UI
                       setSelectedOption(prev => ({ ...prev, [item.name]: option }));
-                      // обновляем форму
+                      // update form
                       field.onChange(option.value);
                     }}
                   />
@@ -109,7 +113,7 @@ const AdminAddData = ({ render, mutate, selectOptions, title }: AdminAddDataProp
       })}
 
       <button className="add__data__btn" type="submit">
-        Submit
+        {isPending ? <Spinner size={spinnerSize.sm} /> : 'Submit'}
       </button>
     </form>
   );

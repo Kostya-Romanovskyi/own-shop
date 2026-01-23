@@ -4,7 +4,6 @@ import AddNewItem from '../../AddNewItem/AddNewItem';
 import DeleteUnit from '../../DeleteUnit/DeleteUnit';
 import { useAllItems, useAddNewItem, useDeleteItem } from '../../../hooks/useItems';
 import AdminAddData from '../../AdminAddData/AdminAddData';
-import { IAddNewProduct } from '../../../API/products/products.interface';
 import { itemFields } from '../../../constants/AdminAddItemsArr';
 import { IAddNewItem } from '../../../API/item/item.interface';
 import { useAllProducts } from '../../../hooks/useProducts';
@@ -12,7 +11,7 @@ import { useAllProducts } from '../../../hooks/useProducts';
 const ManageItemsSection = () => {
   // add items
   const { mutate: addItem, isPending: pendingAddItem } = useAddNewItem();
-  const { data: allProducts, isPending: pendingProducts } = useAllProducts();
+  const { data: allProducts } = useAllProducts();
 
   // delete items
   const { data: allItems, isPending } = useAllItems();
@@ -31,6 +30,7 @@ const ManageItemsSection = () => {
         }}
         title={'Add new item'}
         selectOptions={optionData}
+        isPending={pendingAddItem}
       />
 
       <AddIngredientsToItem />
