@@ -78,14 +78,13 @@ const AdminAddData = ({ render, mutate, selectOptions, title, isPending }: Admin
               <Controller
                 name={item.name}
                 control={control}
+                defaultValue={(item.options || selectOptions)?.[0]?.value ?? ''}
                 render={({ field }) => (
                   <SelectComponent
                     options={item.options || selectOptions || []}
                     selectedOption={selectedOption[item.name] || { value: '', label: '' }}
                     setSelectedOption={option => {
-                      // update UI
                       setSelectedOption(prev => ({ ...prev, [item.name]: option }));
-                      // update form
                       field.onChange(option.value);
                     }}
                   />
