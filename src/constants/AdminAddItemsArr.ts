@@ -59,4 +59,17 @@ export const itemFields = {
       type: 'select',
     },
   ],
+  addIngredientsToItem: [
+    {
+      name: 'chooseItem',
+      label: 'Choose item',
+      type: 'select',
+    },
+    {
+      name: 'chooseIngredients',
+      label: 'Choose ingredients',
+      type: 'select',
+      useExtraOptions: true,
+    },
+  ],
 };

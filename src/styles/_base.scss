@@ -3,6 +3,7 @@
 .container {
   margin: 0 auto;
   padding: 0 10px;
+  width: 100%;
 
   @media (min-width: $mobile) {
     max-width: $mobile;
@@ -21,17 +22,18 @@
   }
 }
 
-.staff__container {
-  margin: 0 auto;
-  padding: 0 10px;
+// .staff__container {
+//   margin: 0 auto;
+//   padding: 0 10px;
+//   // width: 100%;
 
-  @media (min-width: $mobile) {
-    max-width: $mobile;
-  }
+//   @media (min-width: $mobile) {
+//     max-width: $mobile;
+//   }
 
-  @media (min-width: $tablet) {
-    max-width: $staff-tablet;
+//   @media (min-width: $tablet) {
+//     max-width: $staff-tablet;
 
-    padding: 0 15px;
-  }
-}
+//     // padding: 0 15px;
+//   }
+// }

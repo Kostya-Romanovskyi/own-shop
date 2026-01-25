@@ -10,6 +10,8 @@ import SelectComponent from '../SelectComponent/SelectComponent';
 import { reservationStatusSelect } from '../../constants/statusSelect';
 
 import { IReservationWithUser } from '../../API/reservation/reservation.interface';
+import spinnerSize from '../../constants/spinnerSize';
+import Spinner from '../Spinner/Spinner';
 
 import './staff-reservation-list.scss';
 
@@ -28,7 +30,29 @@ interface StaffReservationListProps {
 
 const rowStyles = {
   height: '100px',
-  fontSize: '1.2rem',
+  fontSize: '1.5rem',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const customStyles = {
+  headCells: {
+    style: {
+      paddingLeft: '8px',
+      paddingRight: '8px',
+      fontSize: '1.5rem',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+  table: {
+    style: {
+      borderRadius: '12px',
+      overflow: 'hidden',
+    },
+  },
 };
 
 const StaffReservationList: FC<StaffReservationListProps> = ({ allReservations = [] }) => {
@@ -138,7 +162,7 @@ const StaffReservationList: FC<StaffReservationListProps> = ({ allReservations =
     },
     { name: 'Phone', selector: row => row.phone, sortable: true, style: rowStyles },
     { name: 'Table', selector: row => row.table.toString(), sortable: true, style: rowStyles },
-    { name: 'Date & Time', selector: row => row.date, sortable: true, style: rowStyles },
+    // { name: 'Date & Time', selector: row => row.date, sortable: true, style: rowStyles },
     {
       name: 'Details',
 
@@ -164,21 +188,27 @@ const StaffReservationList: FC<StaffReservationListProps> = ({ allReservations =
 
   return (
     <div className="font">
-      <input
-        type="text"
-        placeholder="Search orders..."
-        value={filterText}
-        onChange={e => setFilterText(e.target.value)}
-        style={{
-          padding: '8px',
-          fontSize: '14px',
-          width: '100%',
-          maxWidth: '300px',
-          marginBottom: '20px',
-        }}
-      />
+      <div className="staff__container">
+        <input
+          type="text"
+          placeholder="Search orders..."
+          value={filterText}
+          onChange={e => setFilterText(e.target.value)}
+          className="today__order__filter"
+          style={{
+            marginBottom: '20px',
+          }}
+        />
+      </div>
 
-      <DataTable columns={columns} data={filteredReservations} pagination />
+      <DataTable
+        columns={columns}
+        data={filteredReservations || []}
+        pagination
+        paginationPerPage={30}
+        progressComponent={<Spinner size={spinnerSize.lg} />}
+        customStyles={customStyles}
+      />
 
       <Modal
         isOpen={showModal}

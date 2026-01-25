@@ -27,6 +27,8 @@
   @media (min-width: $desktop) {
     font-size: 1.3rem;
   }
+
+  border-radius: 5px;
 }
 
 .active-item {
@@ -35,9 +37,6 @@
 
 .profile__link {
   display: block;
-  &:not(:last-child) {
-    border-bottom: 1px solid $btn-box-shadow-color;
-  }
 
   &:hover .profile__item {
     color: $link-hover-color;

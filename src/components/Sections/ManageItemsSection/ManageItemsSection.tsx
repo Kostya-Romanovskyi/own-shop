@@ -1,5 +1,5 @@
 import AddIngredientsToItem from '../../AddIngredientsToItem/AddIngredientsToItem';
-import AddNewItem from '../../AddNewItem/AddNewItem';
+// import AddNewItem from '../../AddNewItem/AddNewItem';
 // import DeleteItem from '../../DeleteItem/DeleteItem';
 import DeleteUnit from '../../DeleteUnit/DeleteUnit';
 import { useAllItems, useAddNewItem, useDeleteItem } from '../../../hooks/useItems';
@@ -14,14 +14,14 @@ const ManageItemsSection = () => {
   const { data: allProducts } = useAllProducts();
 
   // delete items
-  const { data: allItems, isPending } = useAllItems();
   const { mutate: deleteMutate, isPending: pendingDelete } = useDeleteItem();
+  const { data: allItems, isPending } = useAllItems();
 
   const optionData =
     allProducts?.map(({ id, name }) => ({ value: id.toString(), label: name })) || [];
   return (
     <div>
-      <AddNewItem />
+      {/* <AddNewItem /> */}
 
       <AdminAddData
         render={itemFields.item}

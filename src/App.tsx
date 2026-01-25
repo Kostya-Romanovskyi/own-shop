@@ -129,11 +129,14 @@ function App() {
               <Route path="/admin-page/manage-items" element={<ManageItemsSection />} />
               <Route path="/admin-page/manage-category" element={<ManageCategorySection />} />
               <Route path="/admin-page/manage-product" element={<ManageProductSection />} />
+              <Route path="/admin-page/staff" element={<Staff />} />
+              <Route path="/admin-page/today-orders" element={<TodayOrdersPage />} />
+              <Route path="/admin-page/orders-by-date" element={<OrdersByDatePage />} />
             </Route>
 
-            <Route path="/staff" element={<Staff />} />
+            {/* <Route path="/staff" element={<Staff />} />
             <Route path="/today-orders" element={<TodayOrdersPage />} />
-            <Route path="/orders-by-date" element={<OrdersByDatePage />} />
+            <Route path="/orders-by-date" element={<OrdersByDatePage />} /> */}
           </>
         ) : null}
 

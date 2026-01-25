@@ -1,13 +1,25 @@
 @import '../../styles/variables/colors';
 @import '../../styles/media';
 
-.admin__wrapper {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+.admin__container {
+  padding-inline: 50px;
+
+  @media (min-width: 1200px) {
+    margin: 0 auto;
+    max-width: 1500px;
+  }
 }
 
-.admin__margin {
-  margin-right: 30px;
+.admin__wrapper {
+  display: grid;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 850px;
+  }
+
+  grid-template-columns: 1fr 5fr;
+
+  gap: 30px;
 }
 
 .manage__title {
@@ -83,4 +95,9 @@
     transform: scale(1.05);
     box-shadow: 0 4px 8px $btn-box-shadow-color;
   }
+}
+
+.active__link {
+  background-color: #f0c791;
+  color: $btn-main-text-color;
 }

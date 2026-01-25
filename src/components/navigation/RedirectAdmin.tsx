@@ -8,18 +8,18 @@ const RedirectAdmin = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   const allowedPages = [
-    '/staff',
+    '/admin-page/staff',
     '/admin-page/manage-items',
     '/admin-page/manage-category',
     '/admin-page/manage-product',
     '/admin-page',
-    '/today-orders',
-    '/orders-by-date',
+    '/admin-page/today-orders',
+    '/admin-page/orders-by-date',
   ];
 
   useEffect(() => {
     if (user?.role === 'admin' && !allowedPages.includes(location.pathname)) {
-      navigate('/staff', { replace: true });
+      navigate('/admin-page/staff', { replace: true });
     }
   }, [user, location, navigate]);
 

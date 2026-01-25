@@ -12,12 +12,14 @@ interface AdminAddDataProps {
     label: string;
     type: string;
     placeholder?: string | '';
+    useExtraOptions?: boolean;
     options?: { value: string; label: string }[];
   }[];
   mutate: (data: FormData) => void;
   selectOptions?: { value: string; label: string }[];
   title: string;
   isPending?: boolean;
+  selectAdditionalOptions?: { value: string; label: string }[];
 }
 
 interface FormValues {

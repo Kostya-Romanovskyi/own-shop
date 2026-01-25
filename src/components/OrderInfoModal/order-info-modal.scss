@@ -104,6 +104,21 @@
 .order__info__item__pic {
   width: 150px;
   object-fit: 'contain';
+  border-radius: 50%;
+}
+
+.order__info__item__pic {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .order__info__item__pic {
+    height: 120px;
+  }
 }
 
 .order__info__item__name {

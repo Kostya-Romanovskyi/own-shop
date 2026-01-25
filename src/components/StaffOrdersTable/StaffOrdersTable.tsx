@@ -25,7 +25,7 @@ interface IDataRow {
 
 const rowStyles = {
   height: '100px',
-  fontSize: '1.5rem',
+  fontSize: '1.2rem',
 
   display: 'flex',
   alignItems: 'center',
@@ -48,6 +48,12 @@ const customStyles = {
       fontSize: '1.5rem',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+  },
+  table: {
+    style: {
+      borderRadius: '12px',
+      overflow: 'hidden',
     },
   },
 };
@@ -171,7 +177,7 @@ const StaffOrdersTable: FC<IOrdersTableProps> = ({ todayOrdersInfo, isLoading })
     <div className="font">
       <div className="staff__container">
         <div className="font">
-          <div style={{ marginBottom: '16px' }}>
+          <div>
             <input
               type="text"
               placeholder="Search orders..."
@@ -191,7 +197,7 @@ const StaffOrdersTable: FC<IOrdersTableProps> = ({ todayOrdersInfo, isLoading })
         customStyles={customStyles}
         pagination
         paginationPerPage={30}
-        className="main__data__table"
+        className=""
       />
 
       <Modal isOpen={showModalAdd} onClose={() => setShowModalAdd(false)}>

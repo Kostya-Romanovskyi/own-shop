@@ -1,12 +1,13 @@
 .header__staff__padding {
   padding: 20px 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .header__staff__list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 100px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .header__staff__item {

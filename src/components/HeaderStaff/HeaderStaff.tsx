@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useGetAllOrders } from '../../hooks/useOrder';
 import { useAllReservations } from '../../hooks/useReservations';
-import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
 import playOrderSound from '../../helpers/PlayOrderSound';
@@ -66,22 +65,12 @@ const HeaderStaff = () => {
   useSoundNotification(hasPendingOrders, 'orders Pending!');
   useSoundNotification(hasPendingReservations, 'reservations Pending!');
 
-  const checkStatus = orders?.find(order => order.status === 'Pending');
-
   return (
-    <>
-      <div className="container header__staff__padding">
+    <div className="container header__staff__padding">
+      <div className="">
         <ul className="header__staff__list">
-          <li
-            className={`header__staff__item active__orders blink-bg ${checkStatus?.status === 'Pending' ? 'tabs__blink' : ''}`}
-          >
-            <Link to="/staff">Active orders</Link>
-          </li>
-          <li className="header__staff__item">
-            <Link to="/today-orders">All orders for today</Link>
-          </li>
-          <li className="header__staff__item">
-            <Link to="/orders-by-date">All orders by date</Link>
+          <li>
+            <p>Admin Page</p>
           </li>
           <li className="header__staff__item">
             <LogoutBtn />
@@ -90,7 +79,7 @@ const HeaderStaff = () => {
       </div>
 
       <Outlet />
-    </>
+    </div>
   );
 };
 
