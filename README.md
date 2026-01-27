@@ -1,32 +1,41 @@
-https://www.sonatheindiankitchen.ca/
+# ownRestaurant
 
-# React + TypeScript + Vite
+**ownRestaurant** is a web application for a Japanese restaurant, built with React and TypeScript.
+The project includes both a user and an admin side, providing full functionality for customers and
+restaurant staff.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+### User Side
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration and login
+- Personal account with editable user information
+- Full restaurant menu browsing
+- Takeaway order functionality
+- Shopping cart with quantity and price updates
+- Table reservation
 
-## Expanding the ESLint configuration
+### Admin / Staff Side
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Manage customer orders
+- Manage table reservations
+- Manage categories and dishes
+- View and handle orders and reservations
+- Real-time order notifications with sound alerts until the staff confirms the order
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies and Libraries
 
-```js
-export default {
-	// other rules...
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-		project: ['./tsconfig.json', './tsconfig.node.json'],
-		tsconfigRootDir: __dirname,
-	},
-};
-```
+- **Frontend:** React + TypeScript
+- **Styling:** Sass and Styled Components
+- **Server State Management:** TanStack Query
+- **Sliders:** Slick Carousel
+- **Backend:** Node.js
+- **Real-time:** WebSockets for instant order updates and notifications
+- Backend and database interaction via API
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Highlights
+
+- Responsive design in Japanese style
+- Separate user and admin sections
+- Modern approaches for state management and data caching
+- Real-time communication for instant order handling
