@@ -19,14 +19,8 @@ const FooterNav = () => {
         </li>
 
         <li className="footer__nav__item">
-          <Link className={`footer__nav__link`} to={'/reservations'}>
+          <Link className={`footer__nav__link`} to={'/reservation'}>
             Reservations
-          </Link>
-        </li>
-
-        <li className="footer__nav__item">
-          <Link className={`footer__nav__link`} to={'/profile/my-data'}>
-            Profile
           </Link>
         </li>
       </ul>
