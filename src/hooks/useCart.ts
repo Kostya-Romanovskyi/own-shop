@@ -34,7 +34,8 @@ export const useUserCart = (userId: number) => {
   return useQuery({
     queryKey: ['user-cart', userId],
     queryFn: async () => getProductsInCart(userId),
-    select: data => (data && data?.data) || [],
+    select: data => data || { result: [], totalPrice: 0 },
+    enabled: !!userId,
   });
 };
 

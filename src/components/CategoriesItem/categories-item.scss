@@ -1,15 +1,14 @@
 @import '../../styles/media';
 @import '../../styles/variables/colors';
 
+.categories__link {
+  display: block;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
 .categories__item {
-  //   padding: 20px;
-  margin-bottom: 30px;
-
-  background-repeat: no-repeat;
-  background-position: right 100px;
-
-  background-size: contain;
-
   background-color: $card-bg-color;
   border-radius: 8px;
   padding: 16px;
@@ -17,34 +16,36 @@
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  height: 350px;
 
   &:hover,
   &:focus {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
-
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-
-  //   @media (min-width: $desktop) {
-  //     display: grid;
-  //     grid-template-columns: 1fr 4fr;
-
-  //     gap: 50px;
-  //   }
 }
 
-.categories__item-title {
-  font-size: 2rem;
-  font-weight: 700;
+.categories__item-image {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
 
   margin-bottom: 20px;
 }
-.categories__item-description {
-  max-height: 100px;
+.categories__item-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  overflow: hidden;
+  margin-bottom: 20px;
+}
+.categories__item-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.categories__item-icon {
+  font-size: 1.5rem;
+}
+.categories__item-description {
+  font-size: 0.875rem;
 }

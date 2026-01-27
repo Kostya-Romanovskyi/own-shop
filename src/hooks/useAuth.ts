@@ -10,6 +10,7 @@ export const useCurrentUser = () => {
     queryKey: ['current'],
     queryFn: getCurrentUser,
     select: data => data,
+    staleTime: 5 * 60 * 1000,
   });
 };
 
@@ -27,6 +28,8 @@ export const useLoginUser = () => {
         const token = data?.token;
         localStorage.setItem('token-shop', token);
       }
+
+      queryClient.invalidateQueries({ queryKey: ['current'] });
 
       if (data?.role === 'admin') {
         navigate('/staff', { replace: true });

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { BackendResponse, ICartList, INewItemInCart, ICartUpdateItem } from './cart.interface';
+import { ICartList, INewItemInCart, ICartUpdateItem, ICartInfo } from './cart.interface';
 import { BASE_URL } from '../../constants/url';
 
 export const getProductsInCart = async (userId: number) => {
   try {
-    const result = await axios.get<BackendResponse>(`${BASE_URL}/${userId}/cart`);
+    const result = await axios.get<ICartInfo>(`${BASE_URL}/${userId}/cart`);
     console.log('get', result);
 
     return result.data;

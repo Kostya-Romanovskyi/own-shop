@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCurrentUser } from '../../hooks/useAuth';
+// import { useCurrentUser } from '../../hooks/useAuth';
 import { useUsersReservation, useChangeReservationStatus } from '../../hooks/useReservations';
 import dateAndTime from '../../helpers/dateAndTime';
 import Modal from '../Modal/Modal';
@@ -8,11 +8,12 @@ import Spinner from '../Spinner/Spinner';
 import spinnerSize from '../../constants/spinnerSize';
 import { Link } from 'react-router-dom';
 import PaginationComp from '../Pagination/PaginationComp';
+import { IGetUsers } from '../../API/user/user.interface';
 
-const UserReservations = () => {
+const UserReservations = ({ currentUser }: { currentUser: IGetUsers }) => {
   const [page, setPage] = useState(1);
-  const { data: userInfo } = useCurrentUser();
-  const { data: reservationsList } = useUsersReservation(userInfo?.id, page);
+  // const { data: userInfo } = useCurrentUser();
+  const { data: reservationsList } = useUsersReservation(currentUser?.id, page);
   const [reservationId, setReservationId] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 

@@ -14,9 +14,9 @@ import Spinner from '../Spinner/Spinner';
 
 import './cart-item.scss';
 import spinnerSize from '../../constants/spinnerSize';
-import { useCurrentUser } from '../../hooks/useAuth';
+// import { useCurrentUser } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
-
+import { IGetUsers } from '../../API/auth/auth.interface';
 interface ICartItemProps {
   id: number;
   quantity: number;
@@ -24,15 +24,23 @@ interface ICartItemProps {
   unit_price: number;
   cart_status: string;
   products_item?: IProduct;
+  userData: { id: number; name: string; email: string } | IGetUsers;
 }
 
-const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, products_item }) => {
+const CartItem: FC<ICartItemProps> = ({
+  id,
+  quantity,
+  price,
+  unit_price,
+  products_item,
+  userData,
+}) => {
   const [cartQuantity, setCartQuantity] = useState<number>(quantity);
   const [showDelBtn, setShowDelBtn] = useState(false);
 
-  const { data } = useCurrentUser();
+  // const { data } = useCurrentUser();
 
-  const { mutate, isPending } = useDeleteItem(id, data?.id || -1);
+  const { mutate, isPending } = useDeleteItem(id, userData?.id || -1);
 
   // hook for update item in cart
   const {
@@ -45,7 +53,7 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
       products_item_id: products_item?.id ? products_item?.id : -1,
       quantity: cartQuantity,
     },
-    data?.id ? data?.id : -1
+    userData?.id ? userData?.id : -1
   );
 
   // pass product image in cart
@@ -81,13 +89,7 @@ const CartItem: FC<ICartItemProps> = ({ id, quantity, price, unit_price, product
         {isFetching || pendingUpdate ? <Spinner size={spinnerSize.lg} /> : ''}
       </div>
       <div className="card__title__wrapp">
-        <img
-          className="cart__img"
-          src={`${image}`}
-          alt={`${products_item?.name} picture`}
-          width={200}
-          height={100}
-        />
+        <img className="cart__img" src={`${image}`} alt={`${products_item?.name} picture`} />
 
         <Link to={`/menu/search/item-page/${products_item?.id}`} className="cart__title">
           {products_item?.name}

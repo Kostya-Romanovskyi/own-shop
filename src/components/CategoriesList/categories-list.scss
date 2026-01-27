@@ -1,6 +1,14 @@
-.categories__list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+@import '../../styles/media';
 
-  gap: 30px;
+.categories__list {
+  @media (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px;
+  }
+
+  @media (min-width: $desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

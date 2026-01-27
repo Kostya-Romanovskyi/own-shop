@@ -1,7 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './personal-data.scss';
-import { useQuery } from '@tanstack/react-query';
-import { IRegister } from '../../API/auth/auth.interface';
+// import { useQuery } from '@tanstack/react-query';
+// import { IGetUsers, IRegister } from '../../API/auth/auth.interface';
+import { IGetUsers } from '../../API/auth/auth.interface';
 import { useState } from 'react';
 import { useUpdateUserData } from '../../hooks/useAuth';
 import PersonalChangeBtns from '../PersonalChangeBtns/PersonalChangeBtns';
@@ -25,8 +26,8 @@ type InputsState = {
   additional_information: boolean;
 };
 
-const PersonalData = () => {
-  const { data: userData } = useQuery<IRegister>({ queryKey: ['current'] });
+const PersonalData = ({ currentUser }: { currentUser: IGetUsers }) => {
+  // const { data: userData } = useQuery<IRegister>({ queryKey: ['current'] });
 
   const { mutate, isPending } = useUpdateUserData();
 
@@ -68,7 +69,7 @@ const PersonalData = () => {
     }
 
     mutate({
-      userId: userData?.id || -1,
+      userId: currentUser?.id || -1,
       newUserData: updatedFields,
     });
 
@@ -84,12 +85,12 @@ const PersonalData = () => {
       <div className="personal__data__wrapp">
         <div className="personal__input__wrapp">
           <InputString
-            placeholder={userData?.name || ''}
+            placeholder={currentUser?.name || ''}
             label="Name"
             name="name"
             register={register}
             type="text"
-            defaultValue={userData?.name || ''}
+            defaultValue={currentUser?.name || ''}
             disabled={inputStates.name}
           />
           <PersonalChangeBtns handleToggle={handleToggle} label="name" inputStates={inputStates} />
@@ -97,12 +98,12 @@ const PersonalData = () => {
 
         <div className="personal__input__wrapp">
           <InputString
-            placeholder={userData?.last_name || ''}
+            placeholder={currentUser?.last_name || ''}
             label="Last name"
             name="last_name"
             register={register}
             type="text"
-            defaultValue={userData?.last_name || ''}
+            defaultValue={currentUser?.last_name || ''}
             disabled={inputStates.last_name}
           />
           <PersonalChangeBtns
@@ -117,12 +118,12 @@ const PersonalData = () => {
       <div className="personal__data__wrapp">
         <div className="personal__input__wrapp">
           <InputString
-            placeholder={userData?.email || ''}
+            placeholder={currentUser?.email || ''}
             label="Email"
             name="email"
             register={register}
             type="email"
-            defaultValue={userData?.email || ''}
+            defaultValue={currentUser?.email || ''}
             disabled={inputStates.email}
           />
           <PersonalChangeBtns handleToggle={handleToggle} label="email" inputStates={inputStates} />
@@ -130,12 +131,12 @@ const PersonalData = () => {
 
         <div className="personal__input__wrapp">
           <InputString
-            placeholder={userData?.phone || ''}
+            placeholder={currentUser?.phone || ''}
             label="Phone number"
             name="phone"
             register={register}
             type="tel"
-            defaultValue={userData?.phone || ''}
+            defaultValue={currentUser?.phone || ''}
             disabled={inputStates.phone}
           />
           <PersonalChangeBtns handleToggle={handleToggle} label="phone" inputStates={inputStates} />
@@ -152,7 +153,7 @@ const PersonalData = () => {
             {...register('additional_information')}
             name="additional_information"
             id="additional_information"
-            defaultValue={userData?.additional_information}
+            defaultValue={currentUser?.additional_information}
             readOnly={inputStates.additional_information}
           ></textarea>
         </div>

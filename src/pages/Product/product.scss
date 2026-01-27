@@ -30,7 +30,17 @@
 }
 
 .product-item__image {
+  object-fit: cover;
+  width: 100%;
   margin-bottom: 20px;
+  border-radius: 10px;
+
+  @media (min-width: $tablet) {
+    height: 300px;
+  }
+  @media (min-width: $desktop) {
+    height: 500px;
+  }
 }
 .product-item__description {
   text-align: justify;

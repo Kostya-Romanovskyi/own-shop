@@ -4,14 +4,18 @@ import { useAddToCart } from '../../hooks/useCart';
 import { INewItemInCart } from '../../API/cart/cart.interface';
 import { IGetUsers } from '../../API/auth/auth.interface';
 import { useItemById } from '../../hooks/useItems';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import MainButton from '../../components/MainButton/MainButton';
 import AllItemsSection from '../../components/Sections/AllItemsSection/AllItemsSection';
 import { MdAddShoppingCart } from 'react-icons/md';
-// import ImageZoom from '../../components/ImageZoom/ImageZoom';
+import { useEffect } from 'react';
+import imgPlaceholder from '../../assets/gallery/image-placeholder.png';
+import Spinner from '../../components/Spinner/Spinner';
+import spinnerSize from '../../constants/spinnerSize';
 
 const Product = () => {
   const { itemId } = useParams<{ itemId: string }>();
+  const location = useLocation();
 
   const { data: productItem } = useItemById(itemId || '');
   const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
@@ -35,6 +39,12 @@ const Product = () => {
     }
   };
 
+  useEffect(() => {
+    if (location.pathname.includes('item-page')) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <section>
@@ -42,13 +52,23 @@ const Product = () => {
           <h2 className="product-item__title">{productItem?.name}</h2>
           <div className="product-item__wrapper">
             <div className="product-item__small__section ">
-              <img className="product-item__image" src={`${productItem?.image}`} alt="" />
+              <img
+                className="product-item__image"
+                src={`${productItem?.image ? productItem?.image : imgPlaceholder}`}
+                alt=""
+              />
 
               {/* <InputPrice onQuantityChange={() => {}} quantity={1} price={productItem?.price} /> */}
               {/* <ImageZoom image={productItem?.image || ''} /> */}
             </div>
             <div className="product-item__small__section ">
-              <p className="product-item__description">{productItem?.description}</p>
+              <p className="product-item__description">
+                {productItem?.description ? (
+                  productItem?.description
+                ) : (
+                  <Spinner size={spinnerSize.md} />
+                )}
+              </p>
               <p className="product-item__notification_allergen">
                 Dish contain allergens, check additional info below
               </p>

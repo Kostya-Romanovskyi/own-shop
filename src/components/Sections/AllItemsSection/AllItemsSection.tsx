@@ -5,18 +5,20 @@ import { IProductItem } from '../../../API/products/products.interface';
 import Spinner from '../../Spinner/Spinner';
 import spinnerSize from '../../../constants/spinnerSize';
 import './all-items-section.scss';
+import { useLocation } from 'react-router-dom';
 
 const AllItemsSection = () => {
   const { data: allItems, isLoading } = useAllItems();
   const [sortedItems, setSortedItems] = useState<IProductItem[]>([]);
   const maxElements = 5;
+  const location = useLocation();
 
   useEffect(() => {
-    if (allItems) {
+    if (allItems && location.pathname.includes('item-page')) {
       const sort = [...allItems].sort(() => Math.random() - 0.5).slice(0, maxElements);
       setSortedItems(sort);
     }
-  }, [allItems]);
+  }, [allItems, location.pathname]);
 
   if (isLoading) {
     return <Spinner size={spinnerSize.md} />;

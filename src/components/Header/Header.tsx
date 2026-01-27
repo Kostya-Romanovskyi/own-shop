@@ -16,6 +16,9 @@ import { IUserProfileInfo } from '../../API/auth/auth.interface';
 import { ICartInfo } from '../../API/cart/cart.interface';
 import InputSearch from '../InputSearch/InputSearch';
 
+import Logo from '../../assets/newLogo.png';
+import Spinner from '../Spinner/Spinner';
+
 const Header = () => {
   const { data: user } = useQuery<IUserProfileInfo>({ queryKey: ['current'] });
   const { data: cartItems } = useQuery<ICartInfo>({ queryKey: ['user-cart', user?.id] });
@@ -52,7 +55,7 @@ const Header = () => {
             ></div>
             {/* <img className='header__logo' src={Logo} alt='Logo own-shop' /> */}
             <Link to={'/'} className="header__logo">
-              OwnRestaurant
+              <img src={Logo} alt="Logo own-shop" />
             </Link>
 
             <HeaderButton click={handleBurgerToggle} Icon={RxHamburgerMenu} classStyle="" />
@@ -73,7 +76,7 @@ const Header = () => {
                     <FaShoppingCart />
 
                     <div className="header__cart__counter">
-                      {cartItems && cartItems.result.length}
+                      {cartItems ? cartItems.result.length : <Spinner size={10} />}
                     </div>
                   </Link>
 
@@ -85,13 +88,16 @@ const Header = () => {
                     <FaListAlt />
                   </Link>
 
-                  <Link onClick={handleBurgerToggle} to="/profile/my-data">
+                  <Link
+                    onClick={handleBurgerToggle}
+                    to="/profile/my-data"
+                    className="header__user__profile__icon"
+                  >
                     <img
                       className="header__user__profile__img"
                       src={user?.image}
                       alt={user?.name}
                     />
-                    <span className="header__user__profile__text"></span>
                   </Link>
 
                   <LogoutBtn />

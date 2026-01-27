@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import CartList from '../../components/CartList/CartList';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import { IGetUsers } from '../../API/auth/auth.interface';
 import { ICartInfo } from '../../API/cart/cart.interface';
 
@@ -14,24 +14,32 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import Spinner from '../../components/Spinner/Spinner';
 import spinnerSize from '../../constants/spinnerSize';
 
-const Cart = () => {
-  const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
+const Cart = ({
+  currentUser,
+  cartData,
+  isCartLoading,
+}: {
+  currentUser: IGetUsers;
+  cartData: ICartInfo;
+  isCartLoading: boolean;
+}) => {
+  // const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
-  const { data: cartData, isLoading } = useQuery<ICartInfo>({
-    queryKey: ['user-cart', user?.id],
-    enabled: !!user?.id,
-  });
+  // const { data: cartData, isLoading } = useQuery<ICartInfo>({
+  //   queryKey: ['user-cart', currentUser?.id],
+  // });
+  // console.log(cartData && 'Cart data in Cart.tsx:', cartData);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (!user) {
+    if (!currentUser) {
       navigate('/login');
     }
-  }, [user]);
+  }, [currentUser]);
 
-  if (isLoading) {
+  if (isCartLoading) {
     return (
       <div className="container">
         <Spinner size={spinnerSize.lg} />
@@ -39,7 +47,7 @@ const Cart = () => {
     );
   }
 
-  if (cartData?.result.length === 0) {
+  if (cartData && cartData?.result.length === 0) {
     return (
       <div className="container">
         <div className="cart__empty__container">
@@ -59,7 +67,8 @@ const Cart = () => {
         <FaArrowLeftLong />
       </Link>
 
-      <CartList />
+      {currentUser && cartData && <CartList userData={currentUser} cartData={cartData} />}
+      {/* <CartList userData={user} /> */}
 
       <div className="total__wrapper">
         <p className="total__notification">Notification: This order only for pick up!!!</p>

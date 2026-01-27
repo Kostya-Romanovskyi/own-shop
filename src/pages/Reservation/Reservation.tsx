@@ -1,14 +1,15 @@
-import { useCurrentUser } from '../../hooks/useAuth';
+// import { useCurrentUser } from '../../hooks/useAuth';
 import { useAddNewReservation, useUsersReservation } from '../../hooks/useReservations';
 import ReservationForm from '../../components/ReservationForm/ReservationForm';
 import './reservation.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { IGetUsers } from '../../API/auth/auth.interface';
 
-const Reservation = () => {
+const Reservation = ({ currentUser }: { currentUser: IGetUsers }) => {
   const [checkReservations, setCheckReservations] = useState(false);
   const addNewReservation = useAddNewReservation();
-  const { data: currentUser } = useCurrentUser();
+  // const { data: currentUser } = useCurrentUser();
   const { data: userReservations } = useUsersReservation(currentUser?.id, 1);
 
   const handleReservationSubmit = (reservationData: any) => {
@@ -31,10 +32,10 @@ const Reservation = () => {
             You have a reservation for today. We're excited to welcome you!
           </p>
           <p className="existed__reservation--indent">
-            For more details, you can view your reservation in your{' '}
+            For more details, you can view your reservation in your
             <Link className="existed__reservation__link" to="/profile/my-reservations">
               Profile Dashboard.
-            </Link>{' '}
+            </Link>
           </p>
           <p className="existed__reservation--indent">Looking forward to seeing you soon!</p>
         </div>

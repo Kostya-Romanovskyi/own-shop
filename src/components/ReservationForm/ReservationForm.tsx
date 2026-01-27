@@ -7,12 +7,13 @@ import dateAndTime from '../../helpers/dateAndTime';
 import { toast } from 'react-toastify';
 import './reservation-form.scss';
 import { useAllReservations } from '../../hooks/useReservations';
+import { IGetUsers } from '../../API/user/user.interface';
 
 const ReservationForm = ({
   currentUser,
   onSubmit,
 }: {
-  currentUser: any;
+  currentUser: IGetUsers;
   onSubmit: (data: IReservation) => void;
 }) => {
   const [selectedTable, setSelectedTable] = useState(-1);

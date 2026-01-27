@@ -40,11 +40,20 @@ import { UserRole } from './API/auth/auth.interface';
 import RedirectAdmin from './components/navigation/RedirectAdmin';
 import TodayOrdersPage from './pages/TodayOrdersPage/TodayOrdersPage';
 import OrdersByDatePage from './pages/OrdersByDatePage/OrdersByDatePage';
+// import { useQuery } from '@tanstack/react-query';
+// import { ICartInfo } from './API/cart/cart.interface';
 
 function App() {
   const { data: user, isLoading } = useCurrentUser();
 
-  useUserCart(user?.id);
+  const { data: cartData, isLoading: isCartLoading } = useUserCart(user?.id);
+
+  // const { data: cartData, isLoading: isCartLoading } = useQuery<ICartInfo>({
+  //   queryKey: ['user-cart', user?.id],
+  //   enabled: !!user?.id,
+  // });
+
+  // console.log(cartData && 'Cart data in App.tsx:', cartData);
 
   if (isLoading) {
     return (
@@ -74,54 +83,129 @@ function App() {
 
         <Route path="/menu/all-items/:allItemsName" element={<ProductsListPage />} />
 
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              currentUser={user}
+              cartData={cartData ?? { result: [], totalPrice: 0 }}
+              isCartLoading={isCartLoading}
+            />
+          }
+        />
 
         <Route path="/shop" element={<Shop />} />
 
         <Route path="/success-registration" element={<SuccessRegisterPage />} />
 
-        <Route path="/profile" element={<PrivateRouter component={<Profile />} redirectTo="/" />}>
+        <Route
+          path="/profile"
+          element={
+            <PrivateRouter
+              component={<Profile />}
+              redirectTo="/"
+              currentUser={user}
+              isLoading={isLoading}
+            />
+          }
+        >
           <Route
             path="/profile/my-data"
-            element={<PrivateRouter component={<PersonalData />} redirectTo="/" />}
+            element={
+              <PrivateRouter
+                component={<PersonalData currentUser={user} />}
+                redirectTo="/"
+                currentUser={user}
+                isLoading={isLoading}
+              />
+            }
           />
 
           <Route
             path="/profile/my-orders"
-            element={<PrivateRouter component={<UserOrdersList />} redirectTo="/" />}
+            element={
+              <PrivateRouter
+                component={<UserOrdersList currentUser={user} />}
+                redirectTo="/"
+                currentUser={user}
+                isLoading={isLoading}
+              />
+            }
           />
           <Route
             path="/profile/my-rewards"
-            element={<PrivateRouter component={<UserRewards />} redirectTo="/" />}
+            element={
+              <PrivateRouter
+                component={<UserRewards />}
+                redirectTo="/"
+                currentUser={user}
+                isLoading={isLoading}
+              />
+            }
           />
 
           <Route
             path="/profile/my-reservations"
-            element={<PrivateRouter component={<UserReservations />} redirectTo="/" />}
+            element={
+              <PrivateRouter
+                component={<UserReservations currentUser={user} />}
+                redirectTo="/"
+                currentUser={user}
+                isLoading={isLoading}
+              />
+            }
           />
         </Route>
 
         <Route
           path="/login"
-          element={<RestrictedRouter component={<LoginPage />} redirectTo="/menu" />}
+          element={
+            <RestrictedRouter component={<LoginPage />} redirectTo="/menu" currentUser={user} />
+          }
         />
 
         <Route
           path="/register"
-          element={<RestrictedRouter component={<RegisterPage />} redirectTo="/menu" />}
+          element={
+            <RestrictedRouter component={<RegisterPage />} redirectTo="/menu" currentUser={user} />
+          }
         />
 
         <Route
           path="/reservation"
-          element={<PrivateRouter component={<Reservation />} redirectTo="/login" />}
+          element={
+            <PrivateRouter
+              component={<Reservation currentUser={user} />}
+              redirectTo="/login"
+              currentUser={user}
+              isLoading={isLoading}
+            />
+          }
         />
 
         <Route
           path="/success-reservation"
-          element={<PrivateRouter component={<SuccessReservationPage />} redirectTo="/login" />}
+          element={
+            <PrivateRouter
+              component={<SuccessReservationPage />}
+              redirectTo="/login"
+              currentUser={user}
+              isLoading={isLoading}
+            />
+          }
         />
 
-        <Route path="/order" element={<PrivateRouter component={<Order />} redirectTo="/" />} />
+        <Route
+          path="/order"
+          element={
+            <PrivateRouter
+              component={<Order />}
+              redirectTo="/"
+              currentUser={user}
+              isLoading={isLoading}
+            />
+          }
+        />
 
         {user && user?.role === UserRole.ADMIN ? (
           <>
@@ -133,10 +217,6 @@ function App() {
               <Route path="/admin-page/today-orders" element={<TodayOrdersPage />} />
               <Route path="/admin-page/orders-by-date" element={<OrdersByDatePage />} />
             </Route>
-
-            {/* <Route path="/staff" element={<Staff />} />
-            <Route path="/today-orders" element={<TodayOrdersPage />} />
-            <Route path="/orders-by-date" element={<OrdersByDatePage />} /> */}
           </>
         ) : null}
 

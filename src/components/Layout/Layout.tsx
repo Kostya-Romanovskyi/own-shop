@@ -6,6 +6,7 @@ import { useCurrentUser } from '../../hooks/useAuth';
 import Spinner from '../Spinner/Spinner';
 import spinnerSize from '../../constants/spinnerSize';
 import HeaderStaff from '../HeaderStaff/HeaderStaff';
+import { useUserCart } from '../../hooks/useCart';
 
 interface ILayoutProps {
   children: any;
@@ -13,6 +14,7 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const { data: user, isLoading } = useCurrentUser();
+  useUserCart(user?.id);
 
   if (isLoading)
     return (
