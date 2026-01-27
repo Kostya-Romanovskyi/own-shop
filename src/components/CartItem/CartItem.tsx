@@ -14,9 +14,9 @@ import Spinner from '../Spinner/Spinner';
 
 import './cart-item.scss';
 import spinnerSize from '../../constants/spinnerSize';
-// import { useCurrentUser } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { IGetUsers } from '../../API/auth/auth.interface';
+
 interface ICartItemProps {
   id: number;
   quantity: number;
@@ -37,8 +37,6 @@ const CartItem: FC<ICartItemProps> = ({
 }) => {
   const [cartQuantity, setCartQuantity] = useState<number>(quantity);
   const [showDelBtn, setShowDelBtn] = useState(false);
-
-  // const { data } = useCurrentUser();
 
   const { mutate, isPending } = useDeleteItem(id, userData?.id || -1);
 

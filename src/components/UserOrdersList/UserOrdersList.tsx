@@ -1,4 +1,3 @@
-// import { useQuery } from '@tanstack/react-query';
 import { useGetUserOrders } from '../../hooks/useOrder';
 import { IGetUsers } from '../../API/auth/auth.interface';
 import UserOrdersItem from '../UserOrdersItem/UserOrdersItem';
@@ -10,7 +9,6 @@ import './user-orders-list.scss';
 
 const UserOrdersList = ({ currentUser }: { currentUser: IGetUsers }) => {
   const [page, setPage] = useState(1);
-  // const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
 
   const { data: orders, isLoading, isError } = useGetUserOrders(currentUser?.id ?? -1, page);
   const handlePageChange = (pageNumber: number) => {

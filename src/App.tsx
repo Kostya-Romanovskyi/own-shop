@@ -40,20 +40,10 @@ import { UserRole } from './API/auth/auth.interface';
 import RedirectAdmin from './components/navigation/RedirectAdmin';
 import TodayOrdersPage from './pages/TodayOrdersPage/TodayOrdersPage';
 import OrdersByDatePage from './pages/OrdersByDatePage/OrdersByDatePage';
-// import { useQuery } from '@tanstack/react-query';
-// import { ICartInfo } from './API/cart/cart.interface';
-
 function App() {
   const { data: user, isLoading } = useCurrentUser();
 
   const { data: cartData, isLoading: isCartLoading } = useUserCart(user?.id);
-
-  // const { data: cartData, isLoading: isCartLoading } = useQuery<ICartInfo>({
-  //   queryKey: ['user-cart', user?.id],
-  //   enabled: !!user?.id,
-  // });
-
-  // console.log(cartData && 'Cart data in App.tsx:', cartData);
 
   if (isLoading) {
     return (

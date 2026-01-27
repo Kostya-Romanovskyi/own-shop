@@ -1,14 +1,8 @@
-// import { useQuery } from '@tanstack/react-query';
-// import { useUserCart } from '../../hooks/useCart';
 import { IGetUsers } from '../../API/auth/auth.interface';
 import CartItem from '../CartItem/CartItem';
 import { ICartInfo } from '../../API/cart/cart.interface';
 
 const CartList = ({ userData, cartData }: { userData: IGetUsers; cartData: ICartInfo }) => {
-  // userData && useUserCart(userData?.id);
-
-  // const { data } = useQuery<ICartInfo>({ queryKey: ['user-cart', userData?.id] });
-
   return (
     <ul className="cart__list">
       {cartData?.result &&

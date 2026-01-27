@@ -1,6 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import CartList from '../../components/CartList/CartList';
-// import { useQuery } from '@tanstack/react-query';
 import { IGetUsers } from '../../API/auth/auth.interface';
 import { ICartInfo } from '../../API/cart/cart.interface';
 
@@ -23,13 +22,6 @@ const Cart = ({
   cartData: ICartInfo;
   isCartLoading: boolean;
 }) => {
-  // const { data: user } = useQuery<IGetUsers>({ queryKey: ['current'] });
-
-  // const { data: cartData, isLoading } = useQuery<ICartInfo>({
-  //   queryKey: ['user-cart', currentUser?.id],
-  // });
-  // console.log(cartData && 'Cart data in Cart.tsx:', cartData);
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -68,7 +60,6 @@ const Cart = ({
       </Link>
 
       {currentUser && cartData && <CartList userData={currentUser} cartData={cartData} />}
-      {/* <CartList userData={user} /> */}
 
       <div className="total__wrapper">
         <p className="total__notification">Notification: This order only for pick up!!!</p>
